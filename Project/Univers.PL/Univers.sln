@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL.csproj", "{2B40D5AE-D32F-4B95-AB5B-0CCA716D5C32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Univers.PL", "Univers.PL.csproj", "{2B40D5AE-D32F-4B95-AB5B-0CCA716D5C32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{C14F0CE5-CB4C-4526-8590-DEEE0A04A942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Univers.DAL", "..\DAL\Univers.DAL.csproj", "{C14F0CE5-CB4C-4526-8590-DEEE0A04A942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\BLL\BLL.csproj", "{91E410B4-83A4-43DA-BC91-EDCAA8D3CB70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Univers.BLL", "..\BLL\Univers.BLL.csproj", "{91E410B4-83A4-43DA-BC91-EDCAA8D3CB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Univers.Models", "..\UniversModels\Univers.Models.csproj", "{85477401-EE63-4845-A42A-8BFB5CA48193}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Univers.Utilities", "..\UniversUtilities\Univers.Utilities.csproj", "{78F635AC-967D-4044-B31A-E6E9070FBC92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{91E410B4-83A4-43DA-BC91-EDCAA8D3CB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E410B4-83A4-43DA-BC91-EDCAA8D3CB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E410B4-83A4-43DA-BC91-EDCAA8D3CB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85477401-EE63-4845-A42A-8BFB5CA48193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85477401-EE63-4845-A42A-8BFB5CA48193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85477401-EE63-4845-A42A-8BFB5CA48193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85477401-EE63-4845-A42A-8BFB5CA48193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F635AC-967D-4044-B31A-E6E9070FBC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F635AC-967D-4044-B31A-E6E9070FBC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F635AC-967D-4044-B31A-E6E9070FBC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F635AC-967D-4044-B31A-E6E9070FBC92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
