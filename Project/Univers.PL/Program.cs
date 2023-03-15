@@ -1,4 +1,4 @@
-namespace PL
+namespace Univers.PL
 {
     public class Program
     {

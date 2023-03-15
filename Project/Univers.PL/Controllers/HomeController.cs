@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PL.Models;
 using System.Diagnostics;
 
-namespace PL.Controllers
+namespace Univers.PL.Controllers
 {
     public class HomeController : Controller
     {
@@ -21,12 +20,6 @@ namespace PL.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
