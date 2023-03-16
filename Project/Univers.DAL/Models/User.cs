@@ -20,15 +20,15 @@ public partial class User
     public string Password { get; set; } = null!;
 
     [StringLength(30)]
-    [Unicode(true)]
+    public string PasswordSalt { get; set; } = null!;
+
+    [StringLength(30)]
     public string FirstName { get; set; } = null!;
 
     [StringLength(30)]
-    [Unicode(true)]
     public string MiddleName { get; set; } = null!;
 
     [StringLength(30)]
-    [Unicode(true)]
     public string LastName { get; set; } = null!;
 
     public DateTime DateOfRegistration { get; set; }

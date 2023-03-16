@@ -26,7 +26,6 @@ public partial class Speciality
     public int? Semesters { get; set; }
 
     [StringLength(20)]
-    [Unicode(false)]
     public string? Code { get; set; }
 
     [InverseProperty("Speciality")]
