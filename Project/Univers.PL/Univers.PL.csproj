@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Univers.BLL\Univers.BLL.csproj" />
+    <ProjectReference Include="..\Univers.Models\Univers.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
 [Keyless]
-public partial class Grade
+[Table("StudentCourse")]
+public partial class StudentCourse
 {
     [StringLength(50)]
     [Unicode(false)]
@@ -15,13 +16,12 @@ public partial class Grade
 
     [StringLength(50)]
     [Unicode(false)]
-    public string ExamId { get; set; } = null!;
+    public string SemesterId { get; set; } = null!;
 
-    [Column("Grade")]
-    public int? Grade1 { get; set; }
+    public int? Course { get; set; }
 
-    [ForeignKey("ExamId")]
-    public virtual Exam Exam { get; set; } = null!;
+    [ForeignKey("SemesterId")]
+    public virtual Semester Semester { get; set; } = null!;
 
     [ForeignKey("StudentId")]
     public virtual Student Student { get; set; } = null!;

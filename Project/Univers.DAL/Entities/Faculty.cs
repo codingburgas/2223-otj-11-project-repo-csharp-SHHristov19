@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
 public partial class Faculty
 {
@@ -29,7 +29,6 @@ public partial class Faculty
     public string? Name { get; set; }
 
     [StringLength(20)]
-    [Unicode(false)]
     public string? Code { get; set; }
 
     [ForeignKey("DeanId")]

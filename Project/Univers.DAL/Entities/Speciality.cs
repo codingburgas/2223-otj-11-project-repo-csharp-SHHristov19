@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
 public partial class Speciality
 {
@@ -15,7 +15,7 @@ public partial class Speciality
 
     [StringLength(50)]
     [Unicode(false)]
-    public string TutorId { get; set; } = null!;
+    public string? TutorId { get; set; }
 
     [StringLength(200)]
     public string Name { get; set; } = null!;
@@ -36,5 +36,5 @@ public partial class Speciality
 
     [ForeignKey("TutorId")]
     [InverseProperty("Specialities")]
-    public virtual Staff Tutor { get; set; } = null!;
+    public virtual Staff? Tutor { get; set; }
 }

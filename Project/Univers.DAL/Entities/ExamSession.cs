@@ -4,26 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
-public partial class Component
+public partial class ExamSession
 {
     [Key]
     [StringLength(50)]
     [Unicode(false)]
     public string Id { get; set; } = null!;
 
-    [StringLength(60)]
-    public string Type { get; set; } = null!;
-
-    public string? Activity { get; set; }
-
+    [Column(TypeName = "date")]
     public DateTime? DateOfStart { get; set; }
 
-    public TimeSpan? Duration { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime? DateOfEnd { get; set; }
 
-    [StringLength(50)]
-    public string? Location { get; set; }
+    [StringLength(100)]
+    public string? Type { get; set; }
 
-    public string? Note { get; set; }
+    [InverseProperty("ExamSession")]
+    public virtual ICollection<Exam> Exams { get; } = new List<Exam>();
 }

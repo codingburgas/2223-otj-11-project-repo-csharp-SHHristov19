@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
 public partial class Student
 {
@@ -24,9 +24,6 @@ public partial class Student
     [StringLength(10)]
     [Unicode(false)]
     public string? Identity { get; set; }
-
-    [StringLength(20)]
-    public string? Gender { get; set; }
 
     [StringLength(60)]
     public string? Citizenship { get; set; }

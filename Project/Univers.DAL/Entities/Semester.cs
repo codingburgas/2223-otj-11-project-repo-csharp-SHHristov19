@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace Univers.DAL.Entities;
 
-public partial class ExamSession
+public partial class Semester
 {
     [Key]
     [StringLength(50)]
@@ -15,7 +15,12 @@ public partial class ExamSession
 
     [StringLength(50)]
     [Unicode(false)]
-    public string SemesterId { get; set; } = null!;
+    public string UniversityId { get; set; } = null!;
+
+    public int? Number { get; set; }
+
+    [StringLength(50)]
+    public string? Type { get; set; }
 
     [Column(TypeName = "date")]
     public DateTime? DateOfStart { get; set; }
@@ -23,13 +28,7 @@ public partial class ExamSession
     [Column(TypeName = "date")]
     public DateTime? DateOfEnd { get; set; }
 
-    [StringLength(100)]
-    public string? Type { get; set; }
-
-    [InverseProperty("ExamSession")]
-    public virtual ICollection<Exam> Exams { get; } = new List<Exam>();
-
-    [ForeignKey("SemesterId")]
-    [InverseProperty("ExamSessions")]
-    public virtual Semester Semester { get; set; } = null!;
+    [ForeignKey("UniversityId")]
+    [InverseProperty("Semesters")]
+    public virtual University University { get; set; } = null!;
 }
