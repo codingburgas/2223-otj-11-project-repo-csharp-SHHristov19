@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Univers.Models\Univers.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>

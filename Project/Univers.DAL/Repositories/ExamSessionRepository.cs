@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Univers.DAL.Repositories
 {
-    internal class ExamSessionRepository
+    public class ExamSessionRepository
     {
     }
 }

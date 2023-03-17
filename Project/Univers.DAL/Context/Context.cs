@@ -5,13 +5,13 @@ using Univers.DAL.Entities;
 
 namespace Univers.DAL.Context;
 
-public partial class UniversContext : DbContext
+public partial class Context : DbContext
 {
-    public UniversContext()
+    public Context()
     {
     }
 
-    public UniversContext(DbContextOptions<UniversContext> options)
+    public Context(DbContextOptions<Context> options)
         : base(options)
     {
     }

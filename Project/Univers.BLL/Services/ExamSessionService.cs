@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Univers.BLL.Services
 {
-    internal class ExamSessionService
+    public class ExamSessionService
     {
     }
 }
