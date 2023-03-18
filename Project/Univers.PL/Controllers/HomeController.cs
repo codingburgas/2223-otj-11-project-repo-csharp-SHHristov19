@@ -15,7 +15,7 @@ namespace Univers.PL.Controllers
 
         public IActionResult Index()
         {
-            return View(UniversityService.TransferDataFromEntityToModel());
+            return View(SubjectService.TransferDataFromEntityToModel());
         }
 
         public IActionResult Privacy()

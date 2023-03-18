@@ -20,7 +20,7 @@
         <td>@user.IsActive</td>
     </tr>
 }
-</table>*@
+</table>
 @model List<Univers.Models.Models.University>
 
 <table>
@@ -32,6 +32,21 @@
             <td>@university.Name&nbsp;</td>
             <td>@university.Address&nbsp;</td>
             <td>@university.Capacity&nbsp;</td>
+        </tr>
+    }
+</table>*@
+@model List<Univers.Models.Models.Subject>
+<table>
+    @foreach (var subject in Model)
+    {
+        <tr>
+            <td>@subject.Id</td>
+            <td>@subject.TeacherId</td>
+            <td>@subject.SpecialityId</td>
+            <td>@subject.Name</td>
+            <td>@subject.Type</td>
+            <td>@subject.Credits</td>
+            <td>@subject.List</td>
         </tr>
     }
 </table>
