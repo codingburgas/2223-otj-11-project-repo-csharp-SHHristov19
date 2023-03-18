@@ -13,33 +13,33 @@ namespace Univers.BLL.Services
         // Transfer data from User entity to User model
         public static List<User> TransferDataFromEntityToModel()
         {
-            List<User> users = new();
+            List<User> models = new();
 
-            var dataUsers = UserRepository.ReadAllDataFromUser();
+            var entities = UserRepository.ReadAllData();
 
-            foreach (var userEntity in dataUsers)
+            foreach (var entity in entities)
             {
-                var userModel = new User();
+                var newModel = new User();
 
-                userModel.Id = userEntity.Id;
-                userModel.Username = userEntity.Username;
-                userModel.Password = userEntity.Password;
-                userModel.PasswordSalt = userEntity.PasswordSalt;
-                userModel.FirstName = userEntity.FirstName;
-                userModel.MiddleName = userEntity.MiddleName;
-                userModel.LastName = userEntity.LastName;
-                userModel.DateOfRegistration = userEntity.DateOfRegistration;
-                userModel.PhoneNumber = userEntity.PhoneNumber;
-                userModel.Email = userEntity.Email;
-                userModel.Address = userEntity.Address;
-                userModel.Gender = userEntity.Gender;
-                userModel.Image = userEntity.Image;
-                userModel.IsActive = userEntity.IsActive;
+                newModel.Id = entity.Id;
+                newModel.Username = entity.Username;
+                newModel.Password = entity.Password;
+                newModel.PasswordSalt = entity.PasswordSalt;
+                newModel.FirstName = entity.FirstName;
+                newModel.MiddleName = entity.MiddleName;
+                newModel.LastName = entity.LastName;
+                newModel.DateOfRegistration = entity.DateOfRegistration;
+                newModel.PhoneNumber = entity.PhoneNumber;
+                newModel.Email = entity.Email;
+                newModel.Address = entity.Address;
+                newModel.Gender = entity.Gender;
+                newModel.Image = entity.Image;
+                newModel.IsActive = entity.IsActive;
 
-                users.Add(userModel);
+                models.Add(newModel);
             }
 
-            return users;
+            return models;
         }
     }
 }
