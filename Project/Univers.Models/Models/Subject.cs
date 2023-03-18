@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UniversModels.Models;
+namespace Univers.Models.Models;
 
 public class Subject
 {
@@ -15,7 +15,7 @@ public class Subject
 
     public string? Type { get; set; } = null!;
 
-    public decimal Credits { get; set; } = null!;
+    public decimal Credits { get; set; } = 0m;
 
     public int? List { get; set; } = null!;
 

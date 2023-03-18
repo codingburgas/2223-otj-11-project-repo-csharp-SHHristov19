@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Univers.BLL.Services;
 
 namespace Univers.PL.Controllers
 {
@@ -14,7 +15,7 @@ namespace Univers.PL.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(UserService.TransferDataFromEntityToModel());
         }
 
         public IActionResult Privacy()

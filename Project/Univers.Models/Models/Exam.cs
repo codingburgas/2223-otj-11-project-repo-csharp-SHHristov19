@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UniversModels.Models;
+namespace Univers.Models.Models;
 
 public class Exam
 {

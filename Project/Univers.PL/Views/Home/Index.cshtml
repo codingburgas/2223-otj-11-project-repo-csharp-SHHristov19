@@ -1,8 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<Univers.Models.Models.User>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table>
+@foreach(var user in Model)
+{
+    <tr>
+        <td>@user.Id</td>
+        <td>@user.Username</td>
+        <td>@user.Password</td>
+        <td>@user.PasswordSalt</td>
+        <td>@user.FirstName</td>
+        <td>@user.MiddleName</td>
+        <td>@user.LastName</td>
+        <td>@user.DateOfRegistration</td>
+        <td>@user.PhoneNumber</td>
+        <td>@user.Email</td>
+        <td>@user.Address</td>
+        <td>@user.Gender</td>
+        <td>@user.Image</td>
+        <td>@user.IsActive</td>
+    </tr>
+}
+</table>
