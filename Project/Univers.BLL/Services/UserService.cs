@@ -10,8 +10,18 @@ namespace Univers.BLL.Services
 {
     public class UserService
     {
-        // Transfer data from User entity to User model
-        public static List<User> TransferDataFromEntityToModel()
+        private UserRepository UserRepository { get; set; }
+
+        public UserService()
+        {
+            UserRepository = new UserRepository();
+        }
+
+        /// <summary>
+        /// Transfer data from User entity to User model
+        /// </summary>
+        /// <returns></returns>
+        public List<User> TransferDataFromEntityToModel()
         {
             List<User> models = new();
 

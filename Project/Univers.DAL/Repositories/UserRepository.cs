@@ -9,8 +9,11 @@ namespace Univers.DAL.Repositories
 {
     public class UserRepository
     {
-        // Read the data from the Users table
-        public static List<User> ReadAllData()
+        /// <summary>
+        /// Read the data from the Users table
+        /// </summary>
+        /// <returns></returns>
+        public List<User> ReadAllData()
         {
             using Context.Context context = new();
 

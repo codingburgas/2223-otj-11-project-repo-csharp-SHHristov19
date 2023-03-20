@@ -7,6 +7,7 @@ namespace Univers.PL.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public UserService _userService = new UserService();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,7 +16,7 @@ namespace Univers.PL.Controllers
 
         public IActionResult Index()
         {
-            return View(SubjectService.TransferDataFromEntityToModel());
+            return View(_userService.TransferDataFromEntityToModel());
         }
 
         public IActionResult Privacy()

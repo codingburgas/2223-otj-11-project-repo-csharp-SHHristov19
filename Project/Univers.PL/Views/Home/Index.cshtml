@@ -1,4 +1,4 @@
-﻿@*@model List<Univers.Models.Models.User>
+﻿@model List<Univers.Models.Models.User>
 
 <table>
 @foreach(var user in Model)
@@ -20,7 +20,7 @@
         <td>@user.IsActive</td>
     </tr>
 }
-</table>
+</table>@*
 @model List<Univers.Models.Models.University>
 
 <table>
@@ -34,7 +34,7 @@
             <td>@university.Capacity&nbsp;</td>
         </tr>
     }
-</table>*@
+</table>
 @model List<Univers.Models.Models.Subject>
 <table>
     @foreach (var subject in Model)
@@ -49,4 +49,4 @@
             <td>@subject.List</td>
         </tr>
     }
-</table>
+</table>*@
