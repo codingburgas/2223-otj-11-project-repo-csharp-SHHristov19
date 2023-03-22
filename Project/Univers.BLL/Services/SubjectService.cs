@@ -10,12 +10,22 @@ namespace Univers.BLL.Services
 {
     public class SubjectService
     {
-        // Transfer data from Subject entity to Subject model
-        public static List<Subject> TransferDataFromEntityToModel()
+        private readonly SubjectRepository _subjectRepository;
+
+        public SubjectService()
+        {
+            _subjectRepository = new SubjectRepository();
+        }
+
+        /// <summary>
+        /// Transfer data from Subject entity to Subject model
+        /// </summary>
+        /// <returns></returns>
+        public List<Subject> TransferDataFromEntityToModel()
         {
             List<Subject> models = new();
 
-            var entities = SubjectRepository.ReadAllData();
+            var entities = _subjectRepository.ReadAllData();
 
             foreach (var entity in entities)
             {

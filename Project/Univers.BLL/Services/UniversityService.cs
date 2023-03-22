@@ -10,12 +10,22 @@ namespace Univers.BLL.Services
 {
     public class UniversityService
     {
-        // Transfer data from University entity to University model
-        public static List<University> TransferDataFromEntityToModel()
+        private readonly UniversityRepository _universityRepository;
+
+        public UniversityService()
+        {
+            _universityRepository = new UniversityRepository(); 
+        }
+
+        /// <summary>
+        /// Transfer data from University entity to University model
+        /// </summary>
+        /// <returns></returns>
+        public List<University> TransferDataFromEntityToModel()
         {
             List<University> models = new();
 
-            var entities = UniversityRepository.ReadAllData();
+            var entities = _universityRepository.ReadAllData();
 
             foreach (var entity in entities)
             {

@@ -10,7 +10,12 @@ namespace Univers.BLL.Services
 {
     public class UserService
     {
-        private UserRepository _userRepository = new UserRepository();
+        private readonly UserRepository _userRepository;
+
+        public UserService()
+        {
+            _userRepository = new UserRepository();
+        }
 
         /// <summary>
         /// Transfer data from User entity to User model

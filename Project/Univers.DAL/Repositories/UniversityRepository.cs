@@ -10,7 +10,7 @@ namespace Univers.DAL.Repositories
     public class UniversityRepository
     {
         // Read the data from the Universities table
-        public static List<University> ReadAllData()
+        public List<University> ReadAllData()
         {
             using Context.Context context = new();
 

@@ -10,7 +10,7 @@ namespace Univers.DAL.Repositories
     public class SubjectSemesterRepository
     {
         // Read the data from the SubjectSemester table
-        public static List<SubjectSemester> ReadAllData()
+        public List<SubjectSemester> ReadAllData()
         {
             using Context.Context context = new();
 

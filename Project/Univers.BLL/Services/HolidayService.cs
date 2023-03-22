@@ -10,18 +10,22 @@ namespace Univers.BLL.Services
 {
     public class HolidayService
     {
-        public HolidayRepository HolidayRepository { get; set; }
+        private readonly HolidayRepository _holidayRepository;
 
         public HolidayService()
         {
-            HolidayRepository = new HolidayRepository();
+            _holidayRepository = new HolidayRepository();
         }
-        // Transfer data from Holiday entity to Holiday model
-        public static List<Holiday> TransferDataFromEntityToModel()
+
+        /// <summary>
+        /// Transfer data from Holiday entity to Holiday model
+        /// </summary>
+        /// <returns></returns>
+        public List<Holiday> TransferDataFromEntityToModel()
         {
             List<Holiday> models = new();
 
-            var entities = HolidayRepository.ReadAllData();
+            var entities = _holidayRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
