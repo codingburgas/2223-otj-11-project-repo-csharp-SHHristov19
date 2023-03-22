@@ -161,7 +161,7 @@ CREATE TABLE [Grades]
   [Grade] INT NULL
 );
 
-CREATE TABLE [Holidais] 
+CREATE TABLE [Holidays] 
 (
   [Name] NVARCHAR(100) NULL,
   [DateOfStart] DATE NULL,

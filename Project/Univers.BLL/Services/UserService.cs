@@ -10,12 +10,7 @@ namespace Univers.BLL.Services
 {
     public class UserService
     {
-        private UserRepository UserRepository { get; set; }
-
-        public UserService()
-        {
-            UserRepository = new UserRepository();
-        }
+        private UserRepository _userRepository = new UserRepository();
 
         /// <summary>
         /// Transfer data from User entity to User model
@@ -25,7 +20,7 @@ namespace Univers.BLL.Services
         {
             List<User> models = new();
 
-            var entities = UserRepository.ReadAllData();
+            var entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {

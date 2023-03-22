@@ -28,7 +28,7 @@ public partial class Context : DbContext
 
     public virtual DbSet<Grade> Grades { get; set; }
 
-    public virtual DbSet<Holidai> Holidais { get; set; }
+    public virtual DbSet<Holiday> Holidays { get; set; }
 
     public virtual DbSet<Semester> Semesters { get; set; }
 
