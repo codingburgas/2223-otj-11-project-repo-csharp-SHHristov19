@@ -1,0 +1,27 @@
+﻿@model Univers.Models.Models.User
+@{
+    ViewData["Title"] = "Login";
+}
+
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+
+@using (Html.BeginForm("Authorization", "Login", FormMethod.Post, new { @class = "div1" }))
+{
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /> <br />
+
+    <label class="lb1">
+        Потребителско име
+    </label> <br />
+
+    @Html.TextBoxFor(model => model.Username, new { @class = "tb1" })<br /><br /><br /><br />
+
+    <label class="lb1">
+        Парола
+    </label><br />
+
+    @Html.PasswordFor(model => model.Password, new { @class = "tb1" })<br /><br /><br /><br />
+
+    <button class="button1" type="submit">Вход</button>
+
+    <a href="SignUpAs"><button class="button2" type="button">Регистрация</button></a>
+}

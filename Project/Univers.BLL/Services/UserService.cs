@@ -51,5 +51,12 @@ namespace Univers.BLL.Services
 
             return models;
         }
+
+        public User GetUserByUsernameAndPassword(string username, string password)
+        {
+            List<User> users = TransferDataFromEntityToModel();
+
+            return users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+        }
     }
 }
