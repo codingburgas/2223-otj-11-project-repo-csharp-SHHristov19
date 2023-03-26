@@ -58,5 +58,12 @@ namespace Univers.BLL.Services
 
             return users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
         }
+
+        public bool ComparePasswords(string firstPass, string secondPass)
+        {
+            return firstPass.Equals(secondPass);
+        }
+
+        
     }
 }

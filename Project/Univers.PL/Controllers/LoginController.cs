@@ -31,6 +31,12 @@ namespace Univers.PL.Controllers
             return View();
         }
 
+        public ActionResult SignUp()
+        {
+            User user = new();
+            return View(user);
+        }
+
         [HttpPost]
         public ActionResult Authorization(User user)
         {
