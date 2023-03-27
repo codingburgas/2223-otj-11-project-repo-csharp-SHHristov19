@@ -48,6 +48,7 @@
             <td>
                 <div class="div2">
                     <label class="title">Фамилия</label>
+                    @Html.LabelFor(m => m.LastName, "Фамилия")
                     @Html.TextBoxFor(model => model.LastName, new { @class = "tb2", required = "required" })
                 </div>
             </td>
