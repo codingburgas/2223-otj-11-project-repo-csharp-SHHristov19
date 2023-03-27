@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Student
+public class Student : User
 {
-    public string? Id { get; set; } = null!;
+    public string Id { get; set; }
 
     public string? SpecialityId { get; set; } = null!;
 
@@ -34,8 +34,4 @@ public class Student
     public string? CityOfBirth { get; set; } = null!;
 
     public string? FacultyNumber { get; set; } = null!;
-
-    public Speciality? Speciality { get; set; } = null!;
-
-    public User? User { get; set; } = null!;
 }

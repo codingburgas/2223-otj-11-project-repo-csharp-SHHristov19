@@ -62,7 +62,7 @@
             <td>
                 <div class="div2">
                     <label class="title">Телефон</label>
-                    <input type="tel" pattern="/^+359\d{9}" required class="tb2" placeholder="+359" asp-for="@Model.PhoneNumber"/>
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "tb2", type="tel", required = "required" , pattern=@"/^+359\d{9}", placeholder="+359" })
                 </div>
             </td>
         </tr>
