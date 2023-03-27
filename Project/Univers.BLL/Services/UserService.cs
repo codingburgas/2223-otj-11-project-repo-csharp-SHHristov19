@@ -64,6 +64,9 @@ namespace Univers.BLL.Services
             return firstPass.Equals(secondPass);
         }
 
-        
+        public void AddUser(User user)
+        {
+            _userRepository.AddData(user);
+        }
     }
 }

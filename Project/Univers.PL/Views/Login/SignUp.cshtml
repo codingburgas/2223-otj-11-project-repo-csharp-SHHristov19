@@ -14,13 +14,13 @@
             <td>
                 <div class="div2">
                     <label class="title">Потребителско име</label>
-                    @Html.TextBoxFor(model => model.Username, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.Username, new { @class = "tb2", required = "required", data_val_required = "Необходимо е да въведете потребителско име." })
                 </div>
             </td>
             <td>
                 <div class="div2">
                     <label class="title">Име</label>
-                    @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2", required = "required" })
                 </div>
             </td>
         </tr>
@@ -28,13 +28,13 @@
             <td>
                 <div class="div2">
                     <label class="title">Парола</label>
-                    @Html.TextBoxFor(model => model.Password, new { @class = "tb2" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "tb2", required = "required" })
                 </div>
             </td>
             <td>
                 <div class="div2">
                     <label class="title">Презиме</label>
-                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2", required = "required" })
                 </div>
             </td>
         </tr>
@@ -42,13 +42,13 @@
             <td>
                 <div class="div2">
                     <label class="title">Повторете паролата</label>
-                    @Html.TextBoxFor(model => model.PasswordRepeat, new { @class = "tb2" })
+                    @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "tb2", required = "required" })
                 </div>
             </td>
             <td>
                 <div class="div2">
                     <label class="title">Фамилия</label>
-                    @Html.TextBoxFor(model => model.LastName, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "tb2", required = "required" })
                 </div>
             </td>
         </tr>
@@ -56,13 +56,13 @@
             <td>
                 <div class="div2">
                     <label class="title">Email адрес</label>
-                    @Html.TextBoxFor(model => model.Email, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "tb2", required = "required" })
                 </div>
             </td>
             <td>
                 <div class="div2">
                     <label class="title">Телефон</label>
-                    <input type="tel" pattern="/^+359\d{9}" required class="tb2" placeholder="+359" />
+                    <input type="tel" pattern="/^+359\d{9}" required class="tb2" placeholder="+359" asp-for="@Model.PhoneNumber"/>
                 </div>
             </td>
         </tr>
@@ -70,7 +70,7 @@
             <td>
                 <div class="div2">
                     <label class="title">Адрес</label>
-                    @Html.TextBoxFor(model => model.Address, new { @class = "tb2" })
+                    @Html.TextBoxFor(model => model.Address, new { @class = "tb2", required = "required" })
                 </div>
             </td>
             <td>
@@ -80,7 +80,7 @@
                         { 
                             new SelectListItem { Text = "Мъж"},  
                             new SelectListItem { Text = "Жена"}
-                    },  new { @class = "tb2"})
+                },  new { @class = "tb2", required = "required"})
                 </div>
             </td>
         </tr>
