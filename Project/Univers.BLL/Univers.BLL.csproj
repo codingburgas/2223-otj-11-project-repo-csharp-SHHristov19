@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Univers.DAL\Univers.DAL.csproj" />
     <ProjectReference Include="..\Univers.Models\Univers.Models.csproj" />
+    <ProjectReference Include="..\Univers.Utilities\Univers.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

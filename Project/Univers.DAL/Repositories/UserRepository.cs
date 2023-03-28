@@ -33,6 +33,7 @@ namespace Univers.DAL.Repositories
             additionalUser.Id = Guid.NewGuid().ToString("D");
             additionalUser.Username = user.Username;
             additionalUser.Password = user.Password;
+            additionalUser.PasswordSalt = user.PasswordSalt;
             additionalUser.FirstName = user.FirstName;
             additionalUser.MiddleName = user.MiddleName;
             additionalUser.LastName = user.LastName;

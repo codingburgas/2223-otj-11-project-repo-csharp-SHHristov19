@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Univers.DAL.Repositories;
@@ -11,10 +12,12 @@ namespace Univers.BLL.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
+        private readonly UniversUtilities.Utilities _utilities;
 
         public UserService()
         {
             _userRepository = new UserRepository();
+            _utilities = new UniversUtilities.Utilities();
         }
 
         /// <summary>
@@ -33,8 +36,8 @@ namespace Univers.BLL.Services
 
                 newModel.Id = entity.Id;
                 newModel.Username = entity.Username;
-                newModel.Password = entity.Password;
                 newModel.PasswordSalt = entity.PasswordSalt;
+                newModel.Password = entity.Password;
                 newModel.FirstName = entity.FirstName;
                 newModel.MiddleName = entity.MiddleName;
                 newModel.LastName = entity.LastName;
@@ -56,7 +59,16 @@ namespace Univers.BLL.Services
         {
             List<User> users = TransferDataFromEntityToModel();
 
-            return users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+            var user = users.Where(x => x.Username == username).FirstOrDefault();
+
+            if(user != null && user.Password == HashPassword(password, user.PasswordSalt))
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public bool ComparePasswords(string firstPass, string secondPass)
@@ -66,7 +78,16 @@ namespace Univers.BLL.Services
 
         public void AddUser(User user)
         {
+            user.PasswordSalt = _utilities.GenerateSalt();
+            user.Password = HashPassword(user.Password, user.PasswordSalt);
             _userRepository.AddData(user);
+        }
+
+        public string HashPassword(string password, string salt)
+        {
+            var hash = SHA512.Create().ComputeHash(_utilities.HashPasswordWithSalt(password, salt));
+
+            return Convert.ToHexString(hash);
         }
     }
 }
