@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Univers.Models.Models;
 
-public class User
+public class User 
 {
     public string? Id { get; set; }
 
@@ -38,4 +38,6 @@ public class User
     public string? Image { get; set; }
 
     public bool? IsActive { get; set; }
+
+    public string? RoleChoice { get; set; }
 }

@@ -31,15 +31,16 @@ namespace Univers.PL.Controllers
             return View();
         }
 
-        public ActionResult SignUpAsStudent()
-        {
-            return View(_userService.TransferDataFromEntityToModel());
-        }
-
-        public ActionResult SignUp()
+        public ActionResult SignUpAsStaff()
         {
             User user = new();
             return View(user);
+        }
+
+        public ActionResult SignUpAsStudent()
+        {
+            Student student = new();
+            return View(student);
         }
 
         [HttpPost]
@@ -67,6 +68,19 @@ namespace Univers.PL.Controllers
             else
             {
                 return View("SignUp", user);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ChooseRoleForSignUp(User user)
+        {
+            if (user.RoleChoice == "Студент")
+            {
+                return RedirectToAction("SignUpAsStudent");
+            }
+            else 
+            {
+                return RedirectToAction("SignUpAsStaff");
             }
         }
     }

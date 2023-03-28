@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Univers.Models.Models.User
+@{
     ViewData["Title"] = "SignUpAs";
 }
 
@@ -13,11 +14,14 @@
         Регистрирай се като:
     </label>
 
-    <select class="list">
-        <option class="item">Студент</option>
-        <option class="item">Служител</option>
-    </select>
-
-    <a href="@Url.Action("SignUp","Login")"><button class="button3" />Регистрирация</button></a>
+    @using (Html.BeginForm("ChooseRoleForSignUp", "Login", FormMethod.Post))
+    {
+        @Html.DropDownListFor(Model => Model.RoleChoice, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Студент",  },
+            new SelectListItem { Text = "Служител", }
+        }, new {@class = "list"})
+        <button class="button3" type="submit">Регистрирация</button>
+    }
 
 </div>

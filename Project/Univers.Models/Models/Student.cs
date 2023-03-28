@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Student
+public class Student : User
 {
     public string? Id { get; set; } = null!;
 
