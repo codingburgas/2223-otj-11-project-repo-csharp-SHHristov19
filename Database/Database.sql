@@ -8,7 +8,7 @@ CREATE TABLE [Users]
 (
   [Id] VARCHAR(50) PRIMARY KEY NOT NULL,
   [Username] NVARCHAR(30) NOT NULL,
-  [Password] VARCHAR(100) NOT NULL,
+  [Password] VARCHAR(150) NOT NULL,
   [PasswordSalt] VARCHAR(50) NULL,
   [FirstName] NVARCHAR(30) NOT NULL,
   [MiddleName] NVARCHAR(30) NOT NULL,
