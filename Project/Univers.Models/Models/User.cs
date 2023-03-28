@@ -9,6 +9,7 @@ public class User
     public string? Id { get; set; }
 
     [Required(ErrorMessage = "Необходимо е да въведете потребителско име.")]
+    [MaxLength(50)]
     public string? Username { get; set; }
 
     [Required(ErrorMessage = "Необходимо е да въведете парола.")]
@@ -27,7 +28,7 @@ public class User
     public DateTime? DateOfRegistration { get; set; }
 
     [DataType(DataType.PhoneNumber)]
-    public string? PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; } = " ";
 
     public string? Email { get; set; }
 
