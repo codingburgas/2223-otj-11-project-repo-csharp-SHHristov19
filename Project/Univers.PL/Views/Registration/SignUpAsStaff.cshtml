@@ -1,0 +1,89 @@
+﻿@model Univers.Models.Models.User
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+
+@using (Html.BeginForm("AddUser", "Registration", FormMethod.Post))
+{
+    <div class="div3">
+        <a href="SignUpAs"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+
+        <table style="width:85%;  height:70%; margin-left:12%; border-spacing: 0 10px; ">
+            <tr>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Потребителско име", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.Username, new { @class = "tb2", required = "required", data_val_required = "Необходимо е да въведете потребителско име." })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Име", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Парола", new { @class = "title"})<br>
+                        @Html.PasswordFor(model => model.Password, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Презиме", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Повторете паролата", new { @class = "title"})<br>
+                        @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Фамилия", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Email адрес", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.LabelFor(model => model.PhoneNumber, "Телефон", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "tb2", type="tel", required = "required" , pattern=@"/^+359\d{9}", placeholder="+359" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Адрес", new { @class = "title"})<br>
+                        @Html.TextBoxFor(model => model.Address, new { @class = "tb2", required = "required" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.LabelFor(m => m.LastName, "Пол", new { @class = "title"})<br>
+                        @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+                    {
+                    new SelectListItem { Text = "Мъж"},
+                    new SelectListItem { Text = "Жена"}
+                    },  new { @class = "tb2", required = "required"})
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <button class="button4" type="submit">Напред</button>
+    </div>
+}

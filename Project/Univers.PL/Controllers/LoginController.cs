@@ -26,23 +26,6 @@ namespace Univers.PL.Controllers
             return View(user);
         }
 
-        public ActionResult SignUpAs()
-        {
-            return View();
-        }
-
-        public ActionResult SignUpAsStaff()
-        {
-            User user = new();
-            return View(user);
-        }
-
-        public ActionResult SignUpAsStudent()
-        {
-            Student student = new();
-            return View(student);
-        }
-
         [HttpPost]
         public ActionResult Authorization(User user)
         {
@@ -54,33 +37,6 @@ namespace Univers.PL.Controllers
             else
             {
                 return View("Login", user);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult AddUser(User user)
-        {
-            if (user != null)
-            {
-                _userService.AddUser(user);
-                return RedirectToAction("SuccessfulLogin", user);
-            }
-            else
-            {
-                return View("SignUp", user);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult ChooseRoleForSignUp(User user)
-        {
-            if (user.RoleChoice == "Студент")
-            {
-                return RedirectToAction("SignUpAsStudent");
-            }
-            else 
-            {
-                return RedirectToAction("SignUpAsStaff");
             }
         }
     }
