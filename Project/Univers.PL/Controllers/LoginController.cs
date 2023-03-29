@@ -17,19 +17,36 @@ namespace Univers.PL.Controllers
         // GET: Login
         public ActionResult Login()
         {
-            User user = new();
+            UserModel user = new();
             return View(user);
         }
 
-        public ActionResult SuccessfulLogin(User user)
+        public ActionResult SuccessfulLogin(UserModel user)
         {
             return View(user);
+        }
+
+        public ActionResult SignUpAs()
+        {
+            return View();
+        }
+
+        public ActionResult SignUpAsStaff()
+        {
+            UserModel user = new();
+            return View(user);
+        }
+
+        public ActionResult SignUpAsStudent()
+        {
+            StudentModel student = new();
+            return View(student);
         }
 
         [HttpPost]
-        public ActionResult Authorization(User user)
+        public ActionResult Authorization(UserModel user)
         {
-            User loginUser = _userService.GetUserByUsernameAndPassword(user.Username, user.Password);
+            UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.Username, user.Password);
             if (loginUser != null)
             {
                 return RedirectToAction("SuccessfulLogin", loginUser);
@@ -37,6 +54,20 @@ namespace Univers.PL.Controllers
             else
             {
                 return View("Login", user);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(UserModel user)
+        {
+            if (user != null)
+            {
+                _userService.AddUser(user);
+                return RedirectToAction("SuccessfulLogin", user);
+            }
+            else
+            {
+                return View("SignUp", user);
             }
         }
     }

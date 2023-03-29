@@ -20,18 +20,18 @@ namespace Univers.PL.Controllers
 
         public ActionResult SignUpAsStaff()
         {
-            User user = new();
+            UserModel user = new();
             return View(user);
         }
 
         public ActionResult SignUpAsStudent()
         {
-            Student student = new();
+            StudentModel student = new();
             return View(student);
         }
 
         [HttpPost]
-        public ActionResult AddUser(User user)
+        public ActionResult AddUser(UserModel user)
         {
             if (user != null)
             {
@@ -45,7 +45,7 @@ namespace Univers.PL.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChooseRoleForSignUp(User user)
+        public ActionResult ChooseRoleForSignUp(UserModel user)
         {
             if (user.RoleChoice == "Студент")
             {

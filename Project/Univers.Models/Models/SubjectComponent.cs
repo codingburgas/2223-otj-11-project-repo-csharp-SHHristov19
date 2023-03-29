@@ -11,9 +11,9 @@ public class SubjectComponent
 
     public string? SubjectId { get; set; } = null!;
 
-    public Component? Component { get; set; } = null!;
+    public ComponentModel? Component { get; set; } = null!;
 
-    public Staff? Instructor { get; set; } = null!;
+    public StaffModel? Instructor { get; set; } = null!;
 
-    public Subject? Subject { get; set; } = null!;
+    public SubjectModel? Subject { get; set; } = null!;
 }

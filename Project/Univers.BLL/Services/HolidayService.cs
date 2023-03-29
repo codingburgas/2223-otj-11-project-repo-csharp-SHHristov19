@@ -21,15 +21,15 @@ namespace Univers.BLL.Services
         /// Transfer data from Holiday entity to Holiday model
         /// </summary>
         /// <returns></returns>
-        public List<Holiday> TransferDataFromEntityToModel()
+        public List<HolidayModel> TransferDataFromEntityToModel()
         {
-            List<Holiday> models = new();
+            List<HolidayModel> models = new();
 
             var entities = _holidayRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
-                var newModel = new Holiday();
+                var newModel = new HolidayModel();
 
                 newModel.Name = entity.Name;
                 newModel.DateOfStart = entity.DateOfStart;

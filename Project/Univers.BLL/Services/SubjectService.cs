@@ -21,15 +21,15 @@ namespace Univers.BLL.Services
         /// Transfer data from Subject entity to Subject model
         /// </summary>
         /// <returns></returns>
-        public List<Subject> TransferDataFromEntityToModel()
+        public List<SubjectModel> TransferDataFromEntityToModel()
         {
-            List<Subject> models = new();
+            List<SubjectModel> models = new();
 
             var entities = _subjectRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
-                var newModel = new Subject();
+                var newModel = new SubjectModel();
 
                 newModel.Id = entity.Id;
                 newModel.TeacherId = entity.TeacherId;

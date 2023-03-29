@@ -24,15 +24,15 @@ namespace Univers.BLL.Services
         /// Transfer data from User entity to User model
         /// </summary>
         /// <returns></returns>
-        public List<User> TransferDataFromEntityToModel()
+        public List<UserModel> TransferDataFromEntityToModel()
         {
-            List<User> models = new();
+            List<UserModel> models = new();
 
             var entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
-                var newModel = new User();
+                var newModel = new UserModel();
 
                 newModel.Id = entity.Id;
                 newModel.Username = entity.Username;
@@ -55,9 +55,9 @@ namespace Univers.BLL.Services
             return models;
         }
 
-        public User GetUserByUsernameAndPassword(string username, string password)
+        public UserModel GetUserByUsernameAndPassword(string username, string password)
         {
-            List<User> users = TransferDataFromEntityToModel();
+            List<UserModel> users = TransferDataFromEntityToModel();
 
             var user = users.Where(x => x.Username == username).FirstOrDefault();
 
@@ -76,7 +76,7 @@ namespace Univers.BLL.Services
             return firstPass.Equals(secondPass);
         }
 
-        public void AddUser(User user)
+        public void AddUser(UserModel user)
         {
             user.PasswordSalt = _utilities.GenerateSalt();
             user.Password = HashPassword(user.Password, user.PasswordSalt);

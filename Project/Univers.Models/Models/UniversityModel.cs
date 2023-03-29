@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class University
+public class UniversityModel
 {
     public string? Id { get; set; } = null!;
 
@@ -15,5 +15,5 @@ public class University
 
     public int? Capacity { get; set; } = null!;
 
-    public Staff? Rector { get; set; } = null!;
+    public StaffModel? Rector { get; set; } = null!;
 }

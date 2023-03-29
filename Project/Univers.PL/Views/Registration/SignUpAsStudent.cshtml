@@ -1,4 +1,4 @@
-﻿@model Univers.Models.Models.Student
+﻿@model Univers.Models.Models.StudentModel
 @{
     ViewData["Title"] = "SignUp";
 }
@@ -15,13 +15,13 @@
                 <br /><br />
                 <td >
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Потребителско име", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Username, "Потребителско име", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.Username, new { @class = "tb2", required = "required", data_val_required = "Необходимо е да въведете потребителско име." })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Име", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.FirstName, "Име", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -29,13 +29,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Парола", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Password, "Парола", new { @class = "title"})<br>
                         @Html.PasswordFor(model => model.Password, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Презиме", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.MiddleName, "Презиме", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -43,13 +43,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Повторете паролата", new { @class = "title"})<br>
-                        @Html.PasswordFor(model => model.PasswordRepeat, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.PasswordConfirmation, "Повторете паролата", new { @class = "title"})<br>
+                        @Html.PasswordFor(model => model.PasswordConfirmation, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Фамилия", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.LastName, "Фамилия", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.LastName, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -57,7 +57,7 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Email адрес", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Email, "Email адрес", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.Email, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -71,13 +71,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Настоящ Адрес", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Address, "Настоящ Адрес", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.Address, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Пол", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Gender, "Пол", new { @class = "title"})<br>
                         @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
                     {
                     new SelectListItem { Text = "Мъж"},
@@ -89,13 +89,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Гражданство", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Citizenship, "Гражданство", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.Citizenship, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.PhoneNumber, "Държава на раждане", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.CountryOfBirth, "Държава на раждане", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.CountryOfBirth, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -103,13 +103,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Община на раждане", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.MunicipalityOfBirth, "Община на раждане", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.MunicipalityOfBirth, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.PhoneNumber, "Област на раждане", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.AreaOfBirth, "Област на раждане", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.AreaOfBirth, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
@@ -117,13 +117,13 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "Град на раждане", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.CityOfBirth, "Град на раждане", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.CityOfBirth, new { @class = "tb2", required = "required" })
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.PhoneNumber, "Дата на раждане", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.DateOfBirth, "Дата на раждане", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "tb2", type = "date", required = "required" })
                     </div>
                 </td>
@@ -131,7 +131,7 @@
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(m => m.LastName, "ЕГН", new { @class = "title"})<br>
+                        @Html.LabelFor(model => model.Identity, "ЕГН", new { @class = "title"})<br>
                         @Html.TextBoxFor(model => model.Identity, new { @class = "tb2", required = "required", pattern="[0-9]{10}" })<br /><br /><br />
                     </div>
                 </td>

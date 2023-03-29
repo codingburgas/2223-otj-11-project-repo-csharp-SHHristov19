@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Exam
+public class ExamModel
 {
     public string? Id { get; set; } = null!;
 
@@ -19,9 +19,9 @@ public class Exam
 
     public string? Location { get; set; } = null!;
 
-    public ExamSession? ExamSession { get; set; } = null!;
+    public ExamSessionModel? ExamSession { get; set; } = null!;
 
-    public Staff? Proctor { get; set; } = null!;
+    public StaffModel? Proctor { get; set; } = null!;
 
-    public Subject? Subject { get; set; } = null!;
+    public SubjectModel? Subject { get; set; } = null!;
 }

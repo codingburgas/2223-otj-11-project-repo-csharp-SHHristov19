@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Grade
+public class GradeModel
 {
     public string? StudentId { get; set; } = null!;
 
@@ -11,7 +11,7 @@ public class Grade
 
     public int? Grades { get; set; } = null!;
 
-    public Exam? Exam { get; set; } = null!;
+    public ExamModel? Exam { get; set; } = null!;
 
-    public Student? Student { get; set; } = null!;
+    public StudentModel? Student { get; set; } = null!;
 }

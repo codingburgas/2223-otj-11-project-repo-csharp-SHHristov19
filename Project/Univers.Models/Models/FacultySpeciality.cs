@@ -9,7 +9,7 @@ public class FacultySpeciality
 
     public string? SpecialityId { get; set; } = null!;
 
-    public Faculty? Faculty { get; set; } = null!;
+    public FacultyModel? Faculty { get; set; } = null!;
 
-    public Speciality? Speciality { get; set; } = null!;
+    public SpecialityModel? Speciality { get; set; } = null!;
 }

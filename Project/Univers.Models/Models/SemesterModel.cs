@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Semester
+public class SemesterModel
 {
     public string? Id { get; set; } = null!;
 
@@ -17,5 +17,5 @@ public class Semester
 
     public DateTime? DateOfEnd { get; set; } = null!;
 
-    public University? University { get; set; } = null!;
+    public UniversityModel? University { get; set; } = null!;
 }

@@ -25,7 +25,7 @@ namespace Univers.DAL.Repositories
         /// Add user in Users table
         /// </summary>
         /// <param name="user"></param>
-        public void AddData(Models.Models.User user)
+        public void AddData(Models.Models.UserModel user)
         {
             using Context.Context context = new();
             User additionalUser = new User();

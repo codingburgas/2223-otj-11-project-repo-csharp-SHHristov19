@@ -9,7 +9,7 @@ public class SubjectSemester
 
     public string? SubjectId { get; set; } = null!;
 
-    public Semester? Semester { get; set; } = null!;
+    public SemesterModel? Semester { get; set; } = null!;
 
-    public Subject? Subject { get; set; } = null!;
+    public SubjectModel? Subject { get; set; } = null!;
 }

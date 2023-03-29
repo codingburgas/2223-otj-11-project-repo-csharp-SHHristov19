@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Univers.Models.Models;
 
-public class Subject
+public class SubjectModel
 {
     public string? Id { get; set; } = null!;
 
@@ -19,7 +19,7 @@ public class Subject
 
     public int? List { get; set; } = null!;
 
-    public Speciality? Speciality { get; set; } = null!;
+    public SpecialityModel? Speciality { get; set; } = null!;
 
-    public Staff? Teacher { get; set; } = null!;
+    public StaffModel? Teacher { get; set; } = null!;
 }

@@ -21,15 +21,15 @@ namespace Univers.BLL.Services
         /// Transfer data from University entity to University model
         /// </summary>
         /// <returns></returns>
-        public List<University> TransferDataFromEntityToModel()
+        public List<UniversityModel> TransferDataFromEntityToModel()
         {
-            List<University> models = new();
+            List<UniversityModel> models = new();
 
             var entities = _universityRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
-                var newModel = new University();
+                var newModel = new UniversityModel();
 
                 newModel.Id = entity.Id;
                 newModel.Name = entity.Name;
