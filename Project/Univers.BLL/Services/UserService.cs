@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
@@ -28,7 +28,7 @@ namespace Univers.BLL.Services
         {
             List<UserModel> models = new();
 
-            var entities = _userRepository.ReadAllData();
+            List<User> entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
@@ -55,13 +55,19 @@ namespace Univers.BLL.Services
             return models;
         }
 
+        /// <summary>
+        /// Get user by username and password
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public UserModel GetUserByUsernameAndPassword(string username, string password)
         {
             List<UserModel> users = TransferDataFromEntityToModel();
 
             var user = users.Where(x => x.Username == username).FirstOrDefault();
 
-            if(user != null && user.Password == HashPassword(password, user.PasswordSalt))
+            if (user != null && user.Password == _utilities.HashPassword(password, user.PasswordSalt))
             {
                 return user;
             }
@@ -71,23 +77,26 @@ namespace Univers.BLL.Services
             }
         }
 
+        /// <summary>
+        /// Compare the password and the repeated password 
+        /// </summary>
+        /// <param name="firstPass"></param>
+        /// <param name="secondPass"></param>
+        /// <returns></returns>
         public bool ComparePasswords(string firstPass, string secondPass)
         {
             return firstPass.Equals(secondPass);
         }
 
+        /// <summary>
+        /// Add a user
+        /// </summary>
+        /// <param name="user"></param>
         public void AddUser(UserModel user)
         {
             user.PasswordSalt = _utilities.GenerateSalt();
-            user.Password = HashPassword(user.Password, user.PasswordSalt);
+            user.Password = _utilities.HashPassword(user.Password, user.PasswordSalt);
             _userRepository.AddData(user);
-        }
-
-        public string HashPassword(string password, string salt)
-        {
-            var hash = SHA512.Create().ComputeHash(_utilities.HashPasswordWithSalt(password, salt));
-
-            return Convert.ToHexString(hash);
         }
     }
 }
