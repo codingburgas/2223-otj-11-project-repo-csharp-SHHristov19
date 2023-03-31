@@ -17,7 +17,7 @@ public class UserModel
     [Display(Name = "Въведете парола.")]
     [Required(ErrorMessage = "Необходимо е да въведете парола.")]
     [StringLength(40, MinimumLength = 8, ErrorMessage = "Паролата трябва да е между 8 и 40 символа.")]
-    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Паролата трябва да съдържа поне една малка буква, една главна буква, една цифра и да е дълга поне 8 знака.")]
+    [DataType(DataType.Password, ErrorMessage = "Паролата трябва да съдържа поне една малка буква, една главна буква, една цифра и да е дълга поне 8 знака.")]
     public string? Password { get; set; }
 
     [Display(Name = "Въведете повторн паролата.")]
