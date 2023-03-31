@@ -33,6 +33,10 @@ namespace Univers.PL.Controllers
         [HttpPost]
         public ActionResult AddUser(UserModel user)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("SignUpAsStaff");
+            }
             if (user != null)
             {
                 _userService.AddUser(user);
