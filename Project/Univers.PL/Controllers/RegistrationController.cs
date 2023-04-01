@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Univers.BLL.Services;
+using Univers.DAL.Entities;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -47,6 +48,24 @@ namespace Univers.PL.Controllers
                 return View("SignUp", user);
             }
         }
+        [HttpPost]
+        public ActionResult AddStudent(StudentModel student)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("SignUpAsStudent");
+            }
+            if (student != null)
+            {
+                _userService.AddUser(student);
+                return RedirectToAction("SuccessfulLogin", "Login", student);
+            }
+            else
+            {
+                return View("SignUp", student);
+            }
+        }
+        
 
         [HttpPost]
         public ActionResult ChooseRoleForSignUp(UserModel user)

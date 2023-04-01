@@ -26,10 +26,7 @@ public partial class Student
     public string? Identity { get; set; }
 
     [StringLength(60)]
-    public string? Citizenship { get; set; }
-
-    [StringLength(20)]
-    public string? DacultyNumber { get; set; }
+    public string? Citizenship { get; set; } 
 
     public DateTime? DateOfStarting { get; set; }
 
