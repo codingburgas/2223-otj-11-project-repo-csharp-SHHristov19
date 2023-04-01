@@ -74,6 +74,8 @@ body {
     outline: none;
 }
 
+
+
 .tb2 {
     width: 80%;
     height: 45px;
@@ -89,7 +91,8 @@ body {
 .tb2:focus-visible {
     outline: none;
 }
- 
+
+
 button:hover {
     cursor: pointer;
 }
@@ -107,7 +110,6 @@ button:hover {
     font-size: 30px;
     color: white;
     border: 0;
-    transition: 0.4s ease-in-out;
 }
 
 .button1:hover {
@@ -127,7 +129,6 @@ button:hover {
     font-size: 30px;
     color: white;
     border: 0;
-    transition: 0.4s ease-in-out;
 }
 
 .button2:hover {
@@ -148,7 +149,6 @@ button:hover {
     font-size: 30px;
     color: white;
     border: 0;
-    transition: 0.4s ease-in-out;
 }
 
 .button3:hover {
@@ -170,7 +170,6 @@ button:hover {
     font-size: 30px;
     color: white;
     border: 0;
-    transition: 0.4s ease-in-out;
 }
 
 .button4:hover {
@@ -208,4 +207,20 @@ button:hover {
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(285.71deg, #B2E6FD 0%, #9BD8F1 40%, rgba(45, 12, 255, 0.71) 100%);
     border-radius: 10px;
+}
+
+.errortb {
+    background-color: #ff6cd4;
+    outline:auto; 
+    outline-color: #ff03ad;
+}
+
+.errorwindow {
+    --cooltipz-bg-color: #ff03ad;
+    --cooltipz-border-color: #ff03ad;
+    --cooltipz-font-size: 16px;
+    --cooltipz-font-family: Jost;
+    --cooltipz-text-color: white;
+    --cooltipz-border-radius: 2rem;
+    width:90%;
 }

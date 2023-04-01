@@ -1,55 +1,11 @@
-﻿@using Microsoft.AspNetCore.Html;
-@using System.Text.Encodings.Web;
-@using Microsoft.Extensions.WebEncoders.Testing;
-@using System.Text.RegularExpressions;
+﻿@using Univers.PL.Utilities;
 @model Univers.Models.Models.UserModel
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" /> 
 
-@functions  
-{
-    /// <summary>
-    /// Converts the specified <see cref="IHtmlContent"/> object to a string representation, using the specified <see cref="HtmlEncoder"/> to encode the output.
-    /// </summary>
-    /// <param name="content">The <see cref="IHtmlContent"/> object to convert to a string.</param>
-    /// <param name="encoder">The <see cref="HtmlEncoder"/> to use for encoding the output. If null, the default <see cref="HtmlTestEncoder"/> is used.</param>
-    /// <returns>A string representation of the specified <see cref="IHtmlContent"/> object.</returns>
-    public string HtmlContentToString(IHtmlContent content, HtmlEncoder encoder = null)
-    {
-        if (encoder == null)
-        {
-            encoder = new HtmlTestEncoder();
-        }
-
-        using (var writer = new StringWriter())
-        {
-            content.WriteTo(writer, encoder);
-            return writer.ToString();
-        }
-    }
-
-    /// <summary>
-    /// Extracts an error message from an HTML error message string, by parsing the message between the first ">" character and the last "<" character, and returning it as a plain string.
-    /// </summary>
-    /// <param name="errorMessage">The HTML error message string to extract the message from.</param>
-    /// <returns>A plain string containing the error message, or null if no message can be extracted.</returns>
-    public string GetTheErrorMessage(string errorMessage)
-    { 
-        int startIndex = errorMessage.IndexOf(">") + 13;
-        int endIndex = errorMessage.LastIndexOf("<") - 2;
-        string message;
-        if (startIndex < errorMessage.Length)
-        {
-            message = Html.Raw(errorMessage.Substring(startIndex, endIndex - startIndex)).ToString();
-        }
-        else
-        {
-            message = null;
-        }
-
-        return message;
-    }
+@{
+    var _utilities = new Utilities();
 }
 
 @using (Html.BeginForm("AddUser", "Registration", FormMethod.Post))
@@ -60,15 +16,39 @@
         <table style="width:85%;  height:70%; margin-left:12%; border-spacing: 0 10px; ">
             <tr>
                 <td>
-                    <div>
+                    <div> 
                         @Html.LabelFor(model => model.Username, "Потребителско име", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.Username, new { @class = "tb2" }) 
+                        @{
+                            string usernameErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Username)));
+                            if (usernameErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@usernameErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.Username, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Username, new { @class = "tb2"})
+                            }
+                        }
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.FirstName, "Име", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2"})
+                        @Html.LabelFor(model => model.FirstName, "Име", new { @class = "title"})<br> 
+                        @{
+                            string firstNameErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.FirstName)));
+                            if (firstNameErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@firstNameErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.FirstName, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "tb2"})
+                            }
+                        } 
                     </div>
                 </td>
             </tr>
@@ -77,60 +57,133 @@
                     <div>
                         @Html.LabelFor(model => model.Password, "Парола", new { @class = "title"})<br> 
                         @{
-                            string errorMessage = @GetTheErrorMessage(@HtmlContentToString(@Html.ValidationMessageFor(model => model.Password)));
-                            if(errorMessage != null)
+                            string passwordErrorMessage = _utilities.GetTheErrorMessage(_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Password)));
+                            if(passwordErrorMessage != null)
                             {
-                                <span aria-label="@errorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
-                                    @Html.PasswordFor(model => model.Password, new { @class = "tb2"})
+                                <span class="errorwindow" aria-label="@passwordErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.PasswordFor(model => model.Password, new { @class = "tb2 errortb"})
                                 </span>
                             }
                             else
                             { 
-                                @Html.PasswordFor(model => model.Password, new { @class = "tb2"}) 
+                                @Html.PasswordFor(model => model.Password, new { @class = "tb2"})
                             }
                         } 
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.MiddleName, "Презиме", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.MiddleName, "Презиме", new { @class = "title"})<br> 
+                        @{
+                            string MiddleNameErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.MiddleName)));
+                            if (MiddleNameErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@MiddleNameErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.MiddleName, new { @class = "tb2"})
+                            }
+                        }
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.PasswordConfirmation, "Повторете паролата", new { @class = "title"})<br>
-                        @Html.PasswordFor(model => model.PasswordConfirmation, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.PasswordConfirmation, "Повторете паролата", new { @class = "title"})<br> 
+                        @{
+                            string passwordConfirmationErrorMessage = _utilities.GetTheErrorMessage(_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.PasswordConfirmation)));
+                            if (passwordConfirmationErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@passwordConfirmationErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.PasswordFor(model => model.PasswordConfirmation, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.PasswordFor(model => model.PasswordConfirmation, new { @class = "tb2"})
+                            }
+                        }
                     </div>
                 </td>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.LastName, "Фамилия", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.LastName, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.LastName, "Фамилия", new { @class = "title"})<br> 
+                        @{
+                            string LastNameErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.LastName)));
+                            if (LastNameErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@LastNameErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.LastName, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "tb2"})
+                            }
+                        }
+
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.Email, "Email адрес", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.Email, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.Email, "Email адрес", new { @class = "title"})<br> 
+                        @{
+                            string EmailErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Email)));
+                            if (EmailErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@EmailErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.Email, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Email, new { @class = "tb2"})
+                            }
+                        }
                     </div>
                 </td>
                 <td>
                     <div>
                         @Html.LabelFor(model => model.PhoneNumber, "Телефон", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "tb2", type="tel", required = "required" , pattern=@"/^+359\d{9}", placeholder="+359" })
+                        @{
+                            string PhoneNumberErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.PhoneNumber)));
+                            if (PhoneNumberErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@PhoneNumberErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.PhoneNumber, new { @class = "tb2 errortb", type="tel", placeholder="+359"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "tb2", type="tel", placeholder="+359"}) 
+                            }
+                        }
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div>
-                        @Html.LabelFor(model => model.Address, "Адрес", new { @class = "title"})<br>
-                        @Html.TextBoxFor(model => model.Address, new { @class = "tb2", required = "required" })
+                        @Html.LabelFor(model => model.Address, "Адрес", new { @class = "title"})<br> 
+                        @{
+                            string AddressErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Address)));
+                            if (AddressErrorMessage != null)
+                            {
+                                <span class="errorwindow" aria-label="@AddressErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                                    <div></div>@Html.TextBoxFor(model => model.Address, new { @class = "tb2 errortb"})
+                                </span>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Address, new { @class = "tb2"})
+                            }
+                        }
                     </div>
                 </td>
                 <td>
@@ -140,7 +193,7 @@
                         {
                             new SelectListItem { Text = "Мъж"},
                             new SelectListItem { Text = "Жена"}
-                        },  new { @class = "tb2", required = "required"})
+                        },  new { @class = "tb2"}) 
                     </div>
                 </td>
             </tr>

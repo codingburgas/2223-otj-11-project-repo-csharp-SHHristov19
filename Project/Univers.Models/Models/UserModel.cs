@@ -5,49 +5,47 @@ using System.ComponentModel.DataAnnotations;
 namespace Univers.Models.Models;
 
 public class UserModel 
-{
-    [Key]
+{ 
     public string? Id { get; set; }
-
-    [Display(Name = "Въведете потребителско име.")]
+     
     [Required(ErrorMessage = "Необходимо е да въведете потребителско име.")]
-    [MaxLength(30)]
+    [StringLength(30, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е между 6 и 30 символа.")]
     public string? Username { get; set; }
-
-    [Display(Name = "Въведете парола.")]
+     
     [Required(ErrorMessage = "Необходимо е да въведете парола.")]
     [StringLength(40, MinimumLength = 8, ErrorMessage = "Паролата трябва да е между 8 и 40 символа.")]
-    [DataType(DataType.Password, ErrorMessage = "Паролата трябва да съдържа поне една малка буква, една главна буква, една цифра и да е дълга поне 8 знака.")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':""\\|,.<>/?])[a-zA-Z\d!@#$%^&*()_+[\]{};':""\\|,.<>/?]{8,}$", ErrorMessage = "Паролата трябва да съдържа поне една малка и главна буква, една цифра, един символ и да е дълга поне 8 знака.")]
     public string? Password { get; set; }
-
-    [Display(Name = "Въведете повторн паролата.")]
-    [Required(ErrorMessage = "Необходимо е да въведете парола.")]
-    [StringLength(40, MinimumLength = 8, ErrorMessage = "Паролата трябва да е между 8 и 40 символа.")]
-    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Паролата трябва да съдържа поне една малка буква, една главна буква, една цифра и да е дълга поне 8 знака.")]
+     
+    [Required(ErrorMessage = "Необходимо е да въведете повторно паролата.")]
     [Compare("Password", ErrorMessage = "Паролата не съвпада.")]
     public string? PasswordConfirmation { get; set; }
 
     public string? PasswordSalt { get; set; }
 
+    [Required(ErrorMessage = "Необходимо е да въведете име.")]
     public string? FirstName { get; set; }
 
+    [Required(ErrorMessage = "Необходимо е да въведете презиме.")]
     public string? MiddleName { get; set; }
 
+    [Required(ErrorMessage = "Необходимо е да въведете фамилия.")]
     public string? LastName { get; set; }
 
     public DateTime? DateOfRegistration { get; set; }
 
-    [DataType(DataType.PhoneNumber)]
-    [Phone]
-    public string? PhoneNumber { get; set; } = " ";
+    [Required(ErrorMessage = "Необходимо е да въведете телефонен номер.")]
+    [RegularExpression(@"^\+359\d{9}$|^\0\d{9}$", ErrorMessage = "Невалиден телефонен номер")]
+    public string? PhoneNumber { get; set; }
 
-    [EmailAddress]
+    [EmailAddress(ErrorMessage = "Неправилен email адрес.")]
+    [Required(ErrorMessage = "Необходимо е да въведете email.")]
     public string? Email { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Необходимо е да въведете адрес.")]
     public string? Address { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Необходимо е да въведете пол.")]
     public string? Gender { get; set; }
 
     public string? Image { get; set; }

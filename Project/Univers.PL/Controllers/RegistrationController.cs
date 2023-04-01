@@ -40,7 +40,7 @@ namespace Univers.PL.Controllers
             if (user != null)
             {
                 _userService.AddUser(user);
-                return RedirectToAction("SuccessfulLogin", user);
+                return RedirectToAction("SuccessfulLogin", "Login", user);
             }
             else
             {
