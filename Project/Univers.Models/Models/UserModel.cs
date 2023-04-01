@@ -9,7 +9,7 @@ public class UserModel
     public string? Id { get; set; }
      
     [Required(ErrorMessage = "Необходимо е да въведете потребителско име.")]
-    [StringLength(30, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е между 6 и 30 символа.")]
+    [StringLength(30, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е между 6 и 30 символа.")] 
     public string? Username { get; set; }
      
     [Required(ErrorMessage = "Необходимо е да въведете парола.")]
@@ -50,7 +50,5 @@ public class UserModel
 
     public string? Image { get; set; }
 
-    public bool? IsActive { get; set; }
-
     public string? RoleChoice { get; set; }
-}
+} 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,8 +47,7 @@ namespace Univers.BLL.Services
                 newModel.Email = entity.Email;
                 newModel.Address = entity.Address;
                 newModel.Gender = entity.Gender;
-                newModel.Image = entity.Image;
-                newModel.IsActive = entity.IsActive;
+                newModel.Image = entity.Image; 
 
                 models.Add(newModel);
             }
@@ -97,6 +97,31 @@ namespace Univers.BLL.Services
             user.PasswordSalt = _utilities.GenerateSalt();
             user.Password = _utilities.HashPassword(user.Password, user.PasswordSalt);
             _userRepository.AddData(user);
+        }
+
+        /// <summary>
+        /// Check if the username is already using 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public bool UsernameAlreadyExist(string username)
+        {
+            List<UserModel> users = TransferDataFromEntityToModel();
+            return users.Where(x => x.Username == username).Any();
+        }
+
+        /// <summary>
+        /// Validates a UserModel object to ensure that the username is not already in use.
+        /// </summary>
+        /// <param name="user">The UserModel object to validate.</param>
+        /// <returns>A ValidationResult object that contains any validation error.</returns>
+        public ValidationResult ValidateUsername(UserModel user)
+        { 
+            if (UsernameAlreadyExist(user.Username))
+            {
+                return new ValidationResult("Потребителското име вече съществува.");
+            }  
+            return ValidationResult.Success;
         }
     }
 }

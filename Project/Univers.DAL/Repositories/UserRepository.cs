@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Univers.DAL.Entities;
+using Univers.Models.Models;
 
 namespace Univers.DAL.Repositories
 {
@@ -25,7 +26,7 @@ namespace Univers.DAL.Repositories
         /// Add user in Users table
         /// </summary>
         /// <param name="user"></param>
-        public void AddData(Models.Models.UserModel user)
+        public void AddData(UserModel user)
         {
             using Context.Context context = new();
             User additionalUser = new User();
@@ -42,6 +43,7 @@ namespace Univers.DAL.Repositories
             additionalUser.Email = user.Email;
             additionalUser.Address = user.Address;
             additionalUser.Gender = user.Gender;
+            additionalUser.IsActive = true;
 
             context.Users.Add(additionalUser);
             context.SaveChanges();

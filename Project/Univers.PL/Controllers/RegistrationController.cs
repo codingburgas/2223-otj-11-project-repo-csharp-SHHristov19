@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
@@ -34,8 +36,14 @@ namespace Univers.PL.Controllers
         [HttpPost]
         public ActionResult AddUser(UserModel user)
         {
-            if(!ModelState.IsValid)
+            ValidationResult validationResult = _userService.ValidateUsername(user);
+
+            if (!ModelState.IsValid)
             {
+                if (validationResult != ValidationResult.Success)
+                {
+                    ModelState.AddModelError("Username", validationResult.ErrorMessage);
+                }
                 return View("SignUpAsStaff");
             }
             if (user != null)
@@ -48,11 +56,17 @@ namespace Univers.PL.Controllers
                 return View("SignUp", user);
             }
         }
+
         [HttpPost]
         public ActionResult AddStudent(StudentModel student)
         {
+            ValidationResult validationResult = _userService.ValidateUsername(student);
             if (!ModelState.IsValid)
             {
+                if (validationResult != ValidationResult.Success)
+                {
+                    ModelState.AddModelError("Username", validationResult.ErrorMessage);
+                }
                 return View("SignUpAsStudent");
             }
             if (student != null)
