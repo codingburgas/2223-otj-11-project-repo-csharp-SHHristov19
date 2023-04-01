@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
 using Univers.Models.Models;
 
@@ -24,51 +25,26 @@ namespace Univers.PL.Controllers
         public ActionResult SuccessfulLogin(UserModel user)
         {
             return View(user);
-        }
-
-        public ActionResult SignUpAs()
-        {
-            return View();
-        }
-
-        public ActionResult SignUpAsStaff()
-        {
-            UserModel user = new();
-            return View(user);
-        }
-
-        public ActionResult SignUpAsStudent()
-        {
-            StudentModel student = new();
-            return View(student);
-        }
+        } 
 
         [HttpPost]
         public ActionResult Authorization(UserModel user)
         {
-            UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.Username, user.Password);
+            UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.UsernameLogin, user.PasswordLogin);
             if (loginUser != null)
             {
                 return RedirectToAction("SuccessfulLogin", loginUser);
             }
             else
             {
+                ModelState.AddModelError("UsernameLogin", "Потребителското име не е намерено.");
+                ModelState.AddModelError("PasswordLogin", "Паролата не е намерена.");
                 return View("Login", user);
             }
-        }
-
-        [HttpPost]
-        public ActionResult AddUser(UserModel user)
-        {
-            if (user != null)
+            if (!ModelState.IsValid)
             {
-                _userService.AddUser(user);
-                return RedirectToAction("SuccessfulLogin", user);
+                return View("Login", user);
             }
-            else
-            {
-                return View("SignUp", user);
-            }
-        }
+        } 
     }
 }

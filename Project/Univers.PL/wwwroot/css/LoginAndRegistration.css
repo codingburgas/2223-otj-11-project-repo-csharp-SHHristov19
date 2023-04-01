@@ -223,4 +223,15 @@ button:hover {
     --cooltipz-text-color: white;
     --cooltipz-border-radius: 2rem;
     width:90%;
-} 
+}
+
+.fpass {
+    font-family: Jost;
+    font-size: 20px;
+    font-weight: 400;
+    color: #9080ff;
+    text-decoration: underline;
+    cursor: pointer;
+    position:absolute; 
+    margin-left: 8%;
+}

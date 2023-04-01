@@ -11,7 +11,10 @@ public class UserModel
     [Required(ErrorMessage = "Необходимо е да въведете потребителско име.")]
     [StringLength(30, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е между 6 и 30 символа.")] 
     public string? Username { get; set; }
-     
+
+    [Required(ErrorMessage = "Необходимо е да въведете потребителско име.")]
+    public string UsernameLogin { get; set; }
+
     [Required(ErrorMessage = "Необходимо е да въведете парола.")]
     [StringLength(40, MinimumLength = 8, ErrorMessage = "Паролата трябва да е между 8 и 40 символа.")]
     [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':""\\|,.<>/?])[a-zA-Z\d!@#$%^&*()_+[\]{};':""\\|,.<>/?]{8,}$", ErrorMessage = "Паролата трябва да съдържа поне една малка и главна буква, една цифра, един символ и да е дълга поне 8 знака.")]
@@ -20,6 +23,9 @@ public class UserModel
     [Required(ErrorMessage = "Необходимо е да въведете повторно паролата.")]
     [Compare("Password", ErrorMessage = "Паролата не съвпада.")]
     public string? PasswordConfirmation { get; set; }
+
+    [Required(ErrorMessage = "Необходимо е да въведете парола.")]
+    public string? PasswordLogin { get; set; }
 
     public string? PasswordSalt { get; set; }
 

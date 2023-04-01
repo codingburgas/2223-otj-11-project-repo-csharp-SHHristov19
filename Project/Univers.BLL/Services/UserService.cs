@@ -122,6 +122,6 @@ namespace Univers.BLL.Services
                 return new ValidationResult("Потребителското име вече съществува.");
             }  
             return ValidationResult.Success;
-        }
+        } 
     }
 }
