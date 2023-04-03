@@ -13,12 +13,12 @@ namespace Univers.BLL.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
-        private readonly UniversUtilities.Utilities _utilities;
+        private readonly Univers.Utilities.Utilities _utilities;
 
         public UserService()
         {
             _userRepository = new UserRepository();
-            _utilities = new UniversUtilities.Utilities();
+            _utilities = new Univers.Utilities.Utilities();
         }
 
         /// <summary>
@@ -48,6 +48,33 @@ namespace Univers.BLL.Services
                 newModel.Address = entity.Address;
                 newModel.Gender = entity.Gender;
                 newModel.Image = entity.Image; 
+
+                models.Add(newModel);
+            }
+
+            return models;
+        }
+
+        public List<SignUpUserModel> TransferDataFromEntityToSignUpUserModel()
+        {
+            List<SignUpUserModel> models = new();
+
+            List<User> entities = _userRepository.ReadAllData();
+
+            foreach (var entity in entities)
+            {
+                var newModel = new SignUpUserModel();
+                 
+                newModel.Username = entity.Username; 
+                newModel.Password = entity.Password;
+                newModel.FirstName = entity.FirstName;
+                newModel.MiddleName = entity.MiddleName;
+                newModel.LastName = entity.LastName; 
+                newModel.PhoneNumber = entity.PhoneNumber;
+                newModel.Email = entity.Email;
+                newModel.Address = entity.Address;
+                newModel.Gender = entity.Gender;
+                newModel.Image = entity.Image;
 
                 models.Add(newModel);
             }
@@ -92,11 +119,11 @@ namespace Univers.BLL.Services
         /// Add a user
         /// </summary>
         /// <param name="user"></param>
-        public void AddUser(UserModel user)
+        public void AddUser(SignUpUserModel user)
         {
-            user.PasswordSalt = _utilities.GenerateSalt();
-            user.Password = _utilities.HashPassword(user.Password, user.PasswordSalt);
-            _userRepository.AddData(user);
+            var passwordSalt = _utilities.GenerateSalt();
+            user.Password = _utilities.HashPassword(user.Password, passwordSalt);
+            _userRepository.AddData(user, passwordSalt);
         }
 
         /// <summary>
@@ -106,22 +133,65 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public bool UsernameAlreadyExist(string username)
         {
-            List<UserModel> users = TransferDataFromEntityToModel();
+            List<SignUpUserModel> users = TransferDataFromEntityToSignUpUserModel();
             return users.Where(x => x.Username == username).Any();
         }
 
         /// <summary>
-        /// Validates a UserModel object to ensure that the username is not already in use.
+        /// Check if the email is already using 
         /// </summary>
-        /// <param name="user">The UserModel object to validate.</param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool EmailAlreadyExist(string email)
+        {
+            List<SignUpUserModel> users = TransferDataFromEntityToSignUpUserModel();
+            return users.Where(x => x.Email == email).Any();
+        }
+
+        /// <summary>
+        /// Validates a SignUpUserModel object to ensure that the username is not already in use.
+        /// </summary>
+        /// <param name="user">The SignUpUserModel object to validate.</param>
         /// <returns>A ValidationResult object that contains any validation error.</returns>
-        public ValidationResult ValidateUsername(UserModel user)
+        public ValidationResult ValidateUsername(SignUpUserModel user)
         { 
             if (UsernameAlreadyExist(user.Username))
             {
                 return new ValidationResult("Потребителското име вече съществува.");
             }  
             return ValidationResult.Success;
-        } 
+        }
+
+        /// <summary>
+        /// Validates a SignUpUserModel object to ensure that the email is not already in use.
+        /// </summary>
+        /// <param name="user">The SignUpUserModel object to validate.</param>
+        /// <returns>A ValidationResult object that contains any validation error.</returns>
+        public ValidationResult ValidateEmail(SignUpUserModel user)
+        {
+            if (EmailAlreadyExist(user.Email))
+            {
+                return new ValidationResult("Email адреса вече съществува.");
+            }
+            return ValidationResult.Success;
+        }
+
+        public UserModel GetUserByEmail(string email)
+        {
+            List<UserModel> users = TransferDataFromEntityToModel();
+
+            var user = users.Where(x => x.Email == email).FirstOrDefault();
+
+            if (user != null)
+            {
+                return user;
+            } 
+            return null; 
+        }
+
+        public void ChangePassword(string? newPassword)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

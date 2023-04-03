@@ -13,7 +13,7 @@ namespace Univers.PL.Utilities
         /// <param name="content">The <see cref="IHtmlContent"/> object to convert to a string.</param>
         /// <param name="encoder">The <see cref="HtmlEncoder"/> to use for encoding the output. If null, the default <see cref="HtmlTestEncoder"/> is used.</param>
         /// <returns>A string representation of the specified <see cref="IHtmlContent"/> object.</returns>
-        public string HtmlContentToString(IHtmlContent content, HtmlEncoder encoder = null)
+        public string HtmlContentToString(IHtmlContent content, HtmlEncoder? encoder = null)
         {
             if (encoder == null)
             {

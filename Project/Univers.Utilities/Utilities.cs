@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace UniversUtilities
+namespace Univers.Utilities
 {
     public class Utilities
     {
@@ -41,6 +41,17 @@ namespace UniversUtilities
             var hash = SHA512.Create().ComputeHash(HashPasswordWithSalt(password, salt));
 
             return Convert.ToHexString(hash);
+        }
+
+        /// <summary>
+        /// Generates a random 6-digit PIN code and returns it as a string.
+        /// </summary>
+        /// <returns>A string containing a random 6-digit PIN code.</returns>
+        public string GeneratePin()
+        {
+            Random random = new Random();
+            int pin = random.Next(100000, 999999);
+            return pin.ToString();
         }
     }
 }

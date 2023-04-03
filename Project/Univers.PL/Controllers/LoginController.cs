@@ -18,7 +18,7 @@ namespace Univers.PL.Controllers
         // GET: Login
         public ActionResult Login()
         {
-            UserModel user = new();
+            UserLoginModel user = new();
             return View(user);
         }
 
@@ -28,21 +28,21 @@ namespace Univers.PL.Controllers
         } 
 
         [HttpPost]
-        public ActionResult Authorization(UserModel user)
+        public ActionResult Authorization(UserLoginModel user)
         {
-            UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.UsernameLogin, user.PasswordLogin);
+            UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.Username, user.Password);
             if (loginUser != null)
             {
                 return RedirectToAction("SuccessfulLogin", loginUser);
+            }
+            if(!(ModelState.IsValid))
+            {
+                return View("Login", user);
             }
             else
             {
                 ModelState.AddModelError("UsernameLogin", "Потребителското име не е намерено.");
                 ModelState.AddModelError("PasswordLogin", "Паролата не е намерена.");
-                return View("Login", user);
-            }
-            if (!ModelState.IsValid)
-            {
                 return View("Login", user);
             }
         } 

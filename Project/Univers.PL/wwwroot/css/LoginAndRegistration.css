@@ -74,8 +74,6 @@ body {
     outline: none;
 }
 
-
-
 .tb2 {
     width: 80%;
     height: 45px;
@@ -92,6 +90,39 @@ body {
     outline: none;
 }
 
+.tb3 {
+    width: 14%;
+    height: 11%;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    font-family: Jost;
+    font-size: 30px;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    border: 0;
+    margin-left: 1%; 
+}
+
+.tb3:focus-visible {
+    outline: none;
+}
+
+.tb3:focus {
+    color: #6852FD; 
+}
+
+.middle {
+    
+    margin-left: 5%;
+}
+
+.divcode {
+    padding: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 12px; 
+    background-color: mediumvioletred;
+}
 
 button:hover {
     cursor: pointer;

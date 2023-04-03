@@ -23,7 +23,7 @@ namespace Univers.PL.Controllers
 
         public ActionResult SignUpAsStaff()
         {
-            UserModel user = new();
+            SignUpUserModel user = new();
             return View(user);
         }
 
@@ -34,16 +34,20 @@ namespace Univers.PL.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddUser(UserModel user)
+        public ActionResult AddUser(SignUpUserModel user)
         {
-            ValidationResult validationResult = _userService.ValidateUsername(user);
-
-            if (!ModelState.IsValid)
+            ValidationResult usernameValidationResult = _userService.ValidateUsername(user);
+            ValidationResult emailValidationResult = _userService.ValidateEmail(user);
+            if (usernameValidationResult != ValidationResult.Success)
             {
-                if (validationResult != ValidationResult.Success)
-                {
-                    ModelState.AddModelError("Username", validationResult.ErrorMessage);
-                }
+                ModelState.AddModelError("Username", usernameValidationResult.ErrorMessage);
+            }
+            if (emailValidationResult != ValidationResult.Success)
+            {
+                ModelState.AddModelError("Email", emailValidationResult.ErrorMessage);
+            }
+            if (!ModelState.IsValid)
+            { 
                 return View("SignUpAsStaff");
             }
             if (user != null)
@@ -60,13 +64,18 @@ namespace Univers.PL.Controllers
         [HttpPost]
         public ActionResult AddStudent(StudentModel student)
         {
-            ValidationResult validationResult = _userService.ValidateUsername(student);
-            if (!ModelState.IsValid)
+            ValidationResult usernameValidationResult = _userService.ValidateUsername(student);
+            ValidationResult emailValidationResult = _userService.ValidateEmail(student);
+            if (usernameValidationResult != ValidationResult.Success)
             {
-                if (validationResult != ValidationResult.Success)
-                {
-                    ModelState.AddModelError("Username", validationResult.ErrorMessage);
-                }
+                ModelState.AddModelError("Username", usernameValidationResult.ErrorMessage);
+            }
+            if (emailValidationResult != ValidationResult.Success)
+            {
+                ModelState.AddModelError("Email", emailValidationResult.ErrorMessage);
+            }
+            if (!ModelState.IsValid)
+            { 
                 return View("SignUpAsStudent");
             }
             if (student != null)
@@ -82,7 +91,7 @@ namespace Univers.PL.Controllers
         
 
         [HttpPost]
-        public ActionResult ChooseRoleForSignUp(UserModel user)
+        public ActionResult ChooseRoleForSignUp(SignUpUserModel user)
         {
             if (user.RoleChoice == "Студент")
             {

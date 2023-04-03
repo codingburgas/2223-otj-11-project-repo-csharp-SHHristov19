@@ -1,0 +1,47 @@
+﻿@using Univers.PL.Utilities;
+@model Univers.Models.Models.UserForgottenPasswordModel 
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" />
+
+@{
+    var _utilities = new Utilities();
+}
+
+@using (Html.BeginForm("CodeAuthentication", "ForgottenPassword", FormMethod.Post, new { @class = "div1" }))
+{
+    <a href="@Url.Action("EnterEmail", "ForgottenPassword")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a>
+    <br />
+    <br />
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" />
+    <br />
+    <br />
+    <br />
+
+    @Html.Label("", "Въведете 6 цифреният код", new { @class = "lb1"})
+    <br />
+
+    <br />
+
+    <div>
+        @{
+            string pinErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Code)));
+
+            <span class="errorwindow" aria-label="@pinErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                <div> </div>
+                <div class="divcode errortb">
+                    @Html.TextBoxFor(model => model.Code[0], new { @class = "tb3", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                    @Html.TextBoxFor(model => model.Code[1], new { @class = "tb3", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                    @Html.TextBoxFor(model => model.Code[2], new { @class = "tb3", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                    @Html.TextBoxFor(model => model.Code[3], new { @class = "tb3 middle", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                    @Html.TextBoxFor(model => model.Code[4], new { @class = "tb3", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                    @Html.TextBoxFor(model => model.Code[5], new { @class = "tb3", placeholder="0", pattern="[0-9]*", min="0", max="9", maxlength="1"})
+                </div>
+            </span>    
+        }
+    </div> 
+
+    @Html.HiddenFor(model => model.Email) 
+
+    <button class="button4" type="submit" style="margin-top: 12%;">Напред</button>
+}

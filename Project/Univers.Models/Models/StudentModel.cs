@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Univers.Models.Models;
 
-public class StudentModel : UserModel
+public class StudentModel : SignUpUserModel
 {
-    public string Id { get; set; }
-
     public string? SpecialityId { get; set; } = null!;
 
     public string? UserId { get; set; } = null!;

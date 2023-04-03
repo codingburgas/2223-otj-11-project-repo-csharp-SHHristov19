@@ -26,7 +26,7 @@ namespace Univers.DAL.Repositories
         /// Add user in Users table
         /// </summary>
         /// <param name="user"></param>
-        public void AddData(UserModel user)
+        public void AddData(SignUpUserModel user, string passwordSalt)
         {
             using Context.Context context = new();
             User additionalUser = new User();
@@ -34,7 +34,7 @@ namespace Univers.DAL.Repositories
             additionalUser.Id = Guid.NewGuid().ToString("D");
             additionalUser.Username = user.Username;
             additionalUser.Password = user.Password;
-            additionalUser.PasswordSalt = user.PasswordSalt;
+            additionalUser.PasswordSalt = passwordSalt;
             additionalUser.FirstName = user.FirstName;
             additionalUser.MiddleName = user.MiddleName;
             additionalUser.LastName = user.LastName;
