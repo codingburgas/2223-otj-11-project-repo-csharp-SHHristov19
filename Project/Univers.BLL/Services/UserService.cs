@@ -53,34 +53,7 @@ namespace Univers.BLL.Services
             }
 
             return models;
-        }
-
-        public List<SignUpUserModel> TransferDataFromEntityToSignUpUserModel()
-        {
-            List<SignUpUserModel> models = new();
-
-            List<User> entities = _userRepository.ReadAllData();
-
-            foreach (var entity in entities)
-            {
-                var newModel = new SignUpUserModel();
-                 
-                newModel.Username = entity.Username; 
-                newModel.Password = entity.Password;
-                newModel.FirstName = entity.FirstName;
-                newModel.MiddleName = entity.MiddleName;
-                newModel.LastName = entity.LastName; 
-                newModel.PhoneNumber = entity.PhoneNumber;
-                newModel.Email = entity.Email;
-                newModel.Address = entity.Address;
-                newModel.Gender = entity.Gender;
-                newModel.Image = entity.Image;
-
-                models.Add(newModel);
-            }
-
-            return models;
-        }
+        } 
 
         /// <summary>
         /// Get user by username and password
@@ -133,7 +106,7 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public bool UsernameAlreadyExist(string username)
         {
-            List<SignUpUserModel> users = TransferDataFromEntityToSignUpUserModel();
+            List<UserModel> users = TransferDataFromEntityToModel();
             return users.Where(x => x.Username == username).Any();
         }
 
@@ -144,7 +117,7 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public bool EmailAlreadyExist(string email)
         {
-            List<SignUpUserModel> users = TransferDataFromEntityToSignUpUserModel();
+            List<UserModel> users = TransferDataFromEntityToModel();
             return users.Where(x => x.Email == email).Any();
         }
 
