@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Univers.Models.Models;
 
@@ -15,7 +16,8 @@ public class SpecialityModel
 
     public int? Semesters { get; set; } = null!;
 
-    public string? Code { get; set; } = null!;
+    public string? Code { get; set; } = null!; 
 
-    public StaffModel? Tutor { get; set; } = null!;
+    [Required(ErrorMessage = "Необходимо е да изберете специалност")]
+    public string? Choise { get; set; }  
 }

@@ -1,0 +1,30 @@
+﻿@model List<Univers.Models.Models.SpecialityModel>
+@{
+    ViewData["Title"] = "SignUpAs";
+}
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+
+<div class="div1">
+    <a href="@Url.Action("Login", "Login")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+
+    <label class="lb1">
+        Регистрирай се като:
+    </label>
+
+    @using (Html.BeginForm("ChooseRoleForSignUp", "Registration", FormMethod.Post))
+    {
+        var items = new List<SelectListItem>();
+        foreach (var speciality in Model)
+        {
+            items.Add(new SelectListItem { Text = $"{speciality.Name}" });
+        }
+
+        @Html.DropDownListFor(Model => Model.Choise, items, new {@class = "list"})
+
+            <button class="button3" type="submit">Регистрирация</button>
+    }
+
+</div>

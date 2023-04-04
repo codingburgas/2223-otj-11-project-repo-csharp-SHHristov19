@@ -12,12 +12,14 @@ namespace Univers.BLL.Services
     public class SpecialityService
     {
         private readonly SpecialityRepository _specialityRepository;
+        private readonly FacultySpecialityService _facultySpecialityService;
         private readonly Univers.Utilities.Utilities _utilities;
 
         public SpecialityService()
         {
             _specialityRepository = new SpecialityRepository();
             _utilities = new Univers.Utilities.Utilities();
+            _facultySpecialityService = new FacultySpecialityService();
         }
 
         /// <summary>
@@ -39,16 +41,28 @@ namespace Univers.BLL.Services
                 newModel.Degree = entity.Degree;
                 newModel.Code = entity.Code;
                 newModel.TutorId = entity.TutorId;
-
+                newModel.Semesters = entity.Semesters; 
+ 
                 models.Add(newModel);
             }
 
             return models;
         }
 
-        public List<SpecialityModel> GetSpecialities()
+        public List<SpecialityModel> GetSpecialitiesByFacultyId(string facultyId)
         {
+            List< FacultySpecialityModel> facultySpecialities = _facultySpecialityService.TransferDataFromEntityToModel();
 
+            SpecialityModel specialities = new();
+
+            return facultySpecialities
+                    .Where(fs => fs.FacultyId == facultyId)
+                    .Join(
+                        specialities,
+                        fs => fs.SpecialityId,
+                        s => s.Id,
+                        (fs, s) => s
+                    );
         }
     }
 }
