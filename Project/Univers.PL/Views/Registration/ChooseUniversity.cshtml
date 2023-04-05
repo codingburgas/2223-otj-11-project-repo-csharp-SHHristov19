@@ -1,0 +1,45 @@
+﻿@using Univers.PL.Utilities;
+@model Univers.Models.Models.UniversityFacultySpecialitySelectionModel 
+@{
+    var _utilities = new Utilities();
+}
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" /> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" /> 
+ 
+<div class="div1">
+    <a href="@Url.Action("SignUpAsStudent", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+
+    <label class="lb1">
+        Изберете университет:
+    </label>
+
+    @using (Html.BeginForm("UniversityChoice", "Registration", FormMethod.Post))
+    {
+        var items = new List<SelectListItem>(); 
+
+        items.Add(new SelectListItem { Text = "Университети",  Value = "", Disabled = true, Selected = true});
+
+        foreach (var university in Model.Universities)
+        {
+            items.Add(new SelectListItem { Text = $"{university.Name}", Value = $"{university.Id}"});
+        }
+
+        string ErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Choice)));
+        if(ErrorMessage != null)
+        {
+            <span class="errorwindow" aria-label="@ErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                <div></div> @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list errortb"})
+            </span> 
+        }
+        else
+        { 
+            @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list"})
+        }
+
+        <button class="button3" type="submit">Избери факултет</button>
+    }
+
+</div> 

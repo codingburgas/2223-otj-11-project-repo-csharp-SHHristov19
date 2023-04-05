@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Univers.BLL.Services
 {
@@ -51,18 +52,17 @@ namespace Univers.BLL.Services
 
         public List<SpecialityModel> GetSpecialitiesByFacultyId(string facultyId)
         {
-            List< FacultySpecialityModel> facultySpecialities = _facultySpecialityService.TransferDataFromEntityToModel();
+            List<FacultySpecialityModel> facultySpecialities = _facultySpecialityService.TransferDataFromEntityToModel();
 
-            SpecialityModel specialities = new();
+            List<SpecialityModel> specialities = TransferDataFromEntityToModel();
 
-            return facultySpecialities
-                    .Where(fs => fs.FacultyId == facultyId)
-                    .Join(
-                        specialities,
-                        fs => fs.SpecialityId,
-                        s => s.Id,
-                        (fs, s) => s
-                    );
+            var result = from facultySpecialty in facultySpecialities
+                         join speciality in specialities
+                         on facultySpecialty.SpecialityId equals speciality.Id
+                         where facultySpecialty.FacultyId == facultyId
+                         select speciality;
+
+            return result.ToList();
         }
     }
 }

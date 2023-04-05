@@ -12,14 +12,12 @@ namespace Univers.BLL.Services
     public class FacultyService
     {
         private readonly FacultyRepository _facultyRepository;
-        private readonly FacultySpecialityService _facultySpecialityService;
         private readonly Univers.Utilities.Utilities _utilities;
 
         public FacultyService()
         {
             _facultyRepository = new FacultyRepository();
             _utilities = new Univers.Utilities.Utilities();
-            _facultySpecialityService = new FacultySpecialityService();
         }
 
         /// <summary>
@@ -48,6 +46,16 @@ namespace Univers.BLL.Services
 
             return models;
         }
-         
+
+        public List<FacultyModel> GetFacultiesByUniversityId(string universityId)
+        {
+            List<FacultyModel> faculties = TransferDataFromEntityToModel();
+
+            var result = from faculty in faculties
+                         where faculty.UniversityId == universityId
+                         select faculty;
+
+            return result.ToList();
+        }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model Univers.Models.Models.UniversityFacultySpecialitySelectionModel 
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+
+<div class="div1">
+    <a href="@Url.Action("ChooseFaculty", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+
+    <label class="lb1">
+        Регистрирай се като:
+    </label>
+
+    @using (Html.BeginForm("ChooseSpeciality", "Registration", FormMethod.Post))
+    {
+        var items = new List<SelectListItem>();
+
+        items.Add(new SelectListItem { Text = "Специалности", Value = "", Disabled = true, Selected = true });
+
+        foreach(var speciality in Model.Specialities)
+        {
+            items.Add(new SelectListItem { Text = $"{speciality.Name}", Value = $"{speciality.Id}" });
+        }
+
+        @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list"})
+
+        <button class="button3" type="submit">Напред</button>
+    }
+
+</div>

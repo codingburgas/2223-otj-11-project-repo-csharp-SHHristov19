@@ -17,7 +17,4 @@ public class SpecialityModel
     public int? Semesters { get; set; } = null!;
 
     public string? Code { get; set; } = null!; 
-
-    [Required(ErrorMessage = "Необходимо е да изберете специалност")]
-    public string? Choise { get; set; }  
 }

@@ -11,10 +11,12 @@ namespace Univers.BLL.Services
     public class UniversityService
     {
         private readonly UniversityRepository _universityRepository;
+        private readonly List<UniversityModel> _universities;
 
         public UniversityService()
         {
-            _universityRepository = new UniversityRepository(); 
+            _universityRepository = new UniversityRepository();
+            _universities = TransferDataFromEntityToModel();
         }
 
         /// <summary>
@@ -41,6 +43,11 @@ namespace Univers.BLL.Services
             }
 
             return models;
+        } 
+
+        public UniversityModel GetUniversityById(string id)
+        {
+            return _universities.FirstOrDefault(university => university.Id == id);
         }
     }
 }
