@@ -120,64 +120,55 @@ namespace Univers.PL.Controllers
         }
 
         [HttpPost]
-        public ActionResult UniversityChoice(UniversityFacultySpecialitySelectionModel chooseUniversity)
+        public ActionResult UniversityChoice(string universityId)
         {
-            if(string.IsNullOrEmpty(chooseUniversity.Choice))
-            {
-                ModelState.AddModelError("Choice", "Необходимо е да изберете университет");
-            }
-            if (!ModelState.IsValid)
+            if (universityId == null)
             {
                 return View("ChooseUniversity");
             }
             else
             {
-                return RedirectToAction("ChooseFaculty", "Registration", chooseUniversity);
+                return RedirectToAction("ChooseFaculty", "Registration", new { universityId });
             }
         }
 
-        public ActionResult ChooseFaculty(UniversityFacultySpecialitySelectionModel chooseUniversity)
+        public ActionResult ChooseFaculty(string universityId)
         {
             UniversityFacultySpecialitySelectionModel faculty = new();
-            faculty.University = _universityService.GetUniversityById(chooseUniversity.Choice);
-            faculty.Faculties = _facultyService.GetFacultiesByUniversityId(chooseUniversity.Choice);
+            faculty.UniversityId = universityId;
+            faculty.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
             return View(faculty);
         }
 
         [HttpPost]
-        public ActionResult FacultyChoice(UniversityFacultySpecialitySelectionModel chooseFaculty)
+        public ActionResult FacultyChoice(string facultyId, string universityId)
         {
-            if (string.IsNullOrEmpty(chooseFaculty.Choice))
+            if (facultyId == null)
             {
-                ModelState.AddModelError("Choice", "Необходимо е да изберете факултет");
-            }
-            if (!ModelState.IsValid)
-            {
-                return View("ChooseFaculty");
+                return View("ChooseFaculty", universityId);
             }
             else
             {
-                return RedirectToAction("ChooseSpeciality", "Registration", chooseFaculty);
+                return RedirectToAction("ChooseSpeciality", "Registration", new { facultyId, universityId });
             }
         }
 
-        public ActionResult ChooseSpeciality(UniversityFacultySpecialitySelectionModel chooseFaculty)
+        public ActionResult ChooseSpeciality(string facultyId, string universityId)
         {
             UniversityFacultySpecialitySelectionModel speciality = new();
-            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(chooseFaculty.Choice); 
+            speciality.UniversityId = universityId;
+            speciality.FacultyId = facultyId;
+            speciality.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
+            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId); 
             return View(speciality);
         }
 
         [HttpPost]
-        public ActionResult SpecialityChoice(UniversityFacultySpecialitySelectionModel chooseSpeciality)
+        public ActionResult SpecialityChoice(string facultyId, string universityId, string specialityId)
         {
-            if (string.IsNullOrEmpty(chooseSpeciality.Choice))
+            if (specialityId == null)
             {
-                ModelState.AddModelError("Choice", "Необходимо е да изберете специалност");
-            }
-            if (!ModelState.IsValid)
-            {
-                return View("ChooseSpeciality");
+                return View("ChooseSpeciality", new { facultyId, universityId});
             }
             else
             {

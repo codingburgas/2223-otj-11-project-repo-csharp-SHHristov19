@@ -1,45 +1,42 @@
-﻿@using Univers.PL.Utilities;
-@model Univers.Models.Models.UniversityFacultySpecialitySelectionModel 
-@{
-    var _utilities = new Utilities();
-}
+﻿@model Univers.Models.Models.UniversityFacultySpecialitySelectionModel
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" /> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" /> 
- 
-<div class="div1">
-    <a href="@Url.Action("SignUpAsStudent", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
 
-    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+@using (Html.BeginForm("UniversityChoice", "Registration", FormMethod.Post, new { @class = "div3" }))
+{
+    <a href="@Url.Action("SignUpAsStudent", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
 
     <label class="lb1">
         Изберете университет:
     </label>
+    <br>
 
-    @using (Html.BeginForm("UniversityChoice", "Registration", FormMethod.Post))
-    {
-        var items = new List<SelectListItem>(); 
+    <div class="div4" style="margin-bottom: 25%;">
 
-        items.Add(new SelectListItem { Text = "Университети",  Value = "", Disabled = true, Selected = true});
+        <table style="width:80%; border-spacing: 0 10px;">
+            <br>
+            <br>
+            @if (Model.Universities.Count == 0)
+            {
+                <label class="lb1" style="color: #ff03ad; width: 100%;">
+                    Все още няма университети!
+                </label>
+                <br>
+            }
+            else
+            {
+                @foreach (var university in Model.Universities)
+                {
+                    <tr>
+                        <td>
+                            <button class="button5" style="width:100%" type="submit" name="universityId" value="@university.Id">
+                                @university.Name
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
 
-        foreach (var university in Model.Universities)
-        {
-            items.Add(new SelectListItem { Text = $"{university.Name}", Value = $"{university.Id}"});
-        }
-
-        string ErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Choice)));
-        if(ErrorMessage != null)
-        {
-            <span class="errorwindow" aria-label="@ErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
-                <div></div> @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list errortb"})
-            </span> 
-        }
-        else
-        { 
-            @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list"})
-        }
-
-        <button class="button3" type="submit">Избери факултет</button>
-    }
-
-</div> 
+    </div>
+} 

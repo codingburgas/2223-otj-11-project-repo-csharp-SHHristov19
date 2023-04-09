@@ -265,4 +265,24 @@ button:hover {
     cursor: pointer;
     position:absolute; 
     margin-left: 8%;
-} 
+}
+
+.button5 {
+    font-family: Jost;
+    font-size: 140%;
+    font-weight: 400;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    margin-left: 15%;
+    margin-bottom: 3%;
+}
+
+.button5:hover {
+    background-color: #B2E6FD;
+}

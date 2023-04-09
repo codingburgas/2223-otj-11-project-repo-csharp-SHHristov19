@@ -2,29 +2,44 @@
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
 
-<div class="div1">
-    <a href="@Url.Action("ChooseUniversity", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
-
-    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+@using (Html.BeginForm("FacultyChoice", "Registration", FormMethod.Post, new { @class = "div3" }))
+{
+    <a href="@Url.Action("ChooseUniversity", "Registration", Model)"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a>
+    <br />
+    <br />
 
     <label class="lb1">
-        Изерете факултет:
+        Изберете факултет:
     </label>
+    <br>
 
-    @using (Html.BeginForm("FacultyChoice", "Registration", FormMethod.Post))
-    {
-        var items = new List<SelectListItem>();
+    @Html.Hidden("universityId", Model.UniversityId)
 
-        items.Add(new SelectListItem { Text = "Факултети", Value = "", Disabled = true, Selected = true });
+    <div class="div4">
 
-        foreach (var faculty in Model.Faculties)
-        {
-            items.Add(new SelectListItem { Text = $"{faculty.Name}", Value = $"{faculty.Id}"});
-        }
-
-        @Html.DropDownListFor(Model => Model.Choice, items, new {@class = "list"})
-
-        <button class="button3" type="submit">Избери специалност</button>
-    }
-
-</div>
+        <table style="width:80%; border-spacing: 0 10px;"> 
+            <br><br>
+            @if (Model.Faculties.Count == 0)
+            {
+                <label class="lb1" style="color: #ff03ad; width: 100%;">
+                     Все още няма факултети!
+                </label>  <br>
+            }
+            else
+            {
+                @foreach (var faculty in Model.Faculties)
+                {
+                    <tr>
+                        <td> 
+                            <button class="button5" style="width:100%" type="submit" name="facultyId" value="@faculty.Id">
+                                @faculty.Name
+                            </button>
+                            
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        
+    </div>
+}

@@ -17,11 +17,11 @@ namespace Univers.Models.Models
 
         public List<SpecialityModel>? Specialities { get; set; } = null!;
          
-        public UniversityModel? University { get; set; } = null!;
+        public string? UniversityId { get; set; } = null!;
 
-        public FacultyModel? Faculty { get; set; } = null!;
+        public string? FacultyId { get; set; } = null!;
 
-        public SpecialityModel? Speciality { get; set; } = null!;
+        public string? SpecialityId { get; set; } = null!;
 
         [Required]
         public string? Choice { get; set; }
