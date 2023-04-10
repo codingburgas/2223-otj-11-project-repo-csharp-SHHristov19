@@ -32,4 +32,6 @@ public class UserModel
     public string? Gender { get; set; }
 
     public string? Image { get; set; }
+
+    public string? Code { get; set; } = null!;
 } 

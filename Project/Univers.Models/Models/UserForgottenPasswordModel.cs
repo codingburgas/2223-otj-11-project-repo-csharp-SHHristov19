@@ -21,6 +21,8 @@ namespace Univers.Models.Models
         [Required(ErrorMessage = "Необходимо е да въведете кода, който сте получили на вашият email адрес.")]
         public int[]? Code { get; set; } 
 
+        public string? CodeCheck { get; set; }
+
         public string? Email { get; set; } 
     }
 }

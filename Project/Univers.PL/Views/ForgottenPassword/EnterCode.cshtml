@@ -23,6 +23,8 @@
 
     <br />
 
+    @Html.HiddenFor(model => model.CodeCheck)
+
     <div>
         @{
             string pinErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Code)));
