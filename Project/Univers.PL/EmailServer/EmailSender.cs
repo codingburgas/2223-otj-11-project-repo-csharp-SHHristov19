@@ -14,7 +14,7 @@ namespace Univers.PL.EmailServer
             email.From.Add(MailboxAddress.Parse("univers.email.verify@gmail.com"));
             email.To.Add(MailboxAddress.Parse($"{emailSendTo}"));
             email.Subject = "Code Verification";
-            email.Body = new TextPart(TextFormat.Html) { Text = $"<html><body><h2>Hi <b>{firstName} {lastName}<b>,</h2><br><h3>Your verification code for changing your password is:</h3><br><h1><b>{code}</b></h1></body></html>" };
+            email.Body = new TextPart(TextFormat.Html) { Text = $"<html><body><h2>Hi <b><i>{firstName} {lastName}</i></b>,</h2><br><h3>Your verification code for changing your password is:</h3><br><h1><b>{code}</b></h1></body></html>" };
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp-relay.sendinblue.com", 587, SecureSocketOptions.StartTls);

@@ -166,9 +166,11 @@ namespace Univers.BLL.Services
             return users.FirstOrDefault(x => x.Username == username).Id;
         }
 
-        public void ChangePassword(string? newPassword)
+        public void ChangePassword(string userId, string? newPassword)
         {
-            throw new NotImplementedException();
+            var passwordSalt = _utilities.GenerateSalt();
+            newPassword = _utilities.HashPassword(newPassword, passwordSalt);
+            _userRepository.UpdatePassword(userId, newPassword, passwordSalt);
         }
     }
 }

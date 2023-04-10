@@ -90,15 +90,15 @@ namespace Univers.PL.Controllers
 
         [HttpPost]
         public ActionResult NewPassword(UserForgottenPasswordModel user)
-        {
-            //UserModel findUser = _userService.GetUserByEmial(user.Username, user.Password);
-            //_userService.ChangePassword(user.NewPassword);
+        {   
+            UserModel findUser = _userService.GetUserByEmail(user.Email);
             if (!(ModelState.IsValid))
             {
-                return View("EnterNewPassword", user); 
+                return View("EnterNewPassword", user);
             }
             else
             {
+                _userService.ChangePassword(findUser.Id, user.NewPassword);
                 return RedirectToAction("Login", "Login");
             }
         }

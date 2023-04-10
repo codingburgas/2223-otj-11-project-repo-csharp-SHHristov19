@@ -48,5 +48,19 @@ namespace Univers.DAL.Repositories
             context.Users.Add(additionalUser);
             context.SaveChanges();
         }
+
+        // Update the password
+        public void UpdatePassword(string userId, string newPassword, string salt)
+        {
+            using Context.Context context = new();
+
+            var user = context.Users.FirstOrDefault(x => x.Id == userId);
+
+            user.Password = newPassword;
+            user.PasswordSalt = salt;
+
+            context.Update(user);
+            context.SaveChanges();
+        }
     }
 }
