@@ -14,6 +14,7 @@ namespace Univers.PL.Controllers
         private readonly UniversityService _universityService;
         private readonly FacultyService _facultyService;
         private readonly SpecialityService _specialityService;
+        private readonly StudentService _studentService;
 
         public RegistrationController()
         {
@@ -21,6 +22,7 @@ namespace Univers.PL.Controllers
             _universityService = new UniversityService();
             _facultyService = new FacultyService();
             _specialityService = new SpecialityService();
+            _studentService = new StudentService();
         }
 
 
@@ -34,7 +36,7 @@ namespace Univers.PL.Controllers
         {
             if (user.RoleChoice == "Студент")
             {
-                return RedirectToAction("SignUpAsStudent");
+                return RedirectToAction("ChooseFormOfEducationAndDegree");
             }
             else
             {
@@ -77,15 +79,35 @@ namespace Univers.PL.Controllers
             }
         }
 
+        public ActionResult ChooseFormOfEducationAndDegree()
+        {
+            SelectionModel model = new();
+            return View(model);
+        }
 
-        public ActionResult SignUpAsStudent()
+        [HttpPost]
+        public ActionResult FormOfEducationAndDegree(SelectionModel model)
+        {
+            if (model.FormOfEducation != null && model.Degree != null)
+            {
+                return RedirectToAction("SignUpAsStudent", "Registration", new { formOfEducation = model.FormOfEducation, degree = model.Degree });
+            }
+            else
+            {
+                return RedirectToAction("ChooseFormOfEducationAndDegree");
+            }
+        }
+
+        public ActionResult SignUpAsStudent(string formOfEducation, string degree)
         {
             StudentModel student = new();
+            student.FormOfEducation = formOfEducation;
+            student.Degree = degree;
             return View(student);
         } 
 
         [HttpPost]
-        public ActionResult AddStudent(StudentModel student)
+        public ActionResult AddStudent(StudentModel student, string formOfEducation, string degree)
         {
             ValidationResult usernameValidationResult = _userService.ValidateUsername(student);
             ValidationResult emailValidationResult = _userService.ValidateEmail(student);
@@ -104,7 +126,11 @@ namespace Univers.PL.Controllers
             if (student != null)
             {
                 _userService.AddUser(student);
-                return RedirectToAction("SuccessfulLogin", "Login", student);
+                student.UserId = _userService.GetUserIdByUsername(student.Username);
+                student.Id = Guid.NewGuid().ToString("D");
+                student.FormOfEducation = formOfEducation;
+                _studentService.AddStudent(student);
+                return RedirectToAction("ChooseUniversity", "Registration", new { studentId = student.Id, degree});
             }
             else
             {
@@ -112,15 +138,18 @@ namespace Univers.PL.Controllers
             }
         } 
 
-        public ActionResult ChooseUniversity()
+
+        public ActionResult ChooseUniversity(string studentId, string degree)
         {
-            UniversityFacultySpecialitySelectionModel university = new();
+            SelectionModel university = new();
+            university.StudentId = studentId;
             university.Universities = _universityService.TransferDataFromEntityToModel();
+            university.Degree = degree;
             return View(university);
         }
 
         [HttpPost]
-        public ActionResult UniversityChoice(string universityId)
+        public ActionResult UniversityChoice(string universityId, string studentId, string degree)
         {
             if (universityId == null)
             {
@@ -128,20 +157,22 @@ namespace Univers.PL.Controllers
             }
             else
             {
-                return RedirectToAction("ChooseFaculty", "Registration", new { universityId });
+                return RedirectToAction("ChooseFaculty", "Registration", new { universityId, studentId, degree});
             }
         }
 
-        public ActionResult ChooseFaculty(string universityId)
+        public ActionResult ChooseFaculty(string universityId, string studentId, string degree)
         {
-            UniversityFacultySpecialitySelectionModel faculty = new();
+            SelectionModel faculty = new();
+            faculty.StudentId = studentId;
             faculty.UniversityId = universityId;
+            faculty.Degree = degree;
             faculty.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
             return View(faculty);
         }
 
         [HttpPost]
-        public ActionResult FacultyChoice(string facultyId, string universityId)
+        public ActionResult FacultyChoice(string facultyId, string universityId, string studentId, string degree)
         {
             if (facultyId == null)
             {
@@ -149,22 +180,23 @@ namespace Univers.PL.Controllers
             }
             else
             {
-                return RedirectToAction("ChooseSpeciality", "Registration", new { facultyId, universityId });
+                return RedirectToAction("ChooseSpeciality", "Registration", new { facultyId, universityId, studentId, degree });
             }
         }
 
-        public ActionResult ChooseSpeciality(string facultyId, string universityId)
+        public ActionResult ChooseSpeciality(string facultyId, string universityId, string studentId, string degree)
         {
-            UniversityFacultySpecialitySelectionModel speciality = new();
+            SelectionModel speciality = new();
+            speciality.StudentId = studentId;
             speciality.UniversityId = universityId;
             speciality.FacultyId = facultyId;
             speciality.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
-            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId); 
+            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId, degree); 
             return View(speciality);
         }
 
         [HttpPost]
-        public ActionResult SpecialityChoice(string facultyId, string universityId, string specialityId)
+        public ActionResult SpecialityChoice(string facultyId, string universityId, string specialityId, string studentId)
         {
             if (specialityId == null)
             {
@@ -172,6 +204,7 @@ namespace Univers.PL.Controllers
             }
             else
             {
+                _studentService.AddSpecialityId(studentId, specialityId);
                 return RedirectToAction("Login", "Login");
             }
         }

@@ -50,7 +50,7 @@ namespace Univers.BLL.Services
             return models;
         }
 
-        public List<SpecialityModel> GetSpecialitiesByFacultyId(string facultyId)
+        public List<SpecialityModel> GetSpecialitiesByFacultyId(string facultyId, string degree)
         {
             List<FacultySpecialityModel> facultySpecialities = _facultySpecialityService.TransferDataFromEntityToModel();
 
@@ -62,7 +62,11 @@ namespace Univers.BLL.Services
                          where facultySpecialty.FacultyId == facultyId
                          select speciality;
 
-            return result.ToList();
+            var res = from specialitiesForm in result
+                      where specialitiesForm.Degree == degree
+                      select specialitiesForm;
+
+            return res.ToList();
         }
     }
 }

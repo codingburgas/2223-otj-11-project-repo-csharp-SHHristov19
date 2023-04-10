@@ -53,5 +53,15 @@ namespace Univers.BLL.Services
 
             return models;
         }
+
+        public void AddStudent(StudentModel student)
+        {
+            _studentRepository.AddData(student);
+        }
+
+        public void AddSpecialityId(string studentId, string specialityId)
+        {
+            _studentRepository.AddSpecialityId(studentId, specialityId);
+        }
     }
 }

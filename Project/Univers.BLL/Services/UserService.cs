@@ -14,13 +14,11 @@ namespace Univers.BLL.Services
     {
         private readonly UserRepository _userRepository;
         private readonly Univers.Utilities.Utilities _utilities;
-        private readonly List<UserModel> users;
 
         public UserService()
         {
             _userRepository = new UserRepository();
             _utilities = new Univers.Utilities.Utilities();
-            users = TransferDataFromEntityToModel();
         }
 
         /// <summary>
@@ -65,6 +63,7 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public UserModel GetUserByUsernameAndPassword(string username, string password)
         { 
+            var users = TransferDataFromEntityToModel();
             var user = users.Where(x => x.Username == username).FirstOrDefault();
 
             if (user != null && user.Password == _utilities.HashPassword(password, user.PasswordSalt))
@@ -105,7 +104,8 @@ namespace Univers.BLL.Services
         /// <param name="username"></param>
         /// <returns></returns>
         public bool UsernameAlreadyExist(string username)
-        { 
+        {
+            var users = TransferDataFromEntityToModel();
             return users.Where(x => x.Username == username).Any();
         }
 
@@ -115,7 +115,8 @@ namespace Univers.BLL.Services
         /// <param name="email"></param>
         /// <returns></returns>
         public bool EmailAlreadyExist(string email)
-        { 
+        {
+            var users = TransferDataFromEntityToModel();
             return users.Where(x => x.Email == email).Any();
         }
 
@@ -147,8 +148,9 @@ namespace Univers.BLL.Services
             return ValidationResult.Success;
         }
 
-        public UserModel GetUserByEmail(string email)
-        { 
+        public UserModel? GetUserByEmail(string email)
+        {
+            var users = TransferDataFromEntityToModel();
             var user = users.Where(x => x.Email == email).FirstOrDefault();
 
             if (user != null)
@@ -156,6 +158,12 @@ namespace Univers.BLL.Services
                 return user;
             } 
             return null; 
+        }
+
+        public string GetUserIdByUsername(string username)
+        {
+            var users = TransferDataFromEntityToModel();
+            return users.FirstOrDefault(x => x.Username == username).Id;
         }
 
         public void ChangePassword(string? newPassword)

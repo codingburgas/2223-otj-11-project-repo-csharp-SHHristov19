@@ -1,10 +1,10 @@
-﻿@model Univers.Models.Models.UniversityFacultySpecialitySelectionModel 
+﻿@model Univers.Models.Models.SelectionModel 
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
 
 @using (Html.BeginForm("FacultyChoice", "Registration", FormMethod.Post, new { @class = "div3" }))
 {
-    <a href="@Url.Action("ChooseUniversity", "Registration", Model)"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a>
+    <a href="@Url.Action("ChooseUniversity", "Registration", new{ studentId = Model.StudentId, degree = Model.Degree})"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a>
     <br />
     <br />
 
@@ -14,6 +14,8 @@
     <br>
 
     @Html.Hidden("universityId", Model.UniversityId)
+    @Html.Hidden("studentId", Model.StudentId)
+    @Html.Hidden("degree", Model.Degree)
 
     <div class="div4">
 

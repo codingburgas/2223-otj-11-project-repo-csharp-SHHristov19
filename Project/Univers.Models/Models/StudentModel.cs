@@ -6,6 +6,8 @@ namespace Univers.Models.Models;
 
 public class StudentModel : SignUpUserModel
 {
+    public string? Id { get; set; } = null!;
+
     public string? SpecialityId { get; set; } = null!;
 
     public string? UserId { get; set; } = null!;
@@ -39,4 +41,6 @@ public class StudentModel : SignUpUserModel
     public string? CityOfBirth { get; set; } = null!;
 
     public string? FacultyNumber { get; set; } = null!;
+
+    public string? Degree { get; set; } = null!;
 }

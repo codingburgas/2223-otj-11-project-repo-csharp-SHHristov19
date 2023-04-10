@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Univers.Models.Models
 {
-    public class UniversityFacultySpecialitySelectionModel
+    public class SelectionModel
     {
+        public string? StudentId { get; set; } = null!;
+
         public StudentModel? Student { get; set; } = null!;
 
         public List<UniversityModel>? Universities { get; set; } = null!;
@@ -23,7 +25,8 @@ namespace Univers.Models.Models
 
         public string? SpecialityId { get; set; } = null!;
 
-        [Required]
-        public string? Choice { get; set; }
+        public string? FormOfEducation { get; set; } = null!;
+
+        public string? Degree { get; set; } = null!;
     }
 }
