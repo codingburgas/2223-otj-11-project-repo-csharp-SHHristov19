@@ -38,19 +38,16 @@ namespace Univers.PL.Controllers
         {
             if (user.RoleChoice == "Студент")
             {
-                return RedirectToAction("ChooseFormOfEducationAndDegree");
+                return RedirectToAction("ChooseFormOfEducationAndDegree", user);
             }
             else
             {
-                return RedirectToAction("SignUpAsStaff");
+                return RedirectToAction("SignUpAsStaff", user);
             }
-        }
+        } 
 
-
-
-        public ActionResult SignUpAsStaff()
+        public ActionResult SignUpAsStaff(SignUpUserModel user)
         {
-            SignUpUserModel user = new();
             return View(user);
         }
 
@@ -59,6 +56,31 @@ namespace Univers.PL.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> ImageUploading(IFormFile image)
+        {
+            var userImage = new SignUpUserModel();
+            if (image != null && image.Length > 0)
+            {
+                // Generate a unique name for the file using GUID
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+
+                // Save the file to the server
+                var imagePath = Path.Combine(_environment.WebRootPath, "uploads", uniqueFileName);
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+
+                var relativePath = $"~/uploads/{Path.GetFileName(imagePath)}";
+                // Save the image path to the user's account model
+                userImage.Image = relativePath;
+
+                return RedirectToAction("SignUpAs", "Registration", userImage);
+            }
+
+            return RedirectToAction("SignUpAs", "Registration", userImage);
+        }
 
         [HttpPost]
         public ActionResult AddUser(SignUpUserModel user)
@@ -88,9 +110,10 @@ namespace Univers.PL.Controllers
             }
         }
 
-        public ActionResult ChooseFormOfEducationAndDegree()
+        public ActionResult ChooseFormOfEducationAndDegree(string image)
         {
             SelectionModel model = new();
+            model.Image = image;
             return View(model);
         }
 

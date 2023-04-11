@@ -10,9 +10,9 @@
         Прикачете профилна снимка:
     </label><br /><br /><br /><br />
 
-    @using (Html.BeginForm("ImageUploading", "Registration", FormMethod.Post))
+    @using (Html.BeginForm("ImageUploading", "Registration", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <input type="file" id="image" name="image" class="filebox">
+        <input type="file" name="image" class="filebox">
         <button class="button3" type="submit" style="margin-top: 10%;">Напред</button>
     }
 

@@ -43,6 +43,7 @@ namespace Univers.DAL.Repositories
             additionalUser.Email = user.Email;
             additionalUser.Address = user.Address;
             additionalUser.Gender = user.Gender;
+            additionalUser.Image = user.Image;
             additionalUser.IsActive = true;
 
             context.Users.Add(additionalUser);

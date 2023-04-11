@@ -1,19 +1,15 @@
 ﻿@model Univers.Models.Models.SignUpUserModel
-@{
-    ViewData["Title"] = "SignUpAs";
-}
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
 
 <div class="div1">
-    <a href="@Url.Action("Login", "Login")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+    <a href="@Url.Action("UploadImage", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
 
     <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
 
     <label class="lb1">
         Регистрирай се като:
     </label>
-
 
     @using (Html.BeginForm("ChooseRoleForSignUp", "Registration", FormMethod.Post))
     {

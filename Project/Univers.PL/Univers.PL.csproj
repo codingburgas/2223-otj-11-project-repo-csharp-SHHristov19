@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Univers.Utilities\Univers.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

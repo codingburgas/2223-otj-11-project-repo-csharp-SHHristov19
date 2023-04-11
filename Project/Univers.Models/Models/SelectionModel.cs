@@ -28,5 +28,7 @@ namespace Univers.Models.Models
         public string? FormOfEducation { get; set; } = null!;
 
         public string? Degree { get; set; } = null!;
+
+        public string? Image { get; set; } = null!;
     }
 }
