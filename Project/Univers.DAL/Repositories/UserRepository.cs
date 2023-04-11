@@ -49,7 +49,12 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
-        // Update the password
+        /// <summary>
+        /// Update the password
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="newPassword"></param>
+        /// <param name="salt"></param>
         public void UpdatePassword(string userId, string newPassword, string salt)
         {
             using Context.Context context = new();

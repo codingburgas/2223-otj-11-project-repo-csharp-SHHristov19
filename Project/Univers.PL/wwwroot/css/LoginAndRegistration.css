@@ -286,3 +286,32 @@ button:hover {
 .button5:hover {
     background-color: #B2E6FD;
 }
+
+.filebox {
+    width: 65%;
+    margin-left: 17%;
+    max-width: 100%;
+    color: black;
+    font-family: Jost;
+    font-size: 120%;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+.filebox::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #6852FD;
+    font-family: Jost;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.filebox::file-selector-button:hover {
+    background: #9080ff;
+}

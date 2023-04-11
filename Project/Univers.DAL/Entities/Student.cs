@@ -11,7 +11,7 @@ public partial class Student
     [Key]
     [StringLength(50)]
     [Unicode(false)]
-    public string? Id { get; set; } = null!;
+    public string Id { get; set; } = null!;
 
     [StringLength(50)]
     [Unicode(false)]
@@ -19,7 +19,7 @@ public partial class Student
 
     [StringLength(50)]
     [Unicode(false)]
-    public string? UserId { get; set; } = null!;
+    public string UserId { get; set; } = null!;
 
     [StringLength(10)]
     [Unicode(false)]

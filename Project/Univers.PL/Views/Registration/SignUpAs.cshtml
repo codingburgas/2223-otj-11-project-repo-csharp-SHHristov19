@@ -14,8 +14,11 @@
         Регистрирай се като:
     </label>
 
+
     @using (Html.BeginForm("ChooseRoleForSignUp", "Registration", FormMethod.Post))
     {
+        @Html.HiddenFor(model => model.Image)
+
         @Html.DropDownListFor(Model => Model.RoleChoice, new List<SelectListItem>
         {
             new SelectListItem { Text = "Студент",  },

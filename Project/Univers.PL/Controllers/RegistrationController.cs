@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
 using Univers.DAL.Entities;
+using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -15,20 +16,21 @@ namespace Univers.PL.Controllers
         private readonly FacultyService _facultyService;
         private readonly SpecialityService _specialityService;
         private readonly StudentService _studentService;
+        private readonly IWebHostEnvironment _environment;
 
-        public RegistrationController()
+        public RegistrationController(IWebHostEnvironment environment)
         {
             _userService = new UserService();
             _universityService = new UniversityService();
             _facultyService = new FacultyService();
             _specialityService = new SpecialityService();
             _studentService = new StudentService();
+            _environment = environment;
         }
 
-
-        public ActionResult SignUpAs()
+        public ActionResult SignUpAs(SignUpUserModel user)
         {
-            return View();
+            return View(user);
         }
          
         [HttpPost]
@@ -45,11 +47,18 @@ namespace Univers.PL.Controllers
         }
 
 
+
         public ActionResult SignUpAsStaff()
         {
             SignUpUserModel user = new();
             return View(user);
         }
+
+        public ActionResult UploadImage()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult AddUser(SignUpUserModel user)
@@ -200,7 +209,7 @@ namespace Univers.PL.Controllers
         {
             if (specialityId == null)
             {
-                return View("ChooseSpeciality", new { facultyId, universityId});
+                return View("ChooseSpeciality", new { facultyId, universityId, specialityId, studentId });
             }
             else
             {
