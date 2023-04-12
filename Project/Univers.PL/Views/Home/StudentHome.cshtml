@@ -1,35 +1,28 @@
 ﻿@using System.Globalization;
  
 @{
-    Layout = "../_StudentMenu.cshtml";
+    Layout = "../_StudentMenu.cshtml"; 
 }
 
 <link rel="stylesheet" href="~/css/StudentHome.css" asp-append-version="true" />
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 @{
-    var currentDate = DateTime.Today;
-    var month = currentDate.Month;
-    var year = currentDate.Year;
+    int year = ViewBag.Year;
+    int month = ViewBag.Month; 
 
-    var firstDayOfMonth = new DateTime(year, month, 1);
-    var firstDayOfWeek = DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek;
-    var offsetDays = firstDayOfWeek - firstDayOfMonth.DayOfWeek;
-    if (offsetDays > 0)
-    {
-        offsetDays -= 7;
-    }
-
-    var startOfWeek = firstDayOfMonth.AddDays(offsetDays);
+    DateTime firstDayOfMonth = new DateTime(year, month, 1); 
 }
 
 @functions {
     public string GetDayClass(DateTime day)
     {
-        if (day.Month == DateTime.Today.Month)
+        if (day.Month == DateTime.Today.Month && day.Year == DateTime.Today.Year)
         {
-            if (day.Day == 4 || day.Day == 8 || day.Day == 19)
+            if (day.Day == DateTime.Today.Day)
             {
-                return "special-day";
+                return "today";
             }
             return "";
         }
@@ -38,16 +31,48 @@
 
     public string GetDayMonthClass(DateTime day)
     {
-        return day.Month == DateTime.Today.Month ? "current-month" : "";
+        return day.Month == DateTime.Today.Month && day.Year == DateTime.Today.Year ? "current-month" : "";
     }
 }
 
+<div class="div1"><br />
+    <div class="div2">
+        <table>
+            <tr>
+                <td rowspan="2"><span class="semester">1 &nbsp; &nbsp; СЕМЕСТЪР</span></td>
+                <td><span class="university">Университет „Проф. д-р Асен Златаров“</span></td>
+            </tr>
+            <tr>
+                <td><span class="facultynum">Факултет № ХСНС210</span></td>
+            </tr>
+        </table> 
+    </div> <br />
+    <div class="div3">Оставащи дни до/от сесията <br /><span class="days">10 дни</span></div>
+    <div class="div4">ОЦЕНКИ</div> 
+</div>
 
-
-<div style="max-width: 90%; margin-left: 5%; margin-right: 5%;">
-
-    <h2 style="text-align: center;">@DateTimeFormatInfo.CurrentInfo.GetMonthName(month) @year</h2>
-
+<div style="max-width: 90%; margin-left: 5%; margin-right: 5%; margin-top: 2%;"> 
+      
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <a href="@Url.Action("StudentHome", "Home", new { year = firstDayOfMonth.AddMonths(-1).Year, month = firstDayOfMonth.AddMonths(-1).Month })">
+                        <ion-icon name="chevron-back-outline" class="icons"></ion-icon>
+                    </a>
+                </div>
+            </td>
+            <td><h2 style="text-align: center; position: center; text-transform: uppercase;">@firstDayOfMonth.ToString("MMMM yyyy")</h2></td>
+            <td>
+                <div>
+                    <a href="@Url.Action("StudentHome", "Home", new { year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month })">
+                        <ion-icon name="chevron-forward-outline" class="icons"></ion-icon>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
     <table>
         <thead>
             <tr>
@@ -61,18 +86,22 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 0; i < 6; i++)
+            @for (var week = 1; week <= 6; week++)
             {
-                <tr>
-                    @for (var j = 0; j < 7; j++)
+                <tr class="date">
+                    @for (var day = 1; day <= 7; day++)
                     {
-                        var day = startOfWeek.AddDays(i * 7 + j);
-                        var dayClass = GetDayClass(day);
-                        var dayInMonthClass = GetDayMonthClass(day);
-                        <td class="@dayClass @dayInMonthClass" style="width: 12.85%;">@day.Day</td>
+                        var calendarDay = firstDayOfMonth.AddDays((week - 1) * 7 + (day - (int)firstDayOfMonth.DayOfWeek));
+                        var dayClass = GetDayClass(calendarDay);
+                        var dayInMonthClass = GetDayMonthClass(calendarDay);
+                        <td style="width: 12.85%;">
+                            <p class="box @dayClass @dayInMonthClass" >@calendarDay.Day</p>
+                        </td>
                     }
                 </tr>
             }
         </tbody>
     </table>
+
+    
 </div>

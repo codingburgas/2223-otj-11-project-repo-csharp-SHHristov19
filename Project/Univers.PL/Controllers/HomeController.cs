@@ -9,8 +9,18 @@ namespace Univers.PL.Controllers
             return View();
         }
         
-        public ActionResult StudentHome()
-        {
+        public ActionResult StudentHome(int year = 0, int month = 0)
+        {  
+            DateTime currentDate = DateTime.Now;
+            if (year == 0 || month == 0)
+            {
+                year = currentDate.Year;
+                month = currentDate.Month;
+            } 
+
+            ViewBag.Year = year;
+            ViewBag.Month = month;
+        
             return View();
         }
     }
