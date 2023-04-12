@@ -1,0 +1,78 @@
+﻿@using System.Globalization;
+ 
+@{
+    Layout = "../_StudentMenu.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/StudentHome.css" asp-append-version="true" />
+
+@{
+    var currentDate = DateTime.Today;
+    var month = currentDate.Month;
+    var year = currentDate.Year;
+
+    var firstDayOfMonth = new DateTime(year, month, 1);
+    var firstDayOfWeek = DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek;
+    var offsetDays = firstDayOfWeek - firstDayOfMonth.DayOfWeek;
+    if (offsetDays > 0)
+    {
+        offsetDays -= 7;
+    }
+
+    var startOfWeek = firstDayOfMonth.AddDays(offsetDays);
+}
+
+@functions {
+    public string GetDayClass(DateTime day)
+    {
+        if (day.Month == DateTime.Today.Month)
+        {
+            if (day.Day == 4 || day.Day == 8 || day.Day == 19)
+            {
+                return "special-day";
+            }
+            return "";
+        }
+        return "";
+    }
+
+    public string GetDayMonthClass(DateTime day)
+    {
+        return day.Month == DateTime.Today.Month ? "current-month" : "";
+    }
+}
+
+
+
+<div style="max-width: 90%; margin-left: 5%; margin-right: 5%;">
+
+    <h2 style="text-align: center;">@DateTimeFormatInfo.CurrentInfo.GetMonthName(month) @year</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Понеделник</th>
+                <th>Вторник</th>
+                <th>Сряда</th>
+                <th>Четвъртък</th>
+                <th>Петък</th>
+                <th>Събота</th>
+                <th>Неделя</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < 6; i++)
+            {
+                <tr>
+                    @for (var j = 0; j < 7; j++)
+                    {
+                        var day = startOfWeek.AddDays(i * 7 + j);
+                        var dayClass = GetDayClass(day);
+                        var dayInMonthClass = GetDayMonthClass(day);
+                        <td class="@dayClass @dayInMonthClass" style="width: 12.85%;">@day.Day</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

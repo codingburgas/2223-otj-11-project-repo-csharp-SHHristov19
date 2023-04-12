@@ -1,0 +1,193 @@
+﻿/* Google Font Import - Jost */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #4d5bf9;
+}
+
+.navigation {
+    position: fixed;
+    top: 2%;
+    bottom: 2%;
+    width: 5.1%;
+    box-sizing: initial;
+    background: #4d5bf9;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active {
+    width: 20%; 
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    Left: 0;
+    width: 100%;
+    padding-left: 4%;
+    padding-top: 60%;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 1%;
+}
+
+.navigation ul li.active {
+    background-color: #fff;
+}
+
+.navigation ul li b:nth-child(1) {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+
+.navigation ul li b:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 20px;
+    background-color: #4d5bf9;
+}
+
+.navigation ul li b:nth-child(2) {
+    position: absolute;
+    bottom: -20px;
+    height: 20px;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+
+.navigation ul li b:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    background-color: #4d5bf9;
+}
+
+.navigation ul li.active b:nth-child(1),
+.navigation ul li.active b:nth-child(2) {
+    display: block;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul li.active a {
+    color: #000;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 70px;
+    height: 60px;
+    Line-height: 80px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+    font-size: 200%;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding-left: 8%;
+    height: 30px;
+    line-height: 60px;
+    white-space: normal;
+    font-size: 140%;
+}
+
+.toggle {
+    position: fixed; 
+    width: 5%;
+    height: 10%;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle ion-icon {
+    position: absolute;
+    color: #000;
+    font-size: 34px;
+    display: none;
+}
+
+.toggle ion-icon.open,
+.toggle.active ion-icon.close {
+    display: block;
+    color: #fff;
+}
+
+.toggle ion-icon.close,
+.toggle.active ion-icon.open {
+    display: none;
+}
+
+.content {
+    background-color: #fff;
+    position: absolute;
+    width: 93%;
+    height: 93%;
+    left: 5.1%;
+    top: 3.5%;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.navigation.active ~ .content {
+    background-color: #fff;
+    position: absolute;
+    width: 78%;
+    height: 93%;
+    left: 20%;
+    transition: 0.5s;
+} 
+
+.logo {
+    display: none; 
+}
+
+.navigation.active .logo {
+    position: absolute;
+    display: block;
+    width:70%;
+    top: 12%;
+    left: 15%;
+} 
