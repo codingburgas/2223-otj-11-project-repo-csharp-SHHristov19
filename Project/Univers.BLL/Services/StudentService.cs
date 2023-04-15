@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,7 @@ namespace Univers.BLL.Services
             {
                 var newModel = new StudentModel();
 
+                newModel.Id = entity.Id;
                 newModel.UserId = entity.UserId;
                 newModel.SpecialityId = entity.SpecialityId;
                 newModel.Citizenship = entity.Citizenship;
@@ -62,6 +64,44 @@ namespace Univers.BLL.Services
         public void AddSpecialityId(string studentId, string specialityId)
         {
             _studentRepository.AddSpecialityId(studentId, specialityId);
+        }
+
+        public StudentModel? GetStudentByUserId(string userId)
+        {
+            List<StudentModel> students = TransferDataFromEntityToModel();
+
+            return students.FirstOrDefault(x => x.UserId == userId);
+        }
+
+        public int GetTheMaxNumOfTheFacultyNumbersOfAllStudents()
+        {
+            var facultyNums = TransferDataFromEntityToModel().Select(x => x.FacultyNumber);
+
+            List<int> numbers = new();
+
+            foreach (var num in facultyNums)
+            {
+                if(num != null)
+                {
+                    numbers.Add(int.Parse(num.Split("-")[3]));
+                } 
+            }
+
+            return numbers.Max();
+        }
+
+        public void AddFacultyNumber(string studentId, string facultyCode, string specialityCode)
+        {
+            int facultyNum = GetTheMaxNumOfTheFacultyNumbersOfAllStudents() + 1;
+
+            string facultyNumber = $"{facultyCode}-{specialityCode.Substring(0, specialityCode.Length - 1)}-{specialityCode.Substring(specialityCode.Length - 1, 1)}-{facultyNum:D4}";
+
+            _studentRepository.AddFacultyNumber(studentId, facultyNumber);
+        }
+
+        public StudentModel? GetStudentById(string studentId)
+        {  
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == studentId);
         }
     }
 }

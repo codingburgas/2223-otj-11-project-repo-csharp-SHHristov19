@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
 {
@@ -9,7 +10,7 @@ namespace Univers.PL.Controllers
             return View();
         }
         
-        public ActionResult StudentHome(int year = 0, int month = 0)
+        public ActionResult StudentHome(StudentModel student, int year = 0, int month = 0)
         {  
             DateTime currentDate = DateTime.Now;
             if (year == 0 || month == 0)
@@ -21,7 +22,7 @@ namespace Univers.PL.Controllers
             ViewBag.Year = year;
             ViewBag.Month = month;
         
-            return View();
+            return View(student);
         }
     }
 }

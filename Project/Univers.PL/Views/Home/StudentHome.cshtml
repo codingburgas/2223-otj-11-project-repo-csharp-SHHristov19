@@ -1,7 +1,8 @@
 ﻿@using System.Globalization;
- 
+@model Univers.Models.Models.StudentModel
 @{
-    Layout = "../_StudentMenu.cshtml"; 
+    Layout = "../_StudentMenu.cshtml";
+    ViewBag.Model = Model;
 }
 
 <link rel="stylesheet" href="~/css/StudentHome.css" asp-append-version="true" />
@@ -43,7 +44,7 @@
                 <td><span class="university">Университет „Проф. д-р Асен Златаров“</span></td>
             </tr>
             <tr>
-                <td><span class="facultynum">Факултет № ХСНС210</span></td>
+                <td><span class="facultynum">Факултет № @Model.FacultyNumber</span></td>
             </tr>
         </table> 
     </div> <br />
@@ -65,7 +66,7 @@
             <td><h2 style="text-align: center; position: center; text-transform: uppercase;">@firstDayOfMonth.ToString("MMMM yyyy")</h2></td>
             <td>
                 <div>
-                    <a href="@Url.Action("StudentHome", "Home", new { year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month })">
+                    <a href="@Url.Action("StudentHome", "Home", new {year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month})">
                         <ion-icon name="chevron-forward-outline" class="icons"></ion-icon>
                     </a>
                 </div>

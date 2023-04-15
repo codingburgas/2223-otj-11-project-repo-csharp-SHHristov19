@@ -57,5 +57,12 @@ namespace Univers.BLL.Services
 
             return result.ToList();
         }
+
+        public string GetFacultyCode(string facultyId)
+        {
+            var faculties = TransferDataFromEntityToModel();
+
+            return faculties.FirstOrDefault(x => x.Id == facultyId).Code;
+        }
     }
 }

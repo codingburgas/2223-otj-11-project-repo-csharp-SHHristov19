@@ -14,7 +14,7 @@
     @Html.Hidden("degree", Model.Degree)
 
     <div class="div4">
-        <a href="@Url.Action("ChooseFormOfEducationAndDegree", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+        <a href="@Url.Action("ChooseFormOfEducationAndDegree", "Registration", Model.FormOfEducation, Model.Degree)"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
 
         <table style="width:100%; margin-left:15%; border-spacing: 0 10px;">
             <tr>

@@ -17,7 +17,7 @@
             <li class="list active">
                 <b></b>
                 <b></b>
-                <a href="#">
+                <a href="@Url.Action("StudentHome", "Home", new{ student = ViewBag.Model})">
                     <span class="icon"><ion-icon name="home"></ion-icon></span>
                     <span class="title">Начало</span>
                 </a>
@@ -25,7 +25,7 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a href="#">
+                <a href="@Url.Action("ExamSession", "Student", new{ student = ViewBag.Model})">
                     <span class="icon"><ion-icon name="document-text"></ion-icon></span>
                     <span class="title">Изпитна сесия</span>
                 </a>
@@ -63,7 +63,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="@Url.Action("Login", "Login")">
                     <span class="icon"><ion-icon name="exit"></ion-icon></span>
                     <span class="title">Изход</span>
                 </a>

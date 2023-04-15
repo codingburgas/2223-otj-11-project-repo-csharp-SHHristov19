@@ -59,5 +59,18 @@ namespace Univers.DAL.Repositories
 
             context.SaveChanges();
         }
+
+        public void AddFacultyNumber(string studentId, string facultyNumber)
+        {
+            using Context.Context context = new();
+
+            var student = context.Students.FirstOrDefault(s => s.Id == studentId);
+
+            student.FacultyNumber = facultyNumber;
+
+            context.Update(student);
+
+            context.SaveChanges();
+        }
     }
 }

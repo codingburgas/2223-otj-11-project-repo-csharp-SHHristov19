@@ -9,10 +9,14 @@ namespace Univers.PL.Controllers
     public class LoginController : Controller
     {
         private readonly UserService _userService;
+        private readonly StaffService _staffService;
+        private readonly StudentService _studentService;
 
         public LoginController()
         {
             _userService = new UserService();
+            _staffService = new StaffService();
+            _studentService = new StudentService();
         }
 
         // GET: Login
@@ -31,9 +35,19 @@ namespace Univers.PL.Controllers
         public ActionResult Authorization(UserLoginModel user)
         {
             UserModel loginUser = _userService.GetUserByUsernameAndPassword(user.Username, user.Password);
+            
             if (loginUser != null)
-            {
-                return RedirectToAction("SuccessfulLogin", loginUser);
+            { 
+                var student = _studentService.GetStudentByUserId(loginUser.Id);
+                if (student != null)
+                {
+                    return RedirectToAction("StudentHome", "Home", student);
+                }
+                var staff = _staffService.GetStaffByUserId(loginUser.Id);
+                if(staff != null)
+                {
+                    return RedirectToAction("StaffHome", "Home", staff);
+                }
             }
             if(!(ModelState.IsValid))
             {

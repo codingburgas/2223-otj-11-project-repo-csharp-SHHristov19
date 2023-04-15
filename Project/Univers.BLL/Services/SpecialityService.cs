@@ -68,5 +68,12 @@ namespace Univers.BLL.Services
 
             return res.ToList();
         }
+
+        public string GetSpecialityCode(string specialityId)
+        {
+            var specialities = TransferDataFromEntityToModel();
+
+            return specialities.FirstOrDefault(x => x.Id == specialityId).Code;
+        }
     }
 }

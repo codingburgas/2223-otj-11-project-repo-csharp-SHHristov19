@@ -223,7 +223,7 @@ namespace Univers.PL.Controllers
             speciality.UniversityId = universityId;
             speciality.FacultyId = facultyId;
             speciality.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
-            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId, degree); 
+            speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId, degree);
             return View(speciality);
         }
 
@@ -236,8 +236,9 @@ namespace Univers.PL.Controllers
             }
             else
             {
+                _studentService.AddFacultyNumber(studentId, _facultyService.GetFacultyCode(facultyId), _specialityService.GetSpecialityCode(specialityId));
                 _studentService.AddSpecialityId(studentId, specialityId);
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("StudentHome", "Home", _studentService.GetStudentById(studentId));
             }
         }
     }
