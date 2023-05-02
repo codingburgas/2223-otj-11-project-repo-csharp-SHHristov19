@@ -1,8 +1,9 @@
 ﻿@using System.Globalization;
 @model Univers.Models.Models.StudentModel
 @{
-    Layout = "../_StudentMenu.cshtml";
-    ViewBag.Model = Model;
+    Layout = "../_StudentMenu.cshtml"; 
+    TempData["Id"] = Model.Id; 
+    TempData["Title"] = "Начало";
 }
 
 <link rel="stylesheet" href="~/css/StudentHome.css" asp-append-version="true" />
@@ -58,7 +59,7 @@
         <tr>
             <td>
                 <div>
-                    <a href="@Url.Action("StudentHome", "Home", new { year = firstDayOfMonth.AddMonths(-1).Year, month = firstDayOfMonth.AddMonths(-1).Month })">
+                    <a href="@Url.Action("StudentHome", "Home", new { studentId = Model.Id, year = firstDayOfMonth.AddMonths(-1).Year, month = firstDayOfMonth.AddMonths(-1).Month })">
                         <ion-icon name="chevron-back-outline" class="icons"></ion-icon>
                     </a>
                 </div>
@@ -66,7 +67,7 @@
             <td><h2 style="text-align: center; position: center; text-transform: uppercase;">@firstDayOfMonth.ToString("MMMM yyyy")</h2></td>
             <td>
                 <div>
-                    <a href="@Url.Action("StudentHome", "Home", new {year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month})">
+                    <a href="@Url.Action("StudentHome", "Home", new { studentId = Model.Id, year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month})">
                         <ion-icon name="chevron-forward-outline" class="icons"></ion-icon>
                     </a>
                 </div>

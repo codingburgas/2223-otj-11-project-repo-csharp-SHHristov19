@@ -1,17 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Univers.BLL.Services;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly StudentService _studentService; 
+
+        public HomeController()
+        {
+            _studentService = new StudentService();
+        }
+
         public ActionResult StaffHome()
         {
             return View();
         }
         
-        public ActionResult StudentHome(StudentModel student, int year = 0, int month = 0)
+        public ActionResult StudentHome(string studentId, int year = 0, int month = 0)
         {  
+            StudentModel student = _studentService.GetStudentById(studentId);
             DateTime currentDate = DateTime.Now;
             if (year == 0 || month == 0)
             {

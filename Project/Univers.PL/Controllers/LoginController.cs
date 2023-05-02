@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
+using Univers.DAL.Entities;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -21,7 +22,7 @@ namespace Univers.PL.Controllers
 
         // GET: Login
         public ActionResult Login()
-        {
+        { 
             UserLoginModel user = new();
             return View(user);
         }
@@ -41,7 +42,7 @@ namespace Univers.PL.Controllers
                 var student = _studentService.GetStudentByUserId(loginUser.Id);
                 if (student != null)
                 {
-                    return RedirectToAction("StudentHome", "Home", student);
+                    return RedirectToAction("StudentHome", "Home", new { studentId = student.Id});
                 }
                 var staff = _staffService.GetStaffByUserId(loginUser.Id);
                 if(staff != null)

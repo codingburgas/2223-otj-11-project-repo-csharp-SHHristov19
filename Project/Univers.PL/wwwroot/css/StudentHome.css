@@ -20,7 +20,8 @@ table {
 
 .icons {
     color: black;
-    font-size: 170%;   
+    font-size: 170%;
+    position: fixed;
 }
 
 th {

@@ -102,6 +102,6 @@ namespace Univers.BLL.Services
         public StudentModel? GetStudentById(string studentId)
         {  
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == studentId);
-        }
+        } 
     }
 }

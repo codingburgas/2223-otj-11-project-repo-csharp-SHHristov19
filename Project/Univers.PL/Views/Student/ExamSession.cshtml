@@ -1,5 +1,7 @@
 ﻿@model Univers.Models.Models.StudentModel
+
 @{
     Layout = "../_StudentMenu.cshtml";
-    ViewBag.Model = Model;
+    TempData["Id"] = Model.Id;
+    TempData["Title"] = "Изпитна сесия";
 }

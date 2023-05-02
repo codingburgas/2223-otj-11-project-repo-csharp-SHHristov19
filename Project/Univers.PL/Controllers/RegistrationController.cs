@@ -18,6 +18,8 @@ namespace Univers.PL.Controllers
         private readonly StudentService _studentService;
         private readonly IWebHostEnvironment _environment;
 
+        private static StudentModel StudentModel;
+
         public RegistrationController(IWebHostEnvironment environment)
         {
             _userService = new UserService();
@@ -96,8 +98,8 @@ namespace Univers.PL.Controllers
                 ModelState.AddModelError("Email", emailValidationResult.ErrorMessage);
             }
             if (!ModelState.IsValid)
-            {
-                return View("SignUpAsStaff");
+            { 
+                return View("SignUpAsStaff", user);
             }
             if (user != null)
             {
@@ -114,6 +116,7 @@ namespace Univers.PL.Controllers
         {
             SelectionModel model = new();
             model.Image = image;
+            StudentModel.Image = image;
             return View(model);
         }
 
@@ -152,8 +155,10 @@ namespace Univers.PL.Controllers
                 ModelState.AddModelError("Email", emailValidationResult.ErrorMessage);
             }
             if (!ModelState.IsValid)
-            { 
-                return View("SignUpAsStudent");
+            {
+                student.FormOfEducation = formOfEducation;
+                student.Degree = degree;
+                return View("SignUpAsStudent", student);
             }
             if (student != null)
             {
@@ -162,6 +167,7 @@ namespace Univers.PL.Controllers
                 student.Id = Guid.NewGuid().ToString("D");
                 student.FormOfEducation = formOfEducation;
                 _studentService.AddStudent(student);
+                StudentModel = student;
                 return RedirectToAction("ChooseUniversity", "Registration", new { studentId = student.Id, degree});
             }
             else
@@ -237,8 +243,20 @@ namespace Univers.PL.Controllers
             else
             {
                 _studentService.AddFacultyNumber(studentId, _facultyService.GetFacultyCode(facultyId), _specialityService.GetSpecialityCode(specialityId));
-                _studentService.AddSpecialityId(studentId, specialityId);
-                return RedirectToAction("StudentHome", "Home", _studentService.GetStudentById(studentId));
+                _studentService.AddSpecialityId(studentId, specialityId); 
+
+                StudentModel student = _studentService.GetStudentById(studentId);
+                student.Address = StudentModel.Address;
+                student.Degree = StudentModel.Degree;
+                student.Email = StudentModel.Email;
+                student.FirstName = StudentModel.FirstName;
+                student.LastName = StudentModel.LastName;
+                student.MiddleName = StudentModel.MiddleName;
+                student.Username = StudentModel.Username;
+                student.Gender = StudentModel.Gender;
+                student.PhoneNumber = StudentModel.PhoneNumber;
+                
+                return RedirectToAction("StudentHome", "Home", student.Id);
             }
         }
     }
