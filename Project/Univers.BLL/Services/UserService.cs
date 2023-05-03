@@ -25,35 +25,37 @@ namespace Univers.BLL.Services
         /// Transfer data from User entity to User model
         /// </summary>
         /// <returns></returns>
-        public List<UserModel> TransferDataFromEntityToModel()
-        {
-            List<UserModel> models = new();
-
-            List<User> entities = _userRepository.ReadAllData();
+        public IEnumerable<UserModel> TransferDataFromEntityToModel()
+        {  
+            IQueryable<User> entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
-                var newModel = new UserModel();
+                UserModel newModel = MapUserEntity(entity);
 
-                newModel.Id = entity.Id;
-                newModel.Username = entity.Username;
-                newModel.PasswordSalt = entity.PasswordSalt;
-                newModel.Password = entity.Password;
-                newModel.FirstName = entity.FirstName;
-                newModel.MiddleName = entity.MiddleName;
-                newModel.LastName = entity.LastName;
-                newModel.DateOfRegistration = entity.DateOfRegistration;
-                newModel.PhoneNumber = entity.PhoneNumber;
-                newModel.Email = entity.Email;
-                newModel.Address = entity.Address;
-                newModel.Gender = entity.Gender;
-                newModel.Image = entity.Image; 
-
-                models.Add(newModel);
+                yield return newModel;
             }
+        }
 
-            return models;
-        } 
+        private static UserModel MapUserEntity(User entity)
+        {
+            var newModel = new UserModel();
+
+            newModel.Id = entity.Id;
+            newModel.Username = entity.Username;
+            newModel.PasswordSalt = entity.PasswordSalt;
+            newModel.Password = entity.Password;
+            newModel.FirstName = entity.FirstName;
+            newModel.MiddleName = entity.MiddleName;
+            newModel.LastName = entity.LastName;
+            newModel.DateOfRegistration = entity.DateOfRegistration;
+            newModel.PhoneNumber = entity.PhoneNumber;
+            newModel.Email = entity.Email;
+            newModel.Address = entity.Address;
+            newModel.Gender = entity.Gender;
+            newModel.Image = entity.Image;
+            return newModel;
+        }
 
         /// <summary>
         /// Get user by username and password
@@ -61,14 +63,14 @@ namespace Univers.BLL.Services
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public UserModel GetUserByUsernameAndPassword(string username, string password)
+        public UserModel? GetUserByUsernameAndPassword(string username, string password)
         { 
-            var users = TransferDataFromEntityToModel();
+            var users = _userRepository.ReadAllData();
             var user = users.Where(x => x.Username == username).FirstOrDefault();
 
             if (user != null && user.Password == _utilities.HashPassword(password, user.PasswordSalt))
             {
-                return user;
+                return MapUserEntity(user);
             }
             else
             {

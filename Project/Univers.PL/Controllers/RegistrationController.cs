@@ -18,7 +18,7 @@ namespace Univers.PL.Controllers
         private readonly StudentService _studentService;
         private readonly IWebHostEnvironment _environment;
 
-        private static StudentModel StudentModel;
+        private static StudentModel StudentModel = new StudentModel();
 
         public RegistrationController(IWebHostEnvironment environment)
         {
