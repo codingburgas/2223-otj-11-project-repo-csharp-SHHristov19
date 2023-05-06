@@ -7,10 +7,12 @@ namespace Univers.PL.Controllers
     public class HomeController : Controller
     {
         private readonly StudentService _studentService; 
+        private readonly StudentCourseService _studentCourseService; 
 
         public HomeController()
         {
             _studentService = new StudentService();
+            _studentCourseService = new StudentCourseService();
         }
 
         public ActionResult StaffHome()
@@ -20,7 +22,9 @@ namespace Univers.PL.Controllers
         
         public ActionResult StudentHome(string studentId, int year = 0, int month = 0)
         {  
-            StudentModel student = _studentService.GetStudentById(studentId);
+            StudentModel? student = _studentService.GetStudentById(studentId);
+            student.NameOfUniversity = _studentService.GetUniversityNameByStudentId(studentId);
+            student.StudentCourse = _studentCourseService.GetStudentCourseByStudentId(studentId);
             DateTime currentDate = DateTime.Now;
             if (year == 0 || month == 0)
             {

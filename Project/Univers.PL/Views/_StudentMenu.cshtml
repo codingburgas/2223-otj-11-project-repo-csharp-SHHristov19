@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width" />
      
     <link rel="stylesheet" href="~/css/StudentMenu.css"> 
-
+    <title>@TempData["Title"]</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
@@ -77,11 +77,11 @@
         <ion-icon name="menu" class="open"></ion-icon>
         <ion-icon name="close" class="close"></ion-icon> 
     </div> 
-    @{
-        var title = TempData["Title"];
-    }
+    
     <script>
-
+        @{
+            var title = TempData["Title"];
+        }
         function Encode(str) {
             var result = '';
             for (var i = 0; i < str.length; i++) {

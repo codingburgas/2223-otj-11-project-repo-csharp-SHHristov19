@@ -43,4 +43,8 @@ public class StudentModel : SignUpUserModel
     public string? FacultyNumber { get; set; } = null!;
 
     public string? Degree { get; set; } = null!;
+
+    public string? NameOfUniversity = null!;
+
+    public string? StudentCourse = null!;
 }

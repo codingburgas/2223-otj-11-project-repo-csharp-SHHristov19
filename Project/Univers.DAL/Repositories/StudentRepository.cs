@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
 
@@ -71,6 +72,20 @@ namespace Univers.DAL.Repositories
             context.Update(student);
 
             context.SaveChanges();
+        }
+
+        public string? GetUniversityNameByStudentId(string studentId)
+        {
+            using Context.Context context = new();
+
+            return (from s in context.Students
+                   join sp in context.Specialities on s.SpecialityId equals sp.Id
+                   join sf in context.FacultySpecialities on sp.Id equals sf.SpecialityId
+                   join f in context.Faculties on sf.FacultyId equals f.Id
+                   join u in context.Universities on f.UniversityId equals u.Id
+                   where s.Id == studentId
+                   select u.Name)
+                   .FirstOrDefault();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
@@ -103,5 +104,10 @@ namespace Univers.BLL.Services
         {  
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == studentId);
         } 
+
+        public string? GetUniversityNameByStudentId(string studentId)
+        {
+            return _studentRepository.GetUniversityNameByStudentId(studentId);
+        }
     }
 }
