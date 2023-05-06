@@ -15,12 +15,12 @@ namespace Univers.DAL.Repositories
         /// Read the data from the Users table
         /// </summary>
         /// <returns></returns>
-        public IQueryable<User> ReadAllData()
+        public List<User> ReadAllData()
         {
             using Context.Context context = new();
 
-            return context.Users;
-        }
+            return context.Users.ToList();
+        } 
 
         /// <summary>
         /// Add user in Users table

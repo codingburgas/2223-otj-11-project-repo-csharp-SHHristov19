@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web;
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -76,7 +77,22 @@
         <ion-icon name="menu" class="open"></ion-icon>
         <ion-icon name="close" class="close"></ion-icon> 
     </div> 
+    @{
+        var title = TempData["Title"];
+    }
     <script>
+
+        function Encode(str) {
+            var result = '';
+            for (var i = 0; i < str.length; i++) {
+                if (str[i] == ' ') {
+                    result += ' ';
+                } else {
+                    result += '&#x' + str.charCodeAt(i).toString(16).toUpperCase() + ';';
+                }
+            }
+            return result;
+        }
 
         let menuToggle = document.querySelector('.toggle');
         let navigation = document.querySelector('.navigation');
@@ -87,13 +103,24 @@
         }
         
         let list = document.querySelectorAll('.list');
-        for (let i = 0; i < list.length; i++) {
-            list[i].onclick = function () {
-                for (let j = 0; j < list.length; j++) {
-                    list[j].classList = 'list';
-                }
-                this.classList = 'list active';
+
+        for (let j = 0; j < list.length; j++) {
+            list[j].classList = 'list';
+        } 
+
+        for (let i = 0; i < list.length; i++) { 
+
+            let title = list[i].querySelector('.title');
+
+            console.log(Encode(title.textContent.trim()));
+
+            if (Encode(title.textContent.trim()) == '@title') {
+
+                list[i].classList = 'list active';
+
+                console.log(list[i]);
             }
+            
         }
 
     </script> 

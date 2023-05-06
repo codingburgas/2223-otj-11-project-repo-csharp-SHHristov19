@@ -14,11 +14,13 @@ namespace Univers.BLL.Services
     {
         private readonly UserRepository _userRepository;
         private readonly Univers.Utilities.Utilities _utilities;
+        private IEnumerable<UserModel> _users;
 
         public UserService()
         {
             _userRepository = new UserRepository();
             _utilities = new Univers.Utilities.Utilities();
+            _users = TransferDataFromEntityToModel();
         }
 
         /// <summary>
@@ -26,14 +28,14 @@ namespace Univers.BLL.Services
         /// </summary>
         /// <returns></returns>
         public IEnumerable<UserModel> TransferDataFromEntityToModel()
-        {  
-            IQueryable<User> entities = _userRepository.ReadAllData();
+        {
+            List<User> entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {
                 UserModel newModel = MapUserEntity(entity);
 
-                yield return newModel;
+                yield return newModel; 
             }
         }
 
@@ -65,12 +67,11 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public UserModel? GetUserByUsernameAndPassword(string username, string password)
         { 
-            var users = _userRepository.ReadAllData();
-            var user = users.Where(x => x.Username == username).FirstOrDefault();
+            var user = _users.FirstOrDefault(x => x.Username == username);
 
-            if (user != null && user.Password == _utilities.HashPassword(password, user.PasswordSalt))
+            if (user != null && user.Password == _utilities.HashPassword(password, user?.PasswordSalt))
             {
-                return MapUserEntity(user);
+                return user;
             }
             else
             {
