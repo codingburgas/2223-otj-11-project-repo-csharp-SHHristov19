@@ -17,8 +17,10 @@ namespace Univers.PL.Controllers
         private readonly SpecialityService _specialityService;
         private readonly StudentService _studentService;
         private readonly IWebHostEnvironment _environment;
+        private readonly StudentCourseService _studentCourseService;
 
         private static StudentModel StudentModel = new StudentModel();
+        private static string? Education = null!;
 
         public RegistrationController(IWebHostEnvironment environment)
         {
@@ -28,6 +30,7 @@ namespace Univers.PL.Controllers
             _specialityService = new SpecialityService();
             _studentService = new StudentService();
             _environment = environment;
+            _studentCourseService = new StudentCourseService();
         }
 
         public ActionResult SignUpAs(SignUpUserModel user)
@@ -156,7 +159,7 @@ namespace Univers.PL.Controllers
             }
             if (!ModelState.IsValid)
             {
-                student.FormOfEducation = formOfEducation;
+                student.FormOfEducation = formOfEducation; 
                 student.Degree = degree;
                 return View("SignUpAsStudent", student);
             }
@@ -168,6 +171,7 @@ namespace Univers.PL.Controllers
                 student.FormOfEducation = formOfEducation;
                 _studentService.AddStudent(student);
                 StudentModel = student;
+                Education = formOfEducation;
                 return RedirectToAction("ChooseUniversity", "Registration", new { studentId = student.Id, degree});
             }
             else
@@ -228,7 +232,7 @@ namespace Univers.PL.Controllers
             speciality.StudentId = studentId;
             speciality.UniversityId = universityId;
             speciality.FacultyId = facultyId;
-            speciality.Faculties = _facultyService.GetFacultiesByUniversityId(universityId);
+            speciality.Faculties = _facultyService.GetFacultiesByUniversityId(universityId); 
             speciality.Specialities = _specialityService.GetSpecialitiesByFacultyId(facultyId, degree);
             return View(speciality);
         }
@@ -243,7 +247,8 @@ namespace Univers.PL.Controllers
             else
             {
                 _studentService.AddFacultyNumber(studentId, _facultyService.GetFacultyCode(facultyId), _specialityService.GetSpecialityCode(specialityId));
-                _studentService.AddSpecialityId(studentId, specialityId); 
+                _studentService.AddSpecialityId(studentId, specialityId);
+                _studentCourseService.AddStudentCourseByDefault(studentId, Education, universityId);
 
                 StudentModel student = _studentService.GetStudentById(studentId);
                 student.Address = StudentModel.Address;

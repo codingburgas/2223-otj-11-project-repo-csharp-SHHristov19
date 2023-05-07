@@ -50,5 +50,10 @@ namespace Univers.BLL.Services
             var studentCourses = TransferDataFromEntityToModel();
             return studentCourses.FirstOrDefault(x => x.StudentId == studentId).Course.ToString();
         }
+
+        public void AddStudentCourseByDefault(string studentId, string education, string universityId)
+        {
+            _studentCourseRepository.AddStudentCourseByLoginStudent(studentId, education.ToLower(), universityId);
+        }
     }
 }

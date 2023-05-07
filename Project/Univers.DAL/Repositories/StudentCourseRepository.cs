@@ -8,7 +8,7 @@ using Univers.DAL.Entities;
 namespace Univers.DAL.Repositories
 {
     public class StudentCourseRepository
-    {
+    { 
         /// <summary>
         /// Read the data from the Student table
         /// </summary>
@@ -18,6 +18,22 @@ namespace Univers.DAL.Repositories
             using Context.Context context = new();
 
             return context.StudentCourses.ToList();
+        } 
+        
+        public void AddStudentCourseByLoginStudent(string studentId, string education, string universityId)
+        {
+            using Context.Context context = new();
+
+            var semesterId = context.Semesters.FirstOrDefault(x => x.UniversityId == universityId && x.Type == "Зимен " + education && x.Number == 1).Id;
+
+            var studentCourse = new StudentCourse();
+
+            studentCourse.StudentId = studentId;
+            studentCourse.Course = 1;
+            studentCourse.SemesterId = semesterId;
+
+            context.StudentCourses.Add(studentCourse);
+            context.SaveChanges();
         } 
     }
 }

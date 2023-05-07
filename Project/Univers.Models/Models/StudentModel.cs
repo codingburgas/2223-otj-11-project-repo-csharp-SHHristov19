@@ -44,7 +44,9 @@ public class StudentModel : SignUpUserModel
 
     public string? Degree { get; set; } = null!;
 
-    public string? NameOfUniversity = null!;
+    public string? NameOfUniversity { get; set; } = null!;
 
-    public string? StudentCourse = null!;
+    public string? StudentCourse { get; set; } = null!; 
+
+    public List<ExamModel>? Exams { get; set; } = null!;
 }

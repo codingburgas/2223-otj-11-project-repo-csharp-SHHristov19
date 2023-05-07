@@ -15,7 +15,7 @@ public partial class Semester
 
     [StringLength(50)]
     [Unicode(false)]
-    public string UniversityId { get; set; } = null!;
+    public string? UniversityId { get; set; }
 
     public int? Number { get; set; }
 
@@ -28,7 +28,10 @@ public partial class Semester
     [Column(TypeName = "date")]
     public DateTime? DateOfEnd { get; set; }
 
+    [InverseProperty("Semester")]
+    public virtual ICollection<ExamSession> ExamSessions { get; set; } = new List<ExamSession>();
+
     [ForeignKey("UniversityId")]
     [InverseProperty("Semesters")]
-    public virtual University University { get; set; } = null!;
+    public virtual University? University { get; set; }
 }

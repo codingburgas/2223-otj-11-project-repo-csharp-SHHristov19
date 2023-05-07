@@ -94,6 +94,7 @@ CREATE TABLE [SubjectSemester]
 CREATE TABLE [ExamSessions] 
 (
   [Id] VARCHAR(50) PRIMARY KEY NOT NULL,
+  [SemesterId] VARCHAR(50) FOREIGN KEY REFERENCES [Semesters]([Id]) NULL,
   [DateOfStart] DATE NULL,
   [DateOfEnd] DATE NULL,
   [Type] NVARCHAR(100) NULL

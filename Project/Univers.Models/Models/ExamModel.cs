@@ -17,11 +17,9 @@ public class ExamModel
 
     public DateTime? TimeOfEnd { get; set; } = null!;
 
-    public string? Location { get; set; } = null!;
+    public string? Location { get; set; } = null!; 
 
-    public ExamSessionModel? ExamSession { get; set; } = null!;
+    public string? Proctor { get; set; } = null!;
 
-    public StaffModel? Proctor { get; set; } = null!;
-
-    public SubjectModel? Subject { get; set; } = null!;
+    public string? Subject { get; set; } = null!;
 }
