@@ -180,5 +180,12 @@ namespace Univers.BLL.Services
         {
             return MapUserEntity(_userRepository.GetUserByStudentId(studentId));
         }
+
+        public bool ComparePasswordsByUserId(string? studentId, string? password)
+        {
+            var user = GetUserByStudentId(studentId);
+            password = _utilities.HashPassword(password, user.PasswordSalt);
+            return user.Password == password;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Univers.BLL.Services;
+using Univers.DAL.Entities;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -53,6 +54,31 @@ namespace Univers.PL.Controllers
             student.Degree = _specialityService.GetDegreeByStudentId(studentId);
 
             return View(student);
+        }
+
+        public ActionResult ChangePassword(string studentId)
+        {
+            ChangePasswordModel model = new();
+            model.StudentId = studentId;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult NewPassword(ChangePasswordModel model)
+        {
+            if (!(ModelState.IsValid))
+            {
+                return View("ChangePassword", model);
+            }
+            else
+            {
+                if (_userService.ComparePasswordsByUserId(model.StudentId, model.Password))
+                {
+                    _userService.ChangePassword(_userService.GetUserByStudentId(model.StudentId).Id, model.NewPassword);
+                }
+                return RedirectToAction();
+            }
         }
     }
 }

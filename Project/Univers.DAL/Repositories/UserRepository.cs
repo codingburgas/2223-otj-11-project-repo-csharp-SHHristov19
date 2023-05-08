@@ -79,6 +79,6 @@ namespace Univers.DAL.Repositories
                    where student.Id == studentId
                    select user).FirstOrDefault();
                    
-        }
+        } 
     }
 }
