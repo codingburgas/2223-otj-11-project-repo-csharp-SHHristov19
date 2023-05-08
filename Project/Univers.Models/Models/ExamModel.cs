@@ -22,4 +22,6 @@ public class ExamModel
     public string? Proctor { get; set; } = null!;
 
     public string? Subject { get; set; } = null!;
+
+    public string? Type { get; set; } = null!;
 }

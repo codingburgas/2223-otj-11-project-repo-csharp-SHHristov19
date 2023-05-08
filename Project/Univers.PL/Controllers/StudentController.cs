@@ -8,18 +8,24 @@ namespace Univers.PL.Controllers
     {
         private readonly StudentService _studentService;
         private readonly ExamService _examService;
-
-        private StudentModel student = new StudentModel();
-
+          
         public StudentController()
-        {
+        { 
             _studentService = new StudentService();
             _examService = new ExamService();
         }
 
-        public ActionResult ExamSession(string studentId)
+        public ActionResult RegularExamSession(string studentId)
         {
-            student = _studentService.GetStudentById(studentId);
+            StudentModel student = _studentService.GetStudentById(studentId);
+            student.Exams = _examService.GetExamInfoBySemesterId(studentId);
+
+            return View(student);
+        }
+
+        public ActionResult CorrectiveExamSession(string studentId)
+        {
+            StudentModel student = _studentService.GetStudentById(studentId);
             student.Exams = _examService.GetExamInfoBySemesterId(studentId);
 
             return View(student);

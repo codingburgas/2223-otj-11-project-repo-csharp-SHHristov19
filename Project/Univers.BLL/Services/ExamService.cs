@@ -12,12 +12,12 @@ namespace Univers.BLL.Services
     public class ExamService
     {
         private readonly ExamRepository _examRepository;
-        private readonly SemesterRepository _semesterRepository;
+        private readonly ExamSessionRepository _examSessionRepository;
 
         public ExamService()
         {
             _examRepository = new ExamRepository();
-            _semesterRepository = new SemesterRepository();
+            _examSessionRepository = new ExamSessionRepository();
         }
 
         private static ExamModel MapExamEntity(Exam entity)
@@ -35,18 +35,29 @@ namespace Univers.BLL.Services
 
         public List<ExamModel> GetExamInfoBySemesterId(string studentId)
         {
-            var exams = _examRepository.GetExamInfo(_semesterRepository.GetSemesterIdByStudentId(studentId));
+            var examSessionId = _examSessionRepository.GetExamSessionIdByStudentId(studentId);
+            var exams = _examRepository.GetExamInfo(examSessionId);
+            var examTypes = _examRepository.GetExamSessionTypeById(examSessionId);
 
             List<ExamModel> examModels = new List<ExamModel>();
 
             foreach (var exam in exams)
             {
                 ExamModel examModel = MapExamEntity(_examRepository.GetAllDataAboutExam(exam["examId"]));
-
-                examModel.Subject= exam["subjectName"];
+                
+                examModel.Subject = exam["subjectName"];
                 examModel.Proctor = exam["proctorName"];
                 examModel.SubjectId = exam["subjectId"];
                 examModel.ProctorId = exam["proctorId"];
+
+                foreach (var examType in examTypes)
+                {
+                    if (examModel.Id == examType["examId"])
+                    {
+                        examModel.Type = examType["examSessionType"];
+                        break;
+                    }
+                }
 
                 examModels.Add(examModel);
             }

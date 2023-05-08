@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 
 namespace Univers.DAL.Repositories
@@ -44,6 +45,27 @@ namespace Univers.DAL.Repositories
             }).ToList();
 
             return result.AsEnumerable();
+        }
+
+        public IEnumerable<Dictionary<string, string>> GetExamSessionTypeById(string examSessionId)
+        {
+            using Context.Context context = new();
+
+            var query = from exam in context.Exams
+                        join examSession in context.ExamSessions on exam.ExamSessionId equals examSession.Id
+                        where exam.ExamSessionId == examSessionId
+                        select new
+                        { 
+                            examSession.Type,
+                            exam.Id
+                        };
+
+
+            return query.Select(x => new Dictionary<string, string>
+            { 
+                { "examId", x.Id },
+                { "examSessionType", x.Type},
+            }).ToList().AsEnumerable();
         }
     }
 }
