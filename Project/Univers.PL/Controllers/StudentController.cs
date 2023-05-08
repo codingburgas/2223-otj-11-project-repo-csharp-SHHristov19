@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
@@ -13,9 +14,9 @@ namespace Univers.PL.Controllers
         private readonly SpecialityService _specialityService;
         private readonly UniversityService _universityService;
         private readonly FacultyService _facultyService;
-          
+
         public StudentController()
-        { 
+        {
             _studentService = new StudentService();
             _examService = new ExamService();
             _userService = new UserService();
@@ -77,7 +78,51 @@ namespace Univers.PL.Controllers
                 {
                     _userService.ChangePassword(_userService.GetUserByStudentId(model.StudentId).Id, model.NewPassword);
                 }
+                else
+                {
+                    return View("ChangePassword", model);
+                }
                 return RedirectToAction();
+            }
+        }
+
+        public ActionResult ChangeUsername(string studentId)
+        {
+            ChangeUsernameModel model = new();
+            model.StudentId = studentId;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult NewUsername(ChangeUsernameModel model)
+        {
+            if (!(ModelState.IsValid))
+            {
+                return View("ChangeUsername", model);
+            }
+            else
+            {
+                
+                if (_userService.CompareUsernames(model.StudentId, model.Username))
+                {
+                    
+                    ValidationResult usernameValidationResult = _userService.ValidateUsername(model.NewUsername);
+                    if (usernameValidationResult != ValidationResult.Success)
+                    {
+                        ModelState.AddModelError("NewUsername", usernameValidationResult.ErrorMessage);
+                    }
+                    else
+                    {
+                        _userService.ChangeUsername(_userService.GetUserByStudentId(model.StudentId).Id, model.NewUsername);
+                        return RedirectToAction();
+                    }
+                    return View("ChangeUsername", model);
+                }
+                else
+                {
+                    return View("ChangeUsername", model);
+                } 
             }
         }
     }

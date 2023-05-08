@@ -79,6 +79,18 @@ namespace Univers.DAL.Repositories
                    where student.Id == studentId
                    select user).FirstOrDefault();
                    
-        } 
+        }
+
+        public void UpdateUsername(string? userId, string? newUsername)
+        {
+            using Context.Context context = new();
+
+            var user = context.Users.FirstOrDefault(x => x.Id == userId);
+
+            user.Username = newUsername;
+
+            context.Update(user);
+            context.SaveChanges();
+        }
     }
 }

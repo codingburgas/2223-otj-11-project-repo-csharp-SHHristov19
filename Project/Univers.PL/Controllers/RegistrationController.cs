@@ -90,8 +90,8 @@ namespace Univers.PL.Controllers
         [HttpPost]
         public ActionResult AddUser(SignUpUserModel user)
         {
-            ValidationResult usernameValidationResult = _userService.ValidateUsername(user);
-            ValidationResult emailValidationResult = _userService.ValidateEmail(user);
+            ValidationResult usernameValidationResult = _userService.ValidateUsername(user.Username);
+            ValidationResult emailValidationResult = _userService.ValidateEmail(user.Email);
             if (usernameValidationResult != ValidationResult.Success)
             {
                 ModelState.AddModelError("Username", usernameValidationResult.ErrorMessage);
@@ -147,8 +147,8 @@ namespace Univers.PL.Controllers
         [HttpPost]
         public ActionResult AddStudent(StudentModel student, string formOfEducation, string degree)
         {
-            ValidationResult usernameValidationResult = _userService.ValidateUsername(student);
-            ValidationResult emailValidationResult = _userService.ValidateEmail(student);
+            ValidationResult usernameValidationResult = _userService.ValidateUsername(student.Username);
+            ValidationResult emailValidationResult = _userService.ValidateEmail(student.Email);
             if (usernameValidationResult != ValidationResult.Success)
             {
                 ModelState.AddModelError("Username", usernameValidationResult.ErrorMessage);

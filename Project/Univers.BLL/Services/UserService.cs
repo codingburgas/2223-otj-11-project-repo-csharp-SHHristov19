@@ -128,9 +128,9 @@ namespace Univers.BLL.Services
         /// </summary>
         /// <param name="user">The SignUpUserModel object to validate.</param>
         /// <returns>A ValidationResult object that contains any validation error.</returns>
-        public ValidationResult ValidateUsername(SignUpUserModel user)
+        public ValidationResult ValidateUsername(string username)
         { 
-            if (UsernameAlreadyExist(user.Username))
+            if (UsernameAlreadyExist(username))
             {
                 return new ValidationResult("Потребителското име вече съществува.");
             }  
@@ -142,9 +142,9 @@ namespace Univers.BLL.Services
         /// </summary>
         /// <param name="user">The SignUpUserModel object to validate.</param>
         /// <returns>A ValidationResult object that contains any validation error.</returns>
-        public ValidationResult ValidateEmail(SignUpUserModel user)
+        public ValidationResult ValidateEmail(string email)
         {
-            if (EmailAlreadyExist(user.Email))
+            if (EmailAlreadyExist(email))
             {
                 return new ValidationResult("Email адреса вече съществува.");
             }
@@ -186,6 +186,17 @@ namespace Univers.BLL.Services
             var user = GetUserByStudentId(studentId);
             password = _utilities.HashPassword(password, user.PasswordSalt);
             return user.Password == password;
+        }
+
+        public bool CompareUsernames(string? studentId, string? username)
+        {
+            var user = GetUserByStudentId(studentId);
+            return user.Username == username;
+        }
+
+        public void ChangeUsername(string? userId, string? newUsername)
+        {
+            _userRepository.UpdateUsername(userId, newUsername);
         }
     }
 }
