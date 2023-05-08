@@ -16,7 +16,9 @@
         text-align: center;
     }
 </style>
-
+@{
+    int counter = 1;
+}
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
 
     <h1 class="">Предстоящи изпити</h1> <br /><br />
@@ -59,9 +61,7 @@
                     </div>
                 </div>
             </div>
-            @{
-                int counter = 1;
-            }
+            
             @foreach (var exam in Model.Exams)
             {
                 if (exam.Type == "Поправителна сесия")

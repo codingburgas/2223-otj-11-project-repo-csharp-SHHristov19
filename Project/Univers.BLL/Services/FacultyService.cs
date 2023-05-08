@@ -64,5 +64,10 @@ namespace Univers.BLL.Services
 
             return faculties.FirstOrDefault(x => x.Id == facultyId).Code;
         }
+
+        public string? GetDeanNameByStudentId(string studentId)
+        {
+            return _facultyRepository.GetDeanNameByStudentId(studentId);
+        }
     }
 }

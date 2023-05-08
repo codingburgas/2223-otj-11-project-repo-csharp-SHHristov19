@@ -175,5 +175,10 @@ namespace Univers.BLL.Services
             newPassword = _utilities.HashPassword(newPassword, passwordSalt);
             _userRepository.UpdatePassword(userId, newPassword, passwordSalt);
         }
+
+        public UserModel GetUserByStudentId(string studentId)
+        {
+            return MapUserEntity(_userRepository.GetUserByStudentId(studentId));
+        }
     }
 }

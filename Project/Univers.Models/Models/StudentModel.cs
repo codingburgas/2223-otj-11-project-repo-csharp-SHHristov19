@@ -49,4 +49,18 @@ public class StudentModel : SignUpUserModel
     public string? StudentCourse { get; set; } = null!; 
 
     public List<ExamModel>? Exams { get; set; } = null!;
+
+    public UserModel? User { get; set; } = null!; 
+
+    public string? Speciality { get; set; } = null!;
+
+    public string? Tutor { get; set; } = null!;
+
+    public string? Dean { get; set; } = null!;
+
+    public string? University { get; set; } = null!;
+
+    public string? AdressoOfUniversity { get; set; } = null!;
+
+    public string? Rector { get; set; } = null!;
 }

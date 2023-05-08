@@ -69,11 +69,26 @@ namespace Univers.BLL.Services
             return res.ToList();
         }
 
-        public string GetSpecialityCode(string specialityId)
+        public string? GetSpecialityCode(string specialityId)
         {
             var specialities = TransferDataFromEntityToModel();
 
             return specialities.FirstOrDefault(x => x.Id == specialityId).Code;
+        }
+
+        public string? GetSpecialityNameByStudentId(string studentId)
+        {
+            return _specialityRepository.GetSpecialityNameByStudentId(studentId);
+        }
+
+        public string? GetTutorNameByStudentId(string studentId)
+        {
+            return _specialityRepository.GetTutorNameByStudentId(studentId);
+        }
+
+        public string? GetDegreeByStudentId(string studentId)
+        {
+            return _specialityRepository.GetDegreeByStudentId(studentId);
         }
     }
 }

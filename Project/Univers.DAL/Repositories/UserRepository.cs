@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
 
@@ -67,6 +68,17 @@ namespace Univers.DAL.Repositories
 
             context.Update(user);
             context.SaveChanges();
+        }
+
+        public User? GetUserByStudentId(string studentId)
+        {
+            using Context.Context context = new();
+
+            return (from user in context.Users
+                   join student in context.Students on user.Id equals student.UserId
+                   where student.Id == studentId
+                   select user).FirstOrDefault();
+                   
         }
     }
 }
