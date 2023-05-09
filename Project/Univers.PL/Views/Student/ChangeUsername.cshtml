@@ -10,11 +10,7 @@
 <style>
     body {
         background: #5349E3;
-    }
-
-    h1 {
-        text-align: center;
-    }
+    } 
 </style>
 
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
@@ -30,7 +26,7 @@
         @using (Html.BeginForm("NewUsername", "Student", FormMethod.Post))
         {
             @Html.HiddenFor(model => model.StudentId)
-            <h1 class="h3 mb-3 fw-normal">Смяна на потребителско име</h1>
+            <h1 class="h3 mb-3 fw-normal text-center">Смяна на потребителско име</h1>
             <div class="form-floating">
 
                 @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @id="floatingInput", placeholder="name@example.com"})

@@ -49,8 +49,8 @@
             </tr>
         </table> 
     </div> <br />
-    <div class="div3">Оставащи дни до/от сесията <br /><span class="days">10 дни</span></div>
-    <div class="div4">ОЦЕНКИ</div> 
+    <a href ="@Url.Action("RegularExamSession", "Student", new { studentId = Model.Id})"><div class="div3">Оставащи дни до/от сесията <br /><span class="days">10 дни</span></div></a>
+    <a href ="@Url.Action("Grades", "Student", new { studentId = Model.Id})"><div class="div4">ОЦЕНКИ</div> </a>
 </div>
 
 <div style="max-width: 90%; margin-left: 5%; margin-right: 5%; margin-top: 2%;"> 

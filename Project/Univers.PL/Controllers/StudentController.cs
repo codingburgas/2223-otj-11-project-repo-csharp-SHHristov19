@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
 using Univers.DAL.Entities;
+using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -14,6 +15,7 @@ namespace Univers.PL.Controllers
         private readonly SpecialityService _specialityService;
         private readonly UniversityService _universityService;
         private readonly FacultyService _facultyService;
+        private readonly GradeRepository _gradeRepository;
 
         public StudentController()
         {
@@ -23,6 +25,7 @@ namespace Univers.PL.Controllers
             _specialityService = new SpecialityService();
             _universityService = new UniversityService();
             _facultyService = new FacultyService();
+            _gradeRepository = new GradeRepository();
         }
 
         public ActionResult RegularExamSession(string studentId)
@@ -125,5 +128,13 @@ namespace Univers.PL.Controllers
                 } 
             }
         }
+
+        public ActionResult Grades(string studentId)
+        {
+            List<GradeModel> model = _gradeRepository.GetGradesByStudentId(studentId);
+            model[0].StudentId = studentId;
+
+            return View(model);
+        } 
     }
 }

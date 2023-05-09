@@ -18,7 +18,7 @@ public partial class Grade
     public string ExamId { get; set; } = null!;
 
     [Column("Grade")]
-    public int? Grade1 { get; set; }
+    public int? Grades { get; set; }
 
     [ForeignKey("ExamId")]
     public virtual Exam Exam { get; set; } = null!;

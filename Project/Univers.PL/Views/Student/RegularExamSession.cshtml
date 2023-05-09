@@ -13,15 +13,12 @@
 <style>
     body{
         background: #5349E3 !important;
-    }
-    h1{
-        text-align: center;
-    }
+    } 
 </style>
 
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
 
-    <h1 class="">Предстоящи изпити</h1> <br /><br />
+    <h1 class="text-center">Предстоящи изпити</h1> <br /><br />
     
     <div class="container text-center"> 
         <div class="row">
@@ -41,14 +38,12 @@
                 <br />
             }
             else
-            {
-                <br /><br /> 
+            { 
                 <div class="container text-center">
                     <div class="row"> 
-                        <div class="col">
-             
+                        <div class="col-1"> 
                         </div>
-                        <div class="col-6 text-uppercase">
+                        <div class="col-5 text-uppercase">
                             Дисциплина
                         </div>
                         <div class="col-3 text-uppercase">
@@ -62,7 +57,8 @@
                         </div> 
                     </div> 
                 </div>
-                
+                <br />
+            <br />
                 @foreach (var exam in Model.Exams)
                 {
                     if (exam.Type == "Редовна сесия")
