@@ -10,17 +10,22 @@ using Univers.Models.Models;
 
 namespace Univers.DAL.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IDisposable
     {
+        private Context.Context _dbContext;
+
+        public UserRepository()
+        {
+            _dbContext = new();
+        }
+
         /// <summary>
         /// Read the data from the Users table
         /// </summary>
         /// <returns></returns>
-        public List<User> ReadAllData()
-        {
-            using Context.Context context = new();
-
-            return context.Users.ToList();
+        public IQueryable<User> ReadAllData()
+        { 
+            return _dbContext.Users;
         } 
 
         /// <summary>
@@ -91,6 +96,11 @@ namespace Univers.DAL.Repositories
 
             context.Update(user);
             context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
         }
     }
 }

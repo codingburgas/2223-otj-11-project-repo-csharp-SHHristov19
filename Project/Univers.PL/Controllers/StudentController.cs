@@ -131,10 +131,13 @@ namespace Univers.PL.Controllers
 
         public ActionResult Grades(string studentId)
         {
-            List<GradeModel> model = _gradeRepository.GetGradesByStudentId(studentId);
-            model[0].StudentId = studentId;
+            var studentGrades = new StudentGradesModel();
 
-            return View(model);
-        } 
+            studentGrades.StudentId = studentId;
+
+            studentGrades.Grades = _gradeRepository.GetGradesByStudentId(studentId);
+
+            return View(studentGrades);
+        }
     }
 }
