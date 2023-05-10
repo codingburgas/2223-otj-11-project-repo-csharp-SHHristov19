@@ -60,8 +60,9 @@ CREATE TABLE [Faculties]
 
 CREATE TABLE [FacultySpeciality] 
 (
-  [FacultyId] VARCHAR(50) FOREIGN KEY REFERENCES [Faculties]([Id]) NULL,
-  [SpecialityId] VARCHAR(50) FOREIGN KEY REFERENCES [Specialities]([Id]) NULL
+  [FacultyId] VARCHAR(50) FOREIGN KEY REFERENCES [Faculties]([Id]) NOT NULL,
+  [SpecialityId] VARCHAR(50) FOREIGN KEY REFERENCES [Specialities]([Id]) NOT NULL,
+  PRIMARY KEY([FacultyId], [SpecialityId])
 );
 
 CREATE TABLE [Subjects] 
@@ -87,8 +88,9 @@ CREATE TABLE [Semesters]
 
 CREATE TABLE [SubjectSemester] 
 (
-  [SemesterId] VARCHAR(50) FOREIGN KEY REFERENCES [Semesters]([Id]) NULL,
-  [SubjectId] VARCHAR(50) FOREIGN KEY REFERENCES [Subjects]([Id]) NULL
+  [SemesterId] VARCHAR(50) FOREIGN KEY REFERENCES [Semesters]([Id]) NOT NULL,
+  [SubjectId] VARCHAR(50) FOREIGN KEY REFERENCES [Subjects]([Id]) NOT NULL,
+  PRIMARY KEY([SemesterId], [SubjectId])
 );
 
 CREATE TABLE [ExamSessions] 
@@ -131,16 +133,18 @@ CREATE TABLE [Components]
 
 CREATE TABLE [SubjectComponents] 
 (
-  [InstructorId] VARCHAR(50) FOREIGN KEY REFERENCES [Staff]([Id]) NULL,
-  [ComponentId] VARCHAR(50) FOREIGN KEY REFERENCES [Components]([Id]) NULL,
-  [SubjectId] VARCHAR(50) FOREIGN KEY REFERENCES [Subjects]([Id]) NULL
+  [InstructorId] VARCHAR(50) FOREIGN KEY REFERENCES [Staff]([Id]) NOT NULL,
+  [ComponentId] VARCHAR(50) FOREIGN KEY REFERENCES [Components]([Id]) NOT NULL,
+  [SubjectId] VARCHAR(50) FOREIGN KEY REFERENCES [Subjects]([Id]) NOT NULL,
+  PRIMARY KEY([InstructorId], [ComponentId], [SubjectId])
 );
 
 CREATE TABLE [StudentCourse] 
 (
-  [StudentId] VARCHAR(50) FOREIGN KEY REFERENCES [Students]([Id]) NULL,
-  [SemesterId] VARCHAR(50) FOREIGN KEY REFERENCES [Semesters]([Id]) NULL,
-  [Course] INT NULL
+  [StudentId] VARCHAR(50) FOREIGN KEY REFERENCES [Students]([Id]) NOT NULL,
+  [SemesterId] VARCHAR(50) FOREIGN KEY REFERENCES [Semesters]([Id]) NOT NULL,
+  [Course] INT NULL,
+  PRIMARY KEY([StudentId], [SemesterId])
 );
 
 CREATE TABLE [Exams] 
@@ -156,9 +160,10 @@ CREATE TABLE [Exams]
 
 CREATE TABLE [Grades] 
 (
-  [StudentId] VARCHAR(50) FOREIGN KEY REFERENCES [Students]([Id]) NULL,
-  [ExamId] VARCHAR(50) FOREIGN KEY REFERENCES [Exams]([Id]) NULL,
-  [Grade] INT NULL
+  [StudentId] VARCHAR(50) FOREIGN KEY REFERENCES [Students]([Id]) NOT NULL,
+  [ExamId] VARCHAR(50) FOREIGN KEY REFERENCES [Exams]([Id]) NOT NULL,
+  [Grade] INT NULL,
+  PRIMARY KEY([StudentId], [ExamId])
 );
 
 CREATE TABLE [Holidays] 

@@ -28,70 +28,69 @@
     </div>
     
     <div class="overflow-y-scroll" style="height: 55%; width: 88%; position: fixed;">
+        <br />
+        <br />
+        @if (Model.Exams == null || Model.Exams.Any(x => x.Type == "Редовна сесия") == false)
+        {
+            <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
+                Все още няма редовни изпити!
+            </label>
             <br />
-            <br />
-            @if (Model.Exams == null || Model.Exams.Any(x => x.Type == "Редовна сесия") == false)
-            {
-                <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
-                    Все още няма редовни изпити!
-                </label>
-                <br />
-            }
-            else
-            { 
-                <div class="container text-center">
-                    <div class="row"> 
-                        <div class="col-1"> 
-                        </div>
-                        <div class="col-5 text-uppercase">
-                            Дисциплина
-                        </div>
-                        <div class="col-3 text-uppercase">
-                            преподавател
-                        </div>
-                        <div class="col-2 text-uppercase">
-                            Дата
-                        </div>
-                        <div class="col text-uppercase">
-                            ЗАЛА
-                        </div> 
+        }
+        else
+        { 
+            <div class="container text-center">
+                <div class="row"> 
+                    <div class="col-1"> 
+                    </div>
+                    <div class="col-5 text-uppercase">
+                        Дисциплина
+                    </div>
+                    <div class="col-3 text-uppercase">
+                        преподавател
+                    </div>
+                    <div class="col-2 text-uppercase">
+                        Дата
+                    </div>
+                    <div class="col text-uppercase">
+                        ЗАЛА
                     </div> 
-                </div>
-                <br />
+                </div> 
+            </div>
             <br />
-                @foreach (var exam in Model.Exams)
+            <br />
+            @foreach (var exam in Model.Exams)
+            {
+                if (exam.Type == "Редовна сесия")
                 {
-                    if (exam.Type == "Редовна сесия")
-                    {
-                        <div class="list-group" style="margin-bottom: 1%; margin-right: 3%;">
-                            <button type="button" class="list-group-item list-group-item-action" aria-current="true">
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col text-uppercase">
-                                            @counter
-                                            @{
-                                                counter++;
-                                            }
-                                        </div>
-                                        <div class="col-6 text-uppercase">
-                                            @exam.Subject
-                                        </div>
-                                        <div class="col-3 text-uppercase">
-                                            @exam.Proctor
-                                        </div>
-                                        <div class="col-2 text-uppercase">
-                                            @exam.TimeOfStart.Value.ToString("dd.MM.yyyy HH:mm")
-                                        </div>
-                                        <div class="col text-uppercase">
-                                            @exam.Location
-                                        </div>
+                    <div class="list-group" style="margin-bottom: 1%; margin-right: 3%;">
+                        <button type="button" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col text-uppercase">
+                                        @counter
+                                        @{
+                                            counter++;
+                                        }
+                                    </div>
+                                    <div class="col-6 text-uppercase">
+                                        @exam.Subject
+                                    </div>
+                                    <div class="col-3 text-uppercase">
+                                        @exam.Proctor
+                                    </div>
+                                    <div class="col-2 text-uppercase">
+                                        @exam.TimeOfStart.Value.ToString("dd.MM.yyyy HH:mm")
+                                    </div>
+                                    <div class="col text-uppercase">
+                                        @exam.Location
                                     </div>
                                 </div>
-                            </button>  
-                        </div>
-                    }
+                            </div>
+                        </button>  
+                    </div>
                 }
-            } 
-            </div>
-    </div> 
-</div>
+            }
+        } 
+    </div>
+</div> 
