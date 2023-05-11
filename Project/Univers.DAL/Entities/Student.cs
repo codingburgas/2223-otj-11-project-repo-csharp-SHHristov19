@@ -11,7 +11,7 @@ public partial class Student
     [Key]
     [StringLength(50)]
     [Unicode(false)]
-    public string? Id { get; set; } = null!;
+    public string Id { get; set; } = null!;
 
     [StringLength(50)]
     [Unicode(false)]
@@ -19,14 +19,14 @@ public partial class Student
 
     [StringLength(50)]
     [Unicode(false)]
-    public string? UserId { get; set; } = null!;
+    public string? UserId { get; set; }
 
     [StringLength(10)]
     [Unicode(false)]
     public string? Identity { get; set; }
 
     [StringLength(60)]
-    public string? Citizenship { get; set; } 
+    public string? Citizenship { get; set; }
 
     public DateTime? DateOfStarting { get; set; }
 
@@ -52,11 +52,17 @@ public partial class Student
     [StringLength(50)]
     public string? FacultyNumber { get; set; }
 
+    [InverseProperty("Student")]
+    public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
+
     [ForeignKey("SpecialityId")]
     [InverseProperty("Students")]
-    public virtual Speciality? Speciality { get; set; } = null!;
+    public virtual Speciality? Speciality { get; set; }
+
+    [InverseProperty("Student")]
+    public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
 
     [ForeignKey("UserId")]
     [InverseProperty("Students")]
-    public virtual User? User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }

@@ -15,15 +15,15 @@ public partial class Exam
 
     [StringLength(50)]
     [Unicode(false)]
-    public string ProctorId { get; set; } = null!;
+    public string? ProctorId { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string SubjectId { get; set; } = null!;
+    public string? SubjectId { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string ExamSessionId { get; set; } = null!;
+    public string? ExamSessionId { get; set; }
 
     public DateTime? TimeOfStart { get; set; }
 
@@ -34,13 +34,16 @@ public partial class Exam
 
     [ForeignKey("ExamSessionId")]
     [InverseProperty("Exams")]
-    public virtual ExamSession ExamSession { get; set; } = null!;
+    public virtual ExamSession? ExamSession { get; set; }
+
+    [InverseProperty("Exam")]
+    public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
 
     [ForeignKey("ProctorId")]
     [InverseProperty("Exams")]
-    public virtual Staff Proctor { get; set; } = null!;
+    public virtual Staff? Proctor { get; set; }
 
     [ForeignKey("SubjectId")]
     [InverseProperty("Exams")]
-    public virtual Subject Subject { get; set; } = null!;
+    public virtual Subject? Subject { get; set; }
 }

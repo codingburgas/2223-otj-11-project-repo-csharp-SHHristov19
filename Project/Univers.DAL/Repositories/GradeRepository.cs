@@ -23,7 +23,7 @@ namespace Univers.DAL.Repositories
                     {
                         Semester = semester.Number,
                         Subject = subject.Name,
-                        Grade = grade.Grades
+                        Grade = grade.Grade1
                     }).ToList();
         }
     }

@@ -31,18 +31,19 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            Student additionalStudent = new Student();
-            
-            additionalStudent.Id = student.Id;
-            additionalStudent.UserId = student.UserId;
-            additionalStudent.Identity = student.Identity;
-            additionalStudent.Citizenship = student.Citizenship;
-            additionalStudent.CountryOfBirth = student.CountryOfBirth;
-            additionalStudent.AreaOfBirth = student.AreaOfBirth;
-            additionalStudent.CityOfBirth = student.CityOfBirth;
-            additionalStudent.MunicipalityOfBirth = student.MunicipalityOfBirth;
-            additionalStudent.DateOfBirth = student.DateOfBirth;
-            additionalStudent.FormOfEducation = student.FormOfEducation;
+            Student additionalStudent = new Student()
+            {
+                Id = student.Id,
+                UserId = student.UserId,
+                Identity = student.Identity,
+                Citizenship = student.Citizenship,
+                CountryOfBirth = student.CountryOfBirth,
+                AreaOfBirth = student.AreaOfBirth,
+                CityOfBirth = student.CityOfBirth,
+                MunicipalityOfBirth = student.MunicipalityOfBirth,
+                DateOfBirth = student.DateOfBirth,
+                FormOfEducation = student.FormOfEducation
+            };
 
             context.Students.Add(additionalStudent);
             context.SaveChanges();
@@ -78,14 +79,13 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return (from s in context.Students
-                   join sp in context.Specialities on s.SpecialityId equals sp.Id
-                   join sf in context.FacultySpecialities on sp.Id equals sf.SpecialityId
-                   join f in context.Faculties on sf.FacultyId equals f.Id
-                   join u in context.Universities on f.UniversityId equals u.Id
-                   where s.Id == studentId
-                   select u.Name)
-                   .FirstOrDefault();
+            return context.Students
+                .Include(s => s.Speciality)
+                .ThenInclude(sp => sp.Faculties)
+                .ThenInclude(f => f.University)
+                .Where(s => s.Id == studentId)
+                .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Name)
+                .FirstOrDefault();
         }
     }
 }

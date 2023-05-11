@@ -24,13 +24,14 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            var semesterId = context.Semesters.FirstOrDefault(x => x.UniversityId == universityId && x.Type == "Зимен " + education && x.Number == 1).Id;
+            var semester = context.Semesters.FirstOrDefault(x => x.UniversityId == universityId && x.Type == "Зимен " + education && x.Number == 1);
 
-            var studentCourse = new StudentCourse();
-
-            studentCourse.StudentId = studentId;
-            studentCourse.Course = 1;
-            studentCourse.SemesterId = semesterId;
+            var studentCourse = new StudentCourse
+            {
+                StudentId = studentId,
+                Course = 1,
+                SemesterId = semester?.Id
+            };
 
             context.StudentCourses.Add(studentCourse);
             context.SaveChanges();

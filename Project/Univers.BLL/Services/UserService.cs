@@ -29,7 +29,7 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public IEnumerable<UserModel> TransferDataFromEntityToModel()
         {
-            List<User> entities = _userRepository.ReadAllData();
+            var entities = _userRepository.ReadAllData();
 
             foreach (var entity in entities)
             {

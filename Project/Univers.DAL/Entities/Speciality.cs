@@ -18,7 +18,7 @@ public partial class Speciality
     public string? TutorId { get; set; }
 
     [StringLength(200)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     [StringLength(100)]
     public string? Degree { get; set; }
@@ -29,12 +29,16 @@ public partial class Speciality
     public string? Code { get; set; }
 
     [InverseProperty("Speciality")]
-    public virtual ICollection<Student> Students { get; } = new List<Student>();
+    public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
     [InverseProperty("Speciality")]
-    public virtual ICollection<Subject> Subjects { get; } = new List<Subject>();
+    public virtual ICollection<Subject> Subjects { get; set; } = new List<Subject>();
 
     [ForeignKey("TutorId")]
     [InverseProperty("Specialities")]
     public virtual Staff? Tutor { get; set; }
+
+    [ForeignKey("SpecialityId")]
+    [InverseProperty("Specialities")]
+    public virtual ICollection<Faculty> Faculties { get; set; } = new List<Faculty>();
 }

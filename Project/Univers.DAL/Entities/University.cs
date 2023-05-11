@@ -15,7 +15,7 @@ public partial class University
 
     [StringLength(50)]
     [Unicode(false)]
-    public string RectorId { get; set; } = null!;
+    public string? RectorId { get; set; }
 
     public string? Name { get; set; }
 
@@ -24,12 +24,12 @@ public partial class University
     public int? Capacity { get; set; }
 
     [InverseProperty("University")]
-    public virtual ICollection<Faculty> Faculties { get; } = new List<Faculty>();
+    public virtual ICollection<Faculty> Faculties { get; set; } = new List<Faculty>();
 
     [ForeignKey("RectorId")]
     [InverseProperty("Universities")]
-    public virtual Staff Rector { get; set; } = null!;
+    public virtual Staff? Rector { get; set; }
 
     [InverseProperty("University")]
-    public virtual ICollection<Semester> Semesters { get; } = new List<Semester>();
+    public virtual ICollection<Semester> Semesters { get; set; } = new List<Semester>();
 }

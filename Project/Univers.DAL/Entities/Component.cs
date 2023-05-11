@@ -14,7 +14,7 @@ public partial class Component
     public string Id { get; set; } = null!;
 
     [StringLength(60)]
-    public string Type { get; set; } = null!;
+    public string? Type { get; set; }
 
     public string? Activity { get; set; }
 
@@ -26,4 +26,7 @@ public partial class Component
     public string? Location { get; set; }
 
     public string? Note { get; set; }
+
+    [InverseProperty("Component")]
+    public virtual ICollection<SubjectComponent> SubjectComponents { get; set; } = new List<SubjectComponent>();
 }

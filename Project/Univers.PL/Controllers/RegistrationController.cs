@@ -261,7 +261,7 @@ namespace Univers.PL.Controllers
                 student.Gender = StudentModel.Gender;
                 student.PhoneNumber = StudentModel.PhoneNumber;
                 
-                return RedirectToAction("StudentHome", "Home", student.Id);
+                return RedirectToAction("StudentHome", "Home", new { studentId = student.Id });
             }
         }
     }

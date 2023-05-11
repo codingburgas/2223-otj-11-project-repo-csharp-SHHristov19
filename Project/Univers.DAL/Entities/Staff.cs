@@ -15,30 +15,33 @@ public partial class Staff
 
     [StringLength(50)]
     [Unicode(false)]
-    public string UserId { get; set; } = null!;
+    public string? UserId { get; set; }
 
     [StringLength(50)]
-    public string Role { get; set; } = null!;
+    public string? Role { get; set; }
 
     [InverseProperty("Proctor")]
-    public virtual ICollection<Exam> Exams { get; } = new List<Exam>();
+    public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
 
     [InverseProperty("Dean")]
-    public virtual ICollection<Faculty> FacultyDeans { get; } = new List<Faculty>();
+    public virtual ICollection<Faculty> FacultyDeans { get; set; } = new List<Faculty>();
 
     [InverseProperty("ViceDean")]
-    public virtual ICollection<Faculty> FacultyViceDeans { get; } = new List<Faculty>();
+    public virtual ICollection<Faculty> FacultyViceDeans { get; set; } = new List<Faculty>();
 
     [InverseProperty("Tutor")]
-    public virtual ICollection<Speciality> Specialities { get; } = new List<Speciality>();
+    public virtual ICollection<Speciality> Specialities { get; set; } = new List<Speciality>();
+
+    [InverseProperty("Instructor")]
+    public virtual ICollection<SubjectComponent> SubjectComponents { get; set; } = new List<SubjectComponent>();
 
     [InverseProperty("Teacher")]
-    public virtual ICollection<Subject> Subjects { get; } = new List<Subject>();
+    public virtual ICollection<Subject> Subjects { get; set; } = new List<Subject>();
 
     [InverseProperty("Rector")]
-    public virtual ICollection<University> Universities { get; } = new List<University>();
+    public virtual ICollection<University> Universities { get; set; } = new List<University>();
 
     [ForeignKey("UserId")]
     [InverseProperty("Staff")]
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }

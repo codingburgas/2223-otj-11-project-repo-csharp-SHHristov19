@@ -31,7 +31,14 @@ public partial class Semester
     [InverseProperty("Semester")]
     public virtual ICollection<ExamSession> ExamSessions { get; set; } = new List<ExamSession>();
 
+    [InverseProperty("Semester")]
+    public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
+
     [ForeignKey("UniversityId")]
     [InverseProperty("Semesters")]
     public virtual University? University { get; set; }
+
+    [ForeignKey("SemesterId")]
+    [InverseProperty("Semesters")]
+    public virtual ICollection<Subject> Subjects { get; set; } = new List<Subject>();
 }

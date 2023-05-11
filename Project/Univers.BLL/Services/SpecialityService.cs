@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,12 @@ namespace Univers.BLL.Services
     public class SpecialityService
     {
         private readonly SpecialityRepository _specialityRepository;
-        private readonly FacultySpecialityService _facultySpecialityService;
         private readonly Univers.Utilities.Utilities _utilities;
 
         public SpecialityService()
         {
             _specialityRepository = new SpecialityRepository();
             _utilities = new Univers.Utilities.Utilities();
-            _facultySpecialityService = new FacultySpecialityService();
         }
 
         /// <summary>
@@ -34,39 +33,38 @@ namespace Univers.BLL.Services
             List<Speciality> entities = _specialityRepository.ReadAllData();
 
             foreach (var entity in entities)
-            {
-                var newModel = new SpecialityModel();
-
-                newModel.Id = entity.Id;
-                newModel.Name = entity.Name;
-                newModel.Degree = entity.Degree;
-                newModel.Code = entity.Code;
-                newModel.TutorId = entity.TutorId;
-                newModel.Semesters = entity.Semesters; 
- 
-                models.Add(newModel);
+            { 
+                models.Add(MapingEntity(entity));
             }
 
             return models;
         }
 
+        public SpecialityModel MapingEntity(Speciality entity)
+        {
+            var newModel = new SpecialityModel();
+
+            newModel.Id = entity.Id;
+            newModel.Name = entity.Name;
+            newModel.Degree = entity.Degree;
+            newModel.Code = entity.Code;
+            newModel.TutorId = entity.TutorId;
+            newModel.Semesters = entity.Semesters;
+
+            return newModel;
+        }
+
         public List<SpecialityModel> GetSpecialitiesByFacultyId(string facultyId, string degree)
         {
-            List<FacultySpecialityModel> facultySpecialities = _facultySpecialityService.TransferDataFromEntityToModel();
+            var models = new List<SpecialityModel>();
+            var entities = _specialityRepository.GetSpecialitiesByFacultyId(facultyId, degree);
 
-            List<SpecialityModel> specialities = TransferDataFromEntityToModel();
+            foreach (var entity in entities)
+            {
+                models.Add(MapingEntity(entity));
+            } 
 
-            var result = from facultySpecialty in facultySpecialities
-                         join speciality in specialities
-                         on facultySpecialty.SpecialityId equals speciality.Id
-                         where facultySpecialty.FacultyId == facultyId
-                         select speciality;
-
-            var res = from specialitiesForm in result
-                      where specialitiesForm.Degree == degree
-                      select specialitiesForm;
-
-            return res.ToList();
+            return models;
         }
 
         public string? GetSpecialityCode(string specialityId)

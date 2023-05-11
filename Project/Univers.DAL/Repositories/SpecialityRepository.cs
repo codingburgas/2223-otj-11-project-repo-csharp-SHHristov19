@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univers.DAL.Entities;
+using Univers.Models.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Univers.DAL.Repositories
 {
@@ -43,7 +45,7 @@ namespace Univers.DAL.Repositories
                     select new
                     {
                         Name = $"{user.FirstName} {user.MiddleName} {user.LastName}"
-                    }).FirstOrDefault().Name; 
+                    })?.FirstOrDefault()?.Name; 
         } 
 
         public string? GetDegreeByStudentId(string studentId)
@@ -55,5 +57,16 @@ namespace Univers.DAL.Repositories
                    where student.Id == studentId
                    select speciality.Degree).FirstOrDefault();
         }
-    }
+
+        public List<Speciality> GetSpecialitiesByFacultyId(string facultyId, string degree)
+        {
+            using Context.Context context = new();
+
+            return (context.Specialities
+                .Include(s => s.Faculties)
+                .Where(s => s.Faculties.Any(f => f.Id == facultyId))
+                .Where(s => s.Degree == degree))
+                .ToList();
+        }
+    } 
 }
