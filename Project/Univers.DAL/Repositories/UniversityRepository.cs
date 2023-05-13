@@ -23,12 +23,12 @@ namespace Univers.DAL.Repositories
             using Context.Context context = new();
 
             return context.Students
-                .Where(s => s.Id == studentId)
-                .Include(s => s.Speciality)
-                .ThenInclude(sp => sp.Faculties)
-                .ThenInclude(f => f.University)
-                .ThenInclude(u => u.Rector)
-                .Select(s => $"{s.Speciality.Faculties.FirstOrDefault().University.Rector.User.FirstName} {s.Speciality.Faculties.FirstOrDefault().University.Rector.User.MiddleName} {s.Speciality.Faculties.FirstOrDefault().University.Rector.User.LastName}")
+                .Where(student => student.Id == studentId)
+                .Include(speciality => speciality.Speciality)
+                .ThenInclude(faculty => faculty.Faculties)
+                .ThenInclude(university => university.University)
+                .ThenInclude(user => user.Rector)
+                .Select(model => $"{model.Speciality.Faculties.FirstOrDefault().University.Rector.User.FirstName} {model.Speciality.Faculties.FirstOrDefault().University.Rector.User.MiddleName} {model.Speciality.Faculties.FirstOrDefault().University.Rector.User.LastName}")
                 .FirstOrDefault(); 
         }
 
@@ -36,30 +36,26 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            var university = context.Students
+            return context.Students
                 .Include(s => s.Speciality)
-                    .ThenInclude(sp => sp.Faculties)
-                        .ThenInclude(f => f.University)
+                .ThenInclude(sp => sp.Faculties)
+                .ThenInclude(f => f.University)
                 .Where(s => s.Id == studentId)
                 .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Name)
-                .FirstOrDefault();
-
-            return university;
+                .FirstOrDefault(); 
         }
 
         public string? GetUniversityAddressByStudentId(string studentId)
         {
             using Context.Context context = new();
 
-            var address = context.Students
+            return context.Students
                 .Include(s => s.Speciality)
-                    .ThenInclude(sp => sp.Faculties)
-                        .ThenInclude(f => f.University)
+                .ThenInclude(sp => sp.Faculties)
+                .ThenInclude(f => f.University)
                 .Where(s => s.Id == studentId)
                 .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Address)
-                .FirstOrDefault();
-
-            return address;
+                .FirstOrDefault(); 
         }
     }
 }

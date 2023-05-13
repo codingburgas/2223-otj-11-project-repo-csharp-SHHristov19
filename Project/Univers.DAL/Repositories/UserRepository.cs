@@ -10,23 +10,18 @@ using Univers.Models.Models;
 
 namespace Univers.DAL.Repositories
 {
-    public class UserRepository : IDisposable
-    {
-        private Context.Context _dbContext;
-
-        public UserRepository()
-        {
-            _dbContext = new();
-        }
-
+    public class UserRepository 
+    {   
         /// <summary>
         /// Read the data from the Users table
         /// </summary>
         /// <returns></returns>
-        public IQueryable<User> ReadAllData()
-        { 
-            return _dbContext.Users;
-        } 
+        public List<User> ReadAllData()
+        {
+            using Context.Context context = new();
+
+            return context.Users.ToList();
+        }
 
         /// <summary>
         /// Add user in Users table
@@ -35,22 +30,24 @@ namespace Univers.DAL.Repositories
         public void AddData(SignUpUserModel user, string passwordSalt)
         {
             using Context.Context context = new();
-            User additionalUser = new User();
 
-            additionalUser.Id = Guid.NewGuid().ToString("D");
-            additionalUser.Username = user.Username;
-            additionalUser.Password = user.Password;
-            additionalUser.PasswordSalt = passwordSalt;
-            additionalUser.FirstName = user.FirstName;
-            additionalUser.MiddleName = user.MiddleName;
-            additionalUser.LastName = user.LastName;
-            additionalUser.DateOfRegistration = DateTime.Now;
-            additionalUser.PhoneNumber = user.PhoneNumber;
-            additionalUser.Email = user.Email;
-            additionalUser.Address = user.Address;
-            additionalUser.Gender = user.Gender;
-            additionalUser.Image = user.Image;
-            additionalUser.IsActive = true;
+            User additionalUser = new User()
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Username = user.Username,
+                Password = user.Password,
+                PasswordSalt = passwordSalt,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                DateOfRegistration = DateTime.Now,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Address = user.Address,
+                Gender = user.Gender,
+                Image = user.Image,
+                IsActive = true,
+            };
 
             context.Users.Add(additionalUser);
             context.SaveChanges();
@@ -82,8 +79,7 @@ namespace Univers.DAL.Repositories
             return (from user in context.Users
                    join student in context.Students on user.Id equals student.UserId
                    where student.Id == studentId
-                   select user).FirstOrDefault();
-                   
+                   select user).FirstOrDefault(); 
         }
 
         public void UpdateUsername(string? userId, string? newUsername)
@@ -96,11 +92,6 @@ namespace Univers.DAL.Repositories
 
             context.Update(user);
             context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _dbContext.Dispose();
-        }
+        } 
     }
 }

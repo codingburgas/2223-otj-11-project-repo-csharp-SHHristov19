@@ -165,6 +165,7 @@ namespace Univers.PL.Controllers
             }
             if (student != null)
             {
+                student.Image = StudentModel.Image;
                 _userService.AddUser(student);
                 student.UserId = _userService.GetUserIdByUsername(student.Username);
                 student.Id = Guid.NewGuid().ToString("D");

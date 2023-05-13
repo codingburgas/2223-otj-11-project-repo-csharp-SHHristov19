@@ -13,14 +13,12 @@ namespace Univers.BLL.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
-        private readonly Univers.Utilities.Utilities _utilities;
-        private IEnumerable<UserModel> _users;
+        private readonly Univers.Utilities.Utilities _utilities; 
 
         public UserService()
         {
             _userRepository = new UserRepository();
-            _utilities = new Univers.Utilities.Utilities();
-            _users = TransferDataFromEntityToModel();
+            _utilities = new Univers.Utilities.Utilities(); 
         }
 
         /// <summary>
@@ -36,26 +34,28 @@ namespace Univers.BLL.Services
                 UserModel newModel = MapUserEntity(entity);
 
                 yield return newModel; 
-            }
+            } 
         }
 
         private static UserModel MapUserEntity(User entity)
         {
-            var newModel = new UserModel();
+            var newModel = new UserModel()
+            {
+                Id = entity.Id,
+                Username = entity.Username,
+                PasswordSalt = entity.PasswordSalt,
+                Password = entity.Password,
+                FirstName = entity.FirstName,
+                MiddleName = entity.MiddleName,
+                LastName = entity.LastName,
+                DateOfRegistration = entity.DateOfRegistration,
+                PhoneNumber = entity.PhoneNumber,
+                Email = entity.Email,
+                Address = entity.Address,
+                Gender = entity.Gender,
+                Image = entity.Image,
+            };
 
-            newModel.Id = entity.Id;
-            newModel.Username = entity.Username;
-            newModel.PasswordSalt = entity.PasswordSalt;
-            newModel.Password = entity.Password;
-            newModel.FirstName = entity.FirstName;
-            newModel.MiddleName = entity.MiddleName;
-            newModel.LastName = entity.LastName;
-            newModel.DateOfRegistration = entity.DateOfRegistration;
-            newModel.PhoneNumber = entity.PhoneNumber;
-            newModel.Email = entity.Email;
-            newModel.Address = entity.Address;
-            newModel.Gender = entity.Gender;
-            newModel.Image = entity.Image;
             return newModel;
         }
 
@@ -67,9 +67,8 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public UserModel? GetUserByUsernameAndPassword(string username, string password)
         { 
-            var user = _users.FirstOrDefault(x => x.Username == username);
-
-            if (user != null && user.Password == _utilities.HashPassword(password, user?.PasswordSalt))
+            var user = TransferDataFromEntityToModel().FirstOrDefault(x => x.Username == username); 
+            if (user != null && user.Password == _utilities.HashPassword(password, user.PasswordSalt))
             {
                 return user;
             }
@@ -98,7 +97,7 @@ namespace Univers.BLL.Services
         {
             var passwordSalt = _utilities.GenerateSalt();
             user.Password = _utilities.HashPassword(user.Password, passwordSalt);
-            _userRepository.AddData(user, passwordSalt);
+            _userRepository.AddData(user, passwordSalt); 
         }
 
         /// <summary>
@@ -108,7 +107,7 @@ namespace Univers.BLL.Services
         /// <returns></returns>
         public bool UsernameAlreadyExist(string username)
         {
-            var users = TransferDataFromEntityToModel();
+            var users = TransferDataFromEntityToModel(); 
             return users.Where(x => x.Username == username).Any();
         }
 
@@ -178,7 +177,8 @@ namespace Univers.BLL.Services
 
         public UserModel GetUserByStudentId(string studentId)
         {
-            return MapUserEntity(_userRepository.GetUserByStudentId(studentId));
+            var user = _userRepository.GetUserByStudentId(studentId);
+            return MapUserEntity(user);
         }
 
         public bool ComparePasswordsByUserId(string? studentId, string? password)

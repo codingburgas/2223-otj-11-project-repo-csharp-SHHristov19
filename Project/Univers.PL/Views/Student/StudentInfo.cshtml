@@ -16,12 +16,14 @@
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
 
     <div class="fs-1 text-center">Лични данни</div>
-
+     
     <div class="overflow-y-scroll" style="height: 75%; width: 88%; position: fixed;">
+
+        <img src="@Url.Content(Model.User.Image)" style="width: 20%; height: 50%;" />
 
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">Име </li>
-            <li class="list-group-item">@Model.User.FirstName @Model.User.MiddleName @Model.User.LastName</li>
+            <li class="list-group-item">@Model.User?.FirstName @Model.User?.MiddleName @Model.User?.LastName</li>
             </ul>
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">ЕГН </li>
@@ -86,19 +88,19 @@
                  
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">Адрес </li>
-            <li class="list-group-item">@Model.User.Address</li>
+            <li class="list-group-item">@Model.User?.Address</li>
         </ul>
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">Телефон </li>
-            <li class="list-group-item">@Model.User.PhoneNumber</li>
+            <li class="list-group-item">@Model.User?.PhoneNumber</li>
         </ul>
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">Потребителско име</li>
-            <li class="list-group-item">@Model.User.Username</li>
+            <li class="list-group-item">@Model.User?.Username</li>
         </ul>
         <ul class="list-group list-group-horizontal mb-2">
             <li class="list-group-item">Email адрес</li>
-            <li class="list-group-item">@Model.User.Email</li>
+            <li class="list-group-item">@Model.User?.Email</li>
         </ul> 
     </div>
 </div>
