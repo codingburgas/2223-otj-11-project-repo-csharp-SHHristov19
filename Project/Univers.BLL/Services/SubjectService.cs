@@ -11,10 +11,12 @@ namespace Univers.BLL.Services
     public class SubjectService
     {
         private readonly SubjectRepository _subjectRepository;
+        private readonly StudentService _studentService;
 
         public SubjectService()
         {
             _subjectRepository = new SubjectRepository();
+            _studentService = new StudentService();
         }
 
         /// <summary>
@@ -43,6 +45,11 @@ namespace Univers.BLL.Services
             }
 
             return models;
+        }
+
+        public List<SubjectModel> GetAllSubjectsWithExamBySpecialityId(string studentId)
+        {
+            return _subjectRepository.GetAllSubjectsBySpecialityId(_studentService.GetStudentById(studentId).SpecialityId);
         }
     }
 }

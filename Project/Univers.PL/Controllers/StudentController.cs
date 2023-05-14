@@ -16,6 +16,7 @@ namespace Univers.PL.Controllers
         private readonly UniversityService _universityService;
         private readonly FacultyService _facultyService;
         private readonly GradeRepository _gradeRepository;
+        private readonly SubjectService _subjectService;
 
         public StudentController()
         {
@@ -26,6 +27,7 @@ namespace Univers.PL.Controllers
             _universityService = new UniversityService();
             _facultyService = new FacultyService();
             _gradeRepository = new GradeRepository();
+            _subjectService = new SubjectService();
         }
 
         public ActionResult RegularExamSession(string studentId)
@@ -138,6 +140,17 @@ namespace Univers.PL.Controllers
             studentGrades.Grades = _gradeRepository.GetGradesByStudentId(studentId);
 
             return View(studentGrades);
+        }
+
+        public ActionResult Subjects(string studentId)
+        {
+            var studentSubjects = new StudentSubjectModel();
+
+            studentSubjects.StudentId = studentId;
+
+            studentSubjects.Subjects = _subjectService.GetAllSubjectsWithExamBySpecialityId(studentId);
+
+            return View(studentSubjects);
         }
     }
 }
