@@ -17,7 +17,7 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a>
+                <a href="@Url.Action("StaffHome", "Home", new{ userId = TempData["Id"]})">
                     <span class="icon"><ion-icon name="home"></ion-icon></span>
                     <span class="title">Начало</span>
                 </a>
@@ -25,7 +25,7 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a>
+                <a href="#"> 
                     <span class="icon"><ion-icon name="document-text"></ion-icon></span>
                     <span class="title">Университети</span>
                 </a>
@@ -33,31 +33,23 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a>
-                    <span class="icon"><ion-icon name="school"></ion-icon></span>
-                    <span class="title">Студенти</span>
+                <a href="@Url.Action("Users", "Admin", new{ userId = TempData["Id"]})">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <span class="title">Потребители</span>
                 </a>
             </li>
             <li class="list">
                 <b></b>
                 <b></b>
-                <a>
+                <a href="#">
                     <span class="icon"><ion-icon name="file-tray-full"></ion-icon></span>
                     <span class="title">Учебен план</span>
                 </a>
-            </li>
+            </li> 
             <li class="list">
                 <b></b>
                 <b></b>
-                <a>
-                    <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <span class="title">Лични данни</span>
-                </a>
-            </li>
-            <li class="list">
-                <b></b>
-                <b></b>
-                <a>
+                <a href="#"> 
                     <span class="icon"><ion-icon name="key"></ion-icon></span>
                     <span class="title">Смяна на парола</span>
                 </a>

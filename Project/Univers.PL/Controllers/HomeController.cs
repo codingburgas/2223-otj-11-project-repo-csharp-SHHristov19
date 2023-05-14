@@ -7,17 +7,21 @@ namespace Univers.PL.Controllers
     public class HomeController : Controller
     {
         private readonly StudentService _studentService; 
-        private readonly StudentCourseService _studentCourseService; 
+        private readonly StudentCourseService _studentCourseService;
+        private readonly UserService _userService;
 
         public HomeController()
         {
             _studentService = new StudentService();
             _studentCourseService = new StudentCourseService();
+            _userService = new UserService();
         }
 
-        public ActionResult StaffHome()
+        public ActionResult StaffHome(string userId)
         {
-            return View();
+            var user = _userService.GetUserByUserId(userId);
+
+            return View(user);
         }
         
         public ActionResult StudentHome(string studentId, int year = 0, int month = 0)

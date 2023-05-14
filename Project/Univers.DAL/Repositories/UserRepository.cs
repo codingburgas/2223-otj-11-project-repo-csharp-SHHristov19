@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -93,5 +94,29 @@ namespace Univers.DAL.Repositories
             context.Update(user);
             context.SaveChanges();
         } 
+
+        public IEnumerable<User> GetStaffUsers()
+        {
+            using Context.Context context = new();
+
+            return (from u in context.Users
+                    join s in context.Students on u.Id equals s.UserId into studentGroup
+                    from sg in studentGroup.DefaultIfEmpty()
+                    where sg == null
+                    orderby u.FirstName, u.MiddleName, u.LastName
+                    select u).ToList();
+        }
+
+        public IEnumerable<User> GetStudentUsers()
+        {
+            using Context.Context context = new();
+
+            return (from u in context.Users
+                    join s in context.Students on u.Id equals s.UserId into studentGroup
+                    from sg in studentGroup.DefaultIfEmpty()
+                    where sg != null
+                    orderby u.FirstName, u.MiddleName, u.LastName
+                    select u).ToList();
+        }
     }
 }

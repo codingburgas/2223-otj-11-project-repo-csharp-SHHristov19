@@ -198,5 +198,38 @@ namespace Univers.BLL.Services
         {
             _userRepository.UpdateUsername(userId, newUsername);
         }
+
+        public UserModel? GetUserByUserId(string userId)
+        {
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == userId);
+        }
+
+        public List<UserModel> GetStaffUsers()
+        {
+            var entities = _userRepository.GetStaffUsers();
+
+            List<UserModel> models = new();
+
+            foreach (var entity in entities)
+            {
+                models.Add(MapUserEntity(entity));
+            }
+
+            return models;
+        }
+
+        public List<UserModel> GetStudentUsers()
+        {
+            var entities = _userRepository.GetStudentUsers();
+
+            List<UserModel> models = new();
+
+            foreach (var entity in entities)
+            {
+                models.Add(MapUserEntity(entity));
+            }
+
+            return models;
+        }
     }
 }
