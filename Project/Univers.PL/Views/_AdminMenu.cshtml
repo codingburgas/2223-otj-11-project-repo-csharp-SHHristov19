@@ -1,0 +1,128 @@
+﻿@using System.Web;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="~/css/StudentMenu.css">
+    <title>@TempData["Title"]</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="navigation">
+        <img src="~/images/Logo2.svg" class="logo" />
+        <ul>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="home"></ion-icon></span>
+                    <span class="title">Начало</span>
+                </a>
+            </li>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="document-text"></ion-icon></span>
+                    <span class="title">Университети</span>
+                </a>
+            </li>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="school"></ion-icon></span>
+                    <span class="title">Студенти</span>
+                </a>
+            </li>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="file-tray-full"></ion-icon></span>
+                    <span class="title">Учебен план</span>
+                </a>
+            </li>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <span class="title">Лични данни</span>
+                </a>
+            </li>
+            <li class="list">
+                <b></b>
+                <b></b>
+                <a>
+                    <span class="icon"><ion-icon name="key"></ion-icon></span>
+                    <span class="title">Смяна на парола</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Login", "Login")">
+                    <span class="icon"><ion-icon name="exit"></ion-icon></span>
+                    <span class="title">Изход</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        @RenderBody()
+    </div>
+    <div class="toggle">
+        <ion-icon name="menu" class="open"></ion-icon>
+        <ion-icon name="close" class="close"></ion-icon>
+    </div>
+
+    <script>
+        @{
+            var title = TempData["Title"];
+        }
+            function Encode(str) {
+                var result = '';
+                for (var i = 0; i < str.length; i++) {
+                    if (str[i] == ' ') {
+                        result += ' ';
+                    } else {
+                        result += '&#x' + str.charCodeAt(i).toString(16).toUpperCase() + ';';
+                    }
+                }
+                return result;
+            }
+
+        let menuToggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+
+        menuToggle.onclick = function () {
+            menuToggle.classList.toggle('active');
+            navigation.classList.toggle('active');
+        }
+
+        let list = document.querySelectorAll('.list');
+
+        for (let j = 0; j < list.length; j++) {
+            list[j].classList = 'list';
+        }
+
+        for (let i = 0; i < list.length; i++) {
+
+            let title = list[i].querySelector('.title');
+
+            console.log(Encode(title.textContent.trim()));
+
+            if (Encode(title.textContent.trim()) == '@title') {
+
+                list[i].classList = 'list active';
+
+                console.log(list[i]);
+            }
+
+        }
+
+    </script>
+</body>
+</html>

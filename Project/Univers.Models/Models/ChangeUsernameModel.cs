@@ -25,6 +25,6 @@ namespace Univers.Models.Models
         [Display(Name = "Повторете потребителското име")]
         [StringLength(30, MinimumLength = 6, ErrorMessage = "Потребителското име трябва да е между 6 и 30 символа.")]
         [Compare("NewUsername", ErrorMessage = "Новите потребителски имена не съвпадат.")]
-        public string? NewUsernameConfirmation { get; set; }
+        public string? NewUsernameConfirmation { get; set; } 
     }
 }

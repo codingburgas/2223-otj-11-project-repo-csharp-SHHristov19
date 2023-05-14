@@ -62,11 +62,14 @@ namespace Univers.PL.Controllers
             return View(student);
         }
 
-        public ActionResult ChangePassword(string studentId)
+        public ActionResult ChangePassword(string studentId, string? message = null)
         {
             ChangePasswordModel model = new();
             model.StudentId = studentId;
-
+            if (message != null)
+            {
+                ViewBag.Message = message;
+            }
             return View(model);
         }
 
@@ -87,15 +90,19 @@ namespace Univers.PL.Controllers
                 {
                     return View("ChangePassword", model);
                 }
-                return RedirectToAction();
+                string message = "Успешна смяна на парола";
+                return RedirectToAction("ChangePassword", new { studentId = model.StudentId, message = message }); 
             }
         }
 
-        public ActionResult ChangeUsername(string studentId)
+        public ActionResult ChangeUsername(string studentId, string? message = null)
         {
             ChangeUsernameModel model = new();
             model.StudentId = studentId;
-
+            if(message != null)
+            {
+                ViewBag.Message = message; 
+            }
             return View(model);
         }
 
@@ -120,7 +127,8 @@ namespace Univers.PL.Controllers
                     else
                     {
                         _userService.ChangeUsername(_userService.GetUserByStudentId(model.StudentId).Id, model.NewUsername);
-                        return RedirectToAction();
+                        string message = "Успешна смяна на потребителско име";
+                        return RedirectToAction("ChangeUsername", new { studentId = model.StudentId, message = message});
                     }
                     return View("ChangeUsername", model);
                 }
