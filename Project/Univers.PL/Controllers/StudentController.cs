@@ -152,5 +152,16 @@ namespace Univers.PL.Controllers
 
             return View(studentSubjects);
         }
+
+        public ActionResult Electives(string studentId)
+        {
+            var studentSubjects = new StudentSubjectModel();
+
+            studentSubjects.StudentId = studentId;
+
+            studentSubjects.Subjects = _subjectService.GetAllElectivesBySpecialityId(studentId);
+
+            return View(studentSubjects);
+        }
     }
 }

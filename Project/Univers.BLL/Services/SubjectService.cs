@@ -51,5 +51,10 @@ namespace Univers.BLL.Services
         {
             return _subjectRepository.GetAllSubjectsBySpecialityId(_studentService.GetStudentById(studentId).SpecialityId);
         }
+
+        public List<SubjectModel> GetAllElectivesBySpecialityId(string studentId)
+        {
+            return _subjectRepository.GetAllElectivesBySpecialityId(_studentService.GetStudentById(studentId).SpecialityId);
+        }
     }
 }

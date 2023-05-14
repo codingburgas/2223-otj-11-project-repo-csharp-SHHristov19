@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
 
@@ -36,6 +37,24 @@ namespace Univers.DAL.Repositories
                     Credits = s.Credits
                 })
                 .ToList();
+        }
+
+        public List<SubjectModel> GetAllElectivesBySpecialityId(string specialityId)
+        {
+            using Context.Context context = new();
+
+            return (from s in context.Subjects
+                   join sf in context.Staff on s.TeacherId equals sf.Id
+                   join u in context.Users on sf.UserId equals u.Id
+                   where s.Type == "Предмет с текуща оценка" && s.SpecialityId == specialityId
+                    orderby s.Name
+                   select new SubjectModel
+                   {
+                       Name = s.Name,
+                       TeacherName = u.FirstName + " " + u.MiddleName + " " + u.LastName,
+                       Credits = s.Credits,
+                       List = s.List
+                   }).ToList();
         }
     }
 }
