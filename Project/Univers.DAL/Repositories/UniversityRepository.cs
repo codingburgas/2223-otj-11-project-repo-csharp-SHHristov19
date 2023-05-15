@@ -22,40 +22,42 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Students
-                .Where(student => student.Id == studentId)
-                .Include(speciality => speciality.Speciality)
-                .ThenInclude(faculty => faculty.Faculties)
-                .ThenInclude(university => university.University)
-                .ThenInclude(user => user.Rector)
-                .Select(model => $"{model.Speciality.Faculties.FirstOrDefault().University.Rector.User.FirstName} {model.Speciality.Faculties.FirstOrDefault().University.Rector.User.MiddleName} {model.Speciality.Faculties.FirstOrDefault().University.Rector.User.LastName}")
-                .FirstOrDefault(); 
+            return (from s in context.Students
+                    join sp in context.Specialities on s.SpecialityId equals sp.Id
+                    join f in context.Faculties on sp.Faculties.First().Id equals f.Id
+                    join un in context.Universities on f.UniversityId equals un.Id
+                    join sf in context.Staff on un.RectorId equals sf.Id
+                    join u in context.Users on sf.UserId equals u.Id
+                    where s.Id == studentId
+                    select new
+                    {
+                        Name = $"{u.FirstName} {u.MiddleName} {u.LastName}"
+                    }).First().Name;
+
         }
 
         public string? GetUniversityNameByStudentId(string studentId)
         {
             using Context.Context context = new();
 
-            return context.Students
-                .Include(s => s.Speciality)
-                .ThenInclude(sp => sp.Faculties)
-                .ThenInclude(f => f.University)
-                .Where(s => s.Id == studentId)
-                .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Name)
-                .FirstOrDefault(); 
+            return (from s in context.Students
+                    join sp in context.Specialities on s.SpecialityId equals sp.Id
+                    join f in context.Faculties on sp.Faculties.First().Id equals f.Id
+                    join un in context.Universities on f.UniversityId equals un.Id
+                    where s.Id == studentId
+                    select un.Name).FirstOrDefault();
         }
 
         public string? GetUniversityAddressByStudentId(string studentId)
         {
             using Context.Context context = new();
 
-            return context.Students
-                .Include(s => s.Speciality)
-                .ThenInclude(sp => sp.Faculties)
-                .ThenInclude(f => f.University)
-                .Where(s => s.Id == studentId)
-                .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Address)
-                .FirstOrDefault(); 
+            return (from s in context.Students
+                    join sp in context.Specialities on s.SpecialityId equals sp.Id
+                    join f in context.Faculties on sp.Faculties.First().Id equals f.Id
+                    join un in context.Universities on f.UniversityId equals un.Id
+                    where s.Id == studentId
+                    select un.Address).FirstOrDefault();
         }
     }
 }

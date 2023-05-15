@@ -62,11 +62,11 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return (context.Specialities
-                .Include(s => s.Faculties)
-                .Where(s => s.Faculties.Any(f => f.Id == facultyId))
-                .Where(s => s.Degree == degree))
-                .ToList();
+            return (from speciality in context.Specialities 
+                    join f in context.Faculties on speciality.Faculties.First().Id equals f.Id
+                    where f.Id == facultyId && speciality.Degree == degree
+                    select speciality).ToList();
+
         }
     } 
 }

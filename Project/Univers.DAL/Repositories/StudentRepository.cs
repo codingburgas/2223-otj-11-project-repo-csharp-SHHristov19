@@ -79,13 +79,12 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Students
-                .Include(s => s.Speciality)
-                .ThenInclude(sp => sp.Faculties)
-                .ThenInclude(f => f.University)
-                .Where(s => s.Id == studentId)
-                .Select(s => s.Speciality.Faculties.FirstOrDefault().University.Name)
-                .FirstOrDefault();
+            return (from s in context.Students
+                   join sp in context.Specialities on s.SpecialityId equals sp.Id
+                   join f in context.Faculties on sp.Faculties.First().Id equals f.Id
+                   join u in context.Universities on f.UniversityId equals u.Id
+                   where s.Id == studentId
+                   select u.Name).FirstOrDefault();
         }
     }
 }

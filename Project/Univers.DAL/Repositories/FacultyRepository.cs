@@ -25,19 +25,16 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            var student = context.Students
-                .Include(s => s.Speciality)
-                .ThenInclude(sp => sp.Faculties)
-                .ThenInclude(f => f.Dean)
-                .ThenInclude(d => d.User)
-                .FirstOrDefault(s => s.Id == studentId);
-
-            var facultyDean = student?.Speciality?.Faculties?
-                .Select(f => f.Dean)
-                .FirstOrDefault(d => d != null)
-                ?.User;
-
-            return $"{facultyDean?.FirstName} {facultyDean?.MiddleName} {facultyDean?.LastName}";
+            return (from sp in context.Specialities
+                     join s in context.Students on sp.Id equals s.SpecialityId
+                     join f in context.Faculties on sp.Faculties.First().Id equals f.Id
+                     join sf in context.Staff on f.DeanId equals sf.Id
+                     join u in context.Users on sf.UserId equals u.Id
+                     where s.Id == studentId
+                    select new
+                     {
+                         Name = $"{u.FirstName} {u.MiddleName} {u.LastName}"
+                     }).First().Name;
         }
     }
 }

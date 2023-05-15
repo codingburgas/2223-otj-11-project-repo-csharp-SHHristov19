@@ -107,7 +107,7 @@ namespace Univers.PL.Controllers
             if (user != null)
             {
                 _userService.AddUser(user);
-                return RedirectToAction("SuccessfulLogin", "Login", user);
+                return RedirectToAction("StaffHome", "Home", new { userId = _userService.GetUserIdByUsername(user.Username)});
             }
             else
             {

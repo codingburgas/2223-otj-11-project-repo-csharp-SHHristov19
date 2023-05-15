@@ -24,19 +24,18 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Subjects
-                .Include(s => s.Teacher.User)
-                .Include(ss => ss.Semesters)
-                .Where(s => s.Type == "Предмет с изпит" && s.SpecialityId == specialityId)
-                .OrderBy(s => s.Semesters.OrderBy(ss => ss.Number).FirstOrDefault().Number)
-                .Select(s => new SubjectModel
-                {
-                    Number = s.Semesters.FirstOrDefault().Number,
-                    Name = s.Name,
-                    TeacherName = s.Teacher.User.FirstName + " " + s.Teacher.User.MiddleName + " " + s.Teacher.User.LastName,
-                    Credits = s.Credits
-                })
-                .ToList();
+            return (from s in context.Subjects
+                    join sf in context.Staff on s.TeacherId equals sf.Id
+                    join u in context.Users on sf.UserId equals u.Id
+                    where s.Type == "Предмет с изпит" && s.SpecialityId == specialityId
+                    orderby s.Name
+                    select new SubjectModel
+                    {
+                        Name = s.Name,
+                        TeacherName = u.FirstName + " " + u.MiddleName + " " + u.LastName,
+                        Credits = s.Credits,
+                        List = s.List
+                    }).ToList();
         }
 
         public List<SubjectModel> GetAllElectivesBySpecialityId(string specialityId)
