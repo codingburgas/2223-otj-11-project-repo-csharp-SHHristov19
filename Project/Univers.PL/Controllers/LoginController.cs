@@ -40,7 +40,7 @@ namespace Univers.PL.Controllers
                 var student = _studentService.GetStudentByUserId(loginUser.Id);
                 if (student != null)
                 {
-                    return RedirectToAction("StudentHome", "Home", new { studentId = loginUser.Id });
+                    return RedirectToAction("StudentHome", "Home", new { studentId = student.Id });
                 } 
                 else
                 {
