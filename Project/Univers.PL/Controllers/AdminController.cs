@@ -35,5 +35,18 @@ namespace Univers.PL.Controllers
 
             return View(users);
         }
+
+        public ActionResult GetChosenUser(string id, string userId)
+        {
+            // Replace with your own logic to retrieve user details based on the ID
+            var users = new AdminUsers()
+            {
+                UserId = userId,
+                Users = _userService.GetStaffUsers(),
+                ChosenUser = _userService.GetUserByUserId(id),
+            };
+
+            return View("Users", users);
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Univers.PL.EmailServer
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp-relay.sendinblue.com", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("univers.email.verify@gmail.com", "kd8vcAtSFpjI1KGD");
+            smtp.Authenticate("univers.email.verify@gmail.com", "GkhjFnVU6szJ7aPY");
             smtp.Send(email);
             smtp.Disconnect(true);
         }

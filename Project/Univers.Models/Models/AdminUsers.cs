@@ -11,5 +11,7 @@ namespace Univers.Models.Models
         public string? UserId { get; set; }
 
         public List<UserModel>? Users { get; set; }
+
+        public UserModel? ChosenUser { get; set; } 
     }
 }
