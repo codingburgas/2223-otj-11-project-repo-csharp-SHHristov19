@@ -44,6 +44,7 @@ namespace Univers.PL.Controllers
                 UserId = userId,
                 Users = _userService.GetStaffUsers(),
                 ChosenUser = _userService.GetUserByUserId(id),
+                IsChosen = true,
             };
 
             return View("Users", users);
