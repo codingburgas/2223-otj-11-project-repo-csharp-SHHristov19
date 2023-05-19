@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Users.ToList();
+            return context.Users.Where(x => x.IsActive == true).ToList();
         }
 
         /// <summary>
@@ -117,6 +118,46 @@ namespace Univers.DAL.Repositories
                     where sg != null
                     orderby u.FirstName, u.MiddleName, u.LastName
                     select u).ToList();
+        }
+
+        public Dictionary<string, string> GetRoleOfTheUsers ()
+        {
+            using Context.Context context = new();
+
+            return (from u in context.Users
+                   join sf in context.Staff on u.Id equals sf.UserId
+                   select new { Id = u.Id, Role = sf.Role })
+                   .ToDictionary(item => item.Id, item => item.Role); 
+        }
+
+        public void UpdateUser(EditUserModel newUser)
+        {
+            using Context.Context context = new();
+
+            var user = context.Users.FirstOrDefault(u => u.Id == newUser.Id);
+
+            user.Address = newUser.Address;
+            user.Email = newUser.Email;
+            user.FirstName = newUser.FirstName;
+            user.MiddleName = newUser.MiddleName;
+            user.LastName = newUser.LastName;
+            user.Username = newUser.Username;
+            user.PhoneNumber = newUser.PhoneNumber;
+
+            context.Update(user); 
+            context.SaveChanges();
+        }
+
+        public void DeleteUser(string id)
+        {
+            using Context.Context context = new();
+
+            var user = context.Users.FirstOrDefault(u => u.Id == id);
+
+            user.IsActive = false;
+
+            context.Update(user);
+            context.SaveChanges();
         }
     }
 }

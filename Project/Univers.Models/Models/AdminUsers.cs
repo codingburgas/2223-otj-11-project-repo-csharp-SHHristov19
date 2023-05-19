@@ -12,8 +12,8 @@ namespace Univers.Models.Models
 
         public List<UserModel>? Users { get; set; }
 
-        public UserModel? ChosenUser { get; set; } 
+        public UserModel? ChosenUser { get; set; }
 
-        public bool IsChosen { get; set; } = false;
+        public EditUserModel? NewUser { get; set; }
     }
 }

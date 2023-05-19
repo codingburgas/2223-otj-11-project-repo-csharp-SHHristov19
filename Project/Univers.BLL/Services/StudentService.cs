@@ -50,7 +50,7 @@ namespace Univers.BLL.Services
                 newModel.CityOfBirth = entity.CityOfBirth;
                 newModel.FacultyNumber = entity.FacultyNumber;
                 newModel.FormOfEducation = entity.FormOfEducation;  
-
+                
                 models.Add(newModel);
             }
 

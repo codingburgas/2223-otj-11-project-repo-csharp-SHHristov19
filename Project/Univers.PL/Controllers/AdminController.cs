@@ -14,14 +14,14 @@ namespace Univers.PL.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Users(string userId)
+        public ActionResult Users(string userId, string? message = null)
         {
-            var users = new AdminUsers() 
-            { 
+            var users = new AdminUsers()
+            {
                 UserId = userId,
-                Users = _userService.GetStaffUsers(),
+                Users = _userService.GetStaffUsers(), 
             };
-
+            ViewBag.Message = message;
             return View(users);
         }
 
@@ -35,19 +35,63 @@ namespace Univers.PL.Controllers
 
             return View(users);
         }
-
-        public ActionResult GetChosenUser(string id, string userId)
+         
+        public ActionResult SeeInfoUser(string userId, string chosenUserId)
         {
-            // Replace with your own logic to retrieve user details based on the ID
-            var users = new AdminUsers()
+            var user = new AdminUsers()
             {
                 UserId = userId,
-                Users = _userService.GetStaffUsers(),
-                ChosenUser = _userService.GetUserByUserId(id),
-                IsChosen = true,
+                ChosenUser = _userService.GetUserByUserId(chosenUserId),
             };
 
-            return View("Users", users);
+            _userService.FillRolesOfTheUsers(user.ChosenUser);
+
+            return View(user);
+        }
+
+        public ActionResult EditUser(string userId, string chosenUserId)
+        {
+            var user = new AdminUsers()
+            {
+                UserId = userId,
+                ChosenUser = _userService.GetUserByUserId(chosenUserId),
+                NewUser = new EditUserModel(),
+            };
+
+            user.NewUser.Id = user.ChosenUser.Id;
+            user.NewUser.FirstName = user.ChosenUser.FirstName;
+            user.NewUser.MiddleName = user.ChosenUser.MiddleName;
+            user.NewUser.LastName = user.ChosenUser.LastName;
+            user.NewUser.Username = user.ChosenUser.Username;
+            user.NewUser.PhoneNumber = user.ChosenUser.PhoneNumber;
+            user.NewUser.Address = user.ChosenUser.Address;
+            user.NewUser.Gender = user.ChosenUser.Gender;
+            user.NewUser.Email = user.ChosenUser.Email; 
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AdminUsers user)
+        {
+            if (ModelState.IsValid)
+            {
+                _userService.UpdaateUser(user.NewUser);
+                string msg = "Успешно редактиране на потребителя!";
+                return RedirectToAction("Users", new { userId = user.UserId, message = msg});
+            }
+            else
+            {
+                return View("EditUser", user);
+            } 
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string userId, string chosenUserId, string chosenUserName)
+        { 
+            _userService.DeleteUser(chosenUserId);
+            string msg = $"Успешно изтриване на {chosenUserName}!";
+            return RedirectToAction("Users", new { userId = userId, message = msg }); 
         }
     }
 }

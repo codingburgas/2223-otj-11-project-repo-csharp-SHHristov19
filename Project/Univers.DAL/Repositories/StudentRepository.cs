@@ -20,7 +20,7 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Students.ToList();
+            return context.Students.Where(x => x.User.IsActive == true).ToList();
         }
 
         /// <summary>

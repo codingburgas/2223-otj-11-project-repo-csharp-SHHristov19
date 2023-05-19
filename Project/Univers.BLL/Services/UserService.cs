@@ -212,7 +212,10 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                models.Add(MapUserEntity(entity));
+                if(entity.IsActive == true)
+                {
+                    models.Add(MapUserEntity(entity));
+                } 
             }
 
             return models;
@@ -230,6 +233,30 @@ namespace Univers.BLL.Services
             }
 
             return models;
+        }
+
+        public void FillRolesOfTheUsers (UserModel user)
+        {
+            Dictionary<string, string> roles = _userRepository.GetRoleOfTheUsers();
+
+            if (roles.ContainsKey(user.Id))
+            {
+                user.Role = roles[user.Id];
+            }  
+            else
+            {
+                user.Role = "Липсва";
+            } 
+        }
+
+        public void UpdaateUser(EditUserModel? newUser)
+        {
+            _userRepository.UpdateUser(newUser);
+        }
+
+        public void DeleteUser(string userId)
+        {
+            _userRepository.DeleteUser(userId);
         }
     }
 }
