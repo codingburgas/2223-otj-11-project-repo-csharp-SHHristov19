@@ -10,10 +10,16 @@ namespace Univers.PL.Controllers
     public class AdminController : Controller
     {
         private readonly UserService _userService;
+        private readonly StudentService _studentService;
+        private readonly SpecialityService _specialityService;
+        private readonly UniversityService _universityService;
 
         public AdminController()
         {
             _userService = new UserService();
+            _studentService = new StudentService();
+            _specialityService = new SpecialityService();
+            _universityService = new UniversityService();
         }
 
         public ActionResult Users(string userId, string? message = null)
@@ -37,7 +43,7 @@ namespace Univers.PL.Controllers
 
             return View(users);
         }
-         
+        
         public ActionResult SeeInfoUser(string userId, string chosenUserId)
         {
             var user = new AdminUsers()
@@ -130,6 +136,22 @@ namespace Univers.PL.Controllers
             {
                 return View("AddUser", user);
             }
+        }
+
+        public ActionResult SeeInfoStudent(string userId, string chosenUserId)
+        {
+            var student = new AdminUsers()
+            {
+                UserId = userId,
+                ChosenStudent = _studentService.GetStudentByUserId(chosenUserId),
+            };
+
+            student.ChosenStudent.User = _userService.GetUserByStudentId(student.ChosenStudent.Id);
+            student.ChosenStudent.Speciality = _specialityService.GetSpecialityNameByStudentId(student.ChosenStudent.Id);  
+            student.ChosenStudent.NameOfUniversity = _universityService.GetUniversityNameByStudentId(student.ChosenStudent.Id); 
+            student.ChosenStudent.Degree = _specialityService.GetDegreeByStudentId(student.ChosenStudent.Id);
+
+            return View(student);
         }
     }
 }

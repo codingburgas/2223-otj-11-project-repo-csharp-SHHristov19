@@ -24,8 +24,11 @@
             @Html.ActionLink("Студенти", "Students", "Admin", new { userId = Model.UserId}, new { @class = "col fs-3 btn active btn-lg rounded-5" })
         </div>
     </div>
+    <br /> 
+    @Html.ActionLink("Добави студент", "AddStudent", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 86%;" })
     <br />
-    <div class="overflow-y-scroll" style="height: 80%; Width: 94%; position: absolute;">
+    <br />
+    <div class="overflow-y-scroll" style="height: 70%; Width: 94%; position: absolute;">
         <br />
         <br />
         @if (Model.Users == null)
@@ -37,29 +40,34 @@
         }
         else
         {
-            @foreach (var user in Model.Users)
-            {
-                <div class="list-group" style="margin-bottom: 1%; margin-right: 3%;">
-                    <button type="button" class="list-group-item list-group-item-action" aria-current="true">
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col-1 text-uppercase">
-                                    @counter
-                                    @{
-                                        counter++;
-                                    }
-                                </div>
-                                <div class="col text-uppercase">
-                                    @{
-                                        string name = $"{@user.FirstName} {@user.MiddleName} {@user.LastName}";
-                                    }
-                                    @name
-                                </div>
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            }
+            <table class="table"> 
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    { 
+                        <tr>
+                            <th scope="row">@counter @{
+                                    counter++;
+                                }</th>
+                            <td>@user.FirstName @user.MiddleName @user.LastName</td>
+                            <td class="col-1">
+                                @Html.ActionLink("Информация", "SeeInfoStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-secondary" })
+                            </td>
+                            <td class="col-1">
+                                @Html.ActionLink("Редактирай", "EditUser", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-primary" })
+                            </td>
+                            <td class="col-1">
+                                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
+                                {
+                                    @Html.Hidden("userId", Model.UserId)
+                                    @Html.Hidden("chosenUserId", user.Id)
+                                    @Html.Hidden("chosenUserName", $"{user.FirstName} {user.MiddleName} {user.LastName}")
+                                    <button class="btn btn-danger" type="submit" onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {@user.FirstName} {@user.MiddleName} {@user.LastName}');">Изтрий</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table> 
         }
     </div>
 </div> 
