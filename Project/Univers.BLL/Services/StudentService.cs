@@ -109,5 +109,10 @@ namespace Univers.BLL.Services
         {
             return _studentRepository.GetUniversityNameByStudentId(studentId);
         }
+
+        public void UpdaateStudent(EditStudentModel? newUser)
+        {
+            _studentRepository.UpdateStudent(newUser);
+        }
     }
 }

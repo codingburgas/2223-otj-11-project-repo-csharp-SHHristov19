@@ -160,7 +160,7 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
-        public void AddUser(EditUserModel user, string passwordSalt)
+        public void AddUser(AddUserModel user, string passwordSalt)
         {
             using Context.Context context = new();
 

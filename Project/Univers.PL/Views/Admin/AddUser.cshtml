@@ -27,84 +27,84 @@
                     @Html.HiddenFor(model => model.UserId) 
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.FirstName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.FirstName)
-                        @Html.ValidationMessageFor(model => model.NewUser.FirstName, "", new { @class = "text-danger"})
+                        @Html.TextBoxFor(model => model.AddUser.FirstName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.FirstName)
+                        @Html.ValidationMessageFor(model => model.AddUser.FirstName, "", new { @class = "text-danger"})
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.MiddleName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.MiddleName)
-                        @Html.ValidationMessageFor(model => model.NewUser.MiddleName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.MiddleName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.MiddleName)
+                        @Html.ValidationMessageFor(model => model.AddUser.MiddleName, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.LastName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.LastName)
-                        @Html.ValidationMessageFor(model => model.NewUser.LastName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.LastName, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.LastName)
+                        @Html.ValidationMessageFor(model => model.AddUser.LastName, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.Username, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.Username)
-                        @Html.ValidationMessageFor(model => model.NewUser.Username, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.Username, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.Username)
+                        @Html.ValidationMessageFor(model => model.AddUser.Username, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.PasswordFor(model => model.NewUser.Password, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.Password)
-                        @Html.ValidationMessageFor(model => model.NewUser.Password, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(model => model.AddUser.Password, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.Password)
+                        @Html.ValidationMessageFor(model => model.AddUser.Password, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.PasswordFor(model => model.NewUser.PasswordConfirmation, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.PasswordConfirmation)
-                        @Html.ValidationMessageFor(model => model.NewUser.PasswordConfirmation, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(model => model.AddUser.PasswordConfirmation, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.PasswordConfirmation)
+                        @Html.ValidationMessageFor(model => model.AddUser.PasswordConfirmation, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.Email, new { @class = "form-control", @id="floatingInput", placeholder="name@example.com"})
-                        @Html.LabelFor(model => model.NewUser.Email)
-                        @Html.ValidationMessageFor(model => model.NewUser.Email, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.Email, new { @class = "form-control", @id="floatingInput", placeholder="name@example.com"})
+                        @Html.LabelFor(model => model.AddUser.Email)
+                        @Html.ValidationMessageFor(model => model.AddUser.Email, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.Address, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.Address)
-                        @Html.ValidationMessageFor(model => model.NewUser.Address, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.Address, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.Address)
+                        @Html.ValidationMessageFor(model => model.AddUser.Address, "", new { @class = "text-danger" })
                     </div>
 
                     <br />
 
                     <div class="form-floating">
-                        @Html.TextBoxFor(model => model.NewUser.PhoneNumber, new { @class = "form-control", @id="floatingInput", placeholder=" "})
-                        @Html.LabelFor(model => model.NewUser.PhoneNumber)
-                        @Html.ValidationMessageFor(model => model.NewUser.PhoneNumber, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.AddUser.PhoneNumber, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddUser.PhoneNumber)
+                        @Html.ValidationMessageFor(model => model.AddUser.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
 
                     <br /> 
  
-                    @Html.LabelFor(model => model.NewUser.Gender)
-                    @Html.DropDownListFor(model => model.NewUser.Gender, new List<SelectListItem>
+                    @Html.LabelFor(model => model.AddUser.Gender)
+                    @Html.DropDownListFor(model => model.AddUser.Gender, new List<SelectListItem>
                     { 
                         new SelectListItem { Text = "Мъж"},
                         new SelectListItem { Text = "Жена"} 
                     }, new {@class = ""})  
-                    @Html.ValidationMessageFor(model => model.NewUser.Gender, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.AddUser.Gender, "", new { @class = "text-danger" })
             </div>
 
             <div class="modal-footer">

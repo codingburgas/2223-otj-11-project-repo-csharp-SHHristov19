@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Univers.DAL.Context;
@@ -86,5 +88,34 @@ namespace Univers.DAL.Repositories
                    where s.Id == studentId
                    select u.Name).FirstOrDefault();
         }
+
+        public void UpdateStudent(EditStudentModel? newUser)
+        {
+            using Context.Context context = new();
+
+            var student = context.Students.FirstOrDefault(u => u.Id == newUser.Id);
+
+            student.User = context.Users.FirstOrDefault(u => u.Id == newUser.User.Id);
+
+            student.Id = newUser.Id; 
+            student.Identity = newUser.Identity;
+            student.Citizenship = newUser.Citizenship;
+            student.CountryOfBirth = newUser.CountryOfBirth;
+            student.AreaOfBirth = newUser.AreaOfBirth;
+            student.CityOfBirth = newUser.CityOfBirth;
+            student.MunicipalityOfBirth = newUser.MunicipalityOfBirth;
+            student.DateOfBirth = DateTime.ParseExact(newUser.DateOfBirth, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            student.FormOfEducation = newUser.FormOfEducation;
+            student.User.Address = newUser.User.Address;
+            student.User.Email = newUser.User.Email;
+            student.User.FirstName = newUser.User.FirstName;
+            student.User.MiddleName = newUser.User.MiddleName;
+            student.User.LastName = newUser.User.LastName;
+            student.User.Username = newUser.User.Username;
+            student.User.PhoneNumber = newUser.User.PhoneNumber;
+
+            context.Update(student);
+            context.SaveChanges();
+        } 
     }
 }

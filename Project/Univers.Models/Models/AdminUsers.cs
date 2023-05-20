@@ -16,6 +16,12 @@ namespace Univers.Models.Models
 
         public StudentModel? ChosenStudent { get; set; }
 
-        public EditUserModel? NewUser { get; set; }
+        public EditUserModel? EditUser { get; set; }
+
+        public AddUserModel? AddUser { get; set; }
+
+        public EditStudentModel? EditStudent { get; set; }
+
+        public AddStudentModel? AddStudent { get; set; }
     }
 }

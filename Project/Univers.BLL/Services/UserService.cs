@@ -249,7 +249,7 @@ namespace Univers.BLL.Services
             } 
         }
 
-        public void UpdaateUser(EditUserModel? newUser)
+        public void UpdateUser(EditUserModel? newUser)
         {
             _userRepository.UpdateUser(newUser);
         }
@@ -259,11 +259,11 @@ namespace Univers.BLL.Services
             _userRepository.DeleteUser(userId);
         }
 
-        public void AddNewUserFromAdminPanel(EditUserModel user)
+        public void AddNewUserFromAdminPanel(AddUserModel user)
         {
             var passwordSalt = _utilities.GenerateSalt();
             user.Password = _utilities.HashPassword(user.Password, passwordSalt);
             _userRepository.AddUser(user, passwordSalt);
-        }
+        } 
     }
 }
