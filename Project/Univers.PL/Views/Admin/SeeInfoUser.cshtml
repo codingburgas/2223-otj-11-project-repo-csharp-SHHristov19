@@ -15,28 +15,28 @@
 
 <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Преглед на данни</h5> 
-      </div>
-      <div class="modal-body">
-           <ul class="list-group">
-               <li class="list-group-item active" aria-current="true">Информация</li>
-               <li class="list-group-item">Име: @Model.ChosenUser.FirstName @Model.ChosenUser.MiddleName @Model.ChosenUser.LastName</li>
-               <li class="list-group-item">Потребителско име: @Model.ChosenUser.Username</li>
-               <li class="list-group-item">Имейл адрес: @Model.ChosenUser.Email</li> 
-               <li class="list-group-item">Адрес: @Model.ChosenUser.Address</li>
-               <li class="list-group-item">Пол: @Model.ChosenUser.Gender</li>
-               <li class="list-group-item">Телефонен номер: @Model.ChosenUser.PhoneNumber</li>
-               <li class="list-group-item">Роля: @Model.ChosenUser.Role</li>
-           </ul>
-           <br><br> 
-      </div>
-      <div class="modal-footer"> 
-        @Html.ActionLink("Назад", "Users", "Admin", new { userId = $"{Model.UserId}" }, new { @class = "btn btn-primary" }) 
-      </div>
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Преглед на данни</h5> 
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item active" aria-current="true">Информация</li>
+                    <li class="list-group-item">Име: @Model.ChosenUser.FirstName @Model.ChosenUser.MiddleName @Model.ChosenUser.LastName</li>
+                    <li class="list-group-item">Потребителско име: @Model.ChosenUser.Username</li>
+                    <li class="list-group-item">Имейл адрес: @Model.ChosenUser.Email</li> 
+                    <li class="list-group-item">Адрес: @Model.ChosenUser.Address</li>
+                    <li class="list-group-item">Пол: @Model.ChosenUser.Gender</li>
+                    <li class="list-group-item">Телефонен номер: @Model.ChosenUser.PhoneNumber</li>
+                    <li class="list-group-item">Роля: @Model.ChosenUser.Role</li>
+                </ul>
+                <br><br> 
+            </div>
+            <div class="modal-footer"> 
+              @Html.ActionLink("Назад", "Users", "Admin", new { userId = $"{Model.UserId}" }, new { @class = "btn btn-primary" }) 
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>

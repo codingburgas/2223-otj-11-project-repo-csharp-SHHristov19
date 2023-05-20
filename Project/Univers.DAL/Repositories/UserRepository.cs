@@ -159,5 +159,31 @@ namespace Univers.DAL.Repositories
             context.Update(user);
             context.SaveChanges();
         }
+
+        public void AddUser(EditUserModel user, string passwordSalt)
+        {
+            using Context.Context context = new();
+
+            User additionalUser = new User()
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Username = user.Username,
+                Password = user.Password,
+                PasswordSalt = passwordSalt,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                DateOfRegistration = DateTime.Now,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Address = user.Address,
+                Gender = user.Gender,
+                Image = null,
+                IsActive = true,
+            };
+
+            context.Users.Add(additionalUser);
+            context.SaveChanges();
+        }
     }
 }

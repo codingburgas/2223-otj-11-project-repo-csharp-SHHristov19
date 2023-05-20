@@ -23,12 +23,15 @@ namespace Univers.Models.Models
         public string? PasswordConfirmation { get; set; } = null!;
 
         [Required(ErrorMessage = "Необходимо е да въведете име.")]
+        [RegularExpression(@"^[A-Za-zА-Яа-я]+$", ErrorMessage = "Името трябва да съдържа само букви!")]
         public string? FirstName { get; set; } = null!;
 
         [Required(ErrorMessage = "Необходимо е да въведете презиме.")]
+        [RegularExpression(@"^[A-Za-zА-Яа-я]+$", ErrorMessage = "Името трябва да съдържа само букви!")]
         public string? MiddleName { get; set; } = null!;
 
         [Required(ErrorMessage = "Необходимо е да въведете фамилия.")]
+        [RegularExpression(@"^[A-Za-zА-Яа-я]+$", ErrorMessage = "Името трябва да съдържа само букви!")]
         public string? LastName { get; set; } = null!;
 
         [Required(ErrorMessage = "Необходимо е да въведете телефонен номер.")]

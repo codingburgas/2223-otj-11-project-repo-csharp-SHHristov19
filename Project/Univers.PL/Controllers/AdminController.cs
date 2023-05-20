@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using Univers.BLL.Services;
+using Univers.DAL.Entities;
 using Univers.Models.Models;
 
 namespace Univers.PL.Controllers
@@ -92,6 +94,42 @@ namespace Univers.PL.Controllers
             _userService.DeleteUser(chosenUserId);
             string msg = $"Успешно изтриване на {chosenUserName}!";
             return RedirectToAction("Users", new { userId = userId, message = msg }); 
+        }
+
+        public ActionResult AddUser(string userId)
+        {
+            var user = new AdminUsers()
+            {
+                UserId = userId, 
+                NewUser = new EditUserModel(),
+            };
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Add(AdminUsers user)
+        {
+            ValidationResult usernameValidationResult = _userService.ValidateUsername(user.NewUser.Username);
+            ValidationResult emailValidationResult = _userService.ValidateEmail(user.NewUser.Email);
+            if (usernameValidationResult != ValidationResult.Success)
+            {
+                ModelState.AddModelError("NewUser.Username", usernameValidationResult.ErrorMessage); 
+            }
+            if (emailValidationResult != ValidationResult.Success)
+            {
+                ModelState.AddModelError("NewUser.Email", emailValidationResult.ErrorMessage);
+            }
+            if (ModelState.IsValid)
+            {
+                _userService.AddNewUserFromAdminPanel(user.NewUser);
+                string msg = $"Успешно добавяне на {user.NewUser.FirstName} {user.NewUser.LastName}!";
+                return RedirectToAction("Users", new { userId = user.UserId, message = msg });
+            }
+            else
+            {
+                return View("AddUser", user);
+            }
         }
     }
 }

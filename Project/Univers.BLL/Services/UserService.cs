@@ -258,5 +258,12 @@ namespace Univers.BLL.Services
         {
             _userRepository.DeleteUser(userId);
         }
+
+        public void AddNewUserFromAdminPanel(EditUserModel user)
+        {
+            var passwordSalt = _utilities.GenerateSalt();
+            user.Password = _utilities.HashPassword(user.Password, passwordSalt);
+            _userRepository.AddUser(user, passwordSalt);
+        }
     }
 }

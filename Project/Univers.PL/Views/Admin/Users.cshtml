@@ -18,26 +18,7 @@
 }
  
 @if (ViewBag.Message != null)
-{
-    @*<div class="modal fade position-absolute" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Съобщение</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @ViewBag.Message
-                    @{
-                        ViewBag.Message = null;
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
+{ 
     <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100 position-absolute" style="margin-top: 8%;">
     <div class="toast align-items-center text-bg-primary border-0" id="myToast" role="alert" aria-live="assertive" aria-atomic="true" style="width: 500px">
         <div class="d-flex">
@@ -61,8 +42,8 @@
             @Html.ActionLink("Студенти", "Students", "Admin", new { userId = Model.UserId}, new { @class = "col fs-3 btn btn-lg rounded-5" })
         </div>
     </div>
-    <br />
-    <button type="button" class="btn btn-success" style="margin-left: 86%;">Добави потребител</button>
+    <br /> 
+    @Html.ActionLink("Добави потребител", "AddUser", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 86%;" })
     <br />
     <br />
     <div class="overflow-y-scroll" style="height: 70%; Width: 94%; position: absolute;">
@@ -78,7 +59,7 @@
         {   
             <table class="table"> 
                 <tbody>
-                <tr class="table-danger">
+                <tr class="table-primary">
                     <th scope="row">@counter @{
                             counter++;
                         }</th>
@@ -125,6 +106,9 @@
 
 <script>
     const myModalAlternative = new bootstrap.Toast('#myToast')
-    console.log(myModalAlternative)
-    myModalAlternative.show()
+ 
+    if (myModalAlternative != null)
+    {
+        myModalAlternative.show()
+    } 
 </script>
