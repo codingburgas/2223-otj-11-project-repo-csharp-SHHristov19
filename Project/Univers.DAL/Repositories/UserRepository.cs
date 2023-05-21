@@ -166,7 +166,7 @@ namespace Univers.DAL.Repositories
 
             User additionalUser = new User()
             {
-                Id = Guid.NewGuid().ToString("D"),
+                Id = user.Id,
                 Username = user.Username,
                 Password = user.Password,
                 PasswordSalt = passwordSalt,

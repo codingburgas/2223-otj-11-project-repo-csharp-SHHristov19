@@ -60,5 +60,7 @@ namespace Univers.Models.Models
         [Required(ErrorMessage = "Необходимо е да въведете пол.")]
         [Display(Name = "Пол")]
         public string? Gender { get; set; } = null!;
+
+        public StaffModel? Staff { get; set; } = null!;
     }
 }

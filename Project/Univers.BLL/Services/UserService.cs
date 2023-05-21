@@ -264,6 +264,6 @@ namespace Univers.BLL.Services
             var passwordSalt = _utilities.GenerateSalt();
             user.Password = _utilities.HashPassword(user.Password, passwordSalt);
             _userRepository.AddUser(user, passwordSalt);
-        } 
+        }  
     }
 }

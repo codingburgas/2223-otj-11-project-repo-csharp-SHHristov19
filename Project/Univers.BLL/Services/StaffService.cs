@@ -50,5 +50,15 @@ namespace Univers.BLL.Services
 
             return staff.FirstOrDefault(x => x.UserId == userId);
         }
+
+        public void AddStaffByUserId(string userId, string newRole)
+        {
+            _staffRepository.AddStaffByUserId(userId, newRole);
+        }
+
+        public void UpdateStaffRoleByUserId(string userId, string newRole)
+        {
+            _staffRepository.UpdateStaffRoleByUserId(userId, newRole);
+        }
     }
 }

@@ -27,6 +27,7 @@
                     @Html.HiddenFor(model => model.UserId)
                     @Html.HiddenFor(model => model.EditUser.Id) 
                     @Html.HiddenFor(model => model.EditUser.Gender) 
+                    @Html.HiddenFor(model => model.EditUser.Staff.Id) 
                     
                     <div class="form-floating"> 
                         @Html.TextBoxFor(model => model.EditUser.FirstName, new { @class = "form-control", @id="floatingInput"})
@@ -80,6 +81,21 @@
                         @Html.TextBoxFor(model => model.EditUser.PhoneNumber, new { @class = "form-control", @id="floatingInput"})
                         @Html.LabelFor(model => model.EditUser.PhoneNumber)
                         @Html.ValidationMessageFor(model => model.EditUser.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>  
+
+                    <br />
+                    
+                    <div class="form-floating">
+                        
+                        @Html.DropDownListFor(model => model.EditUser.Staff.Role, new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Преподавател",  },
+                            new SelectListItem { Text = "Тютор", },
+                            new SelectListItem { Text = "Декан", },
+                            new SelectListItem { Text = "Ректор", },
+                            new SelectListItem { Text = "Администратор", },
+                        }, new {@class = "form-control"})
+                        @Html.Label("Роля")
                     </div>  
                 </div>
 

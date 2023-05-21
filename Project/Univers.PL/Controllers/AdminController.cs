@@ -15,6 +15,7 @@ namespace Univers.PL.Controllers
         private readonly UniversityService _universityService;
         private readonly FacultyService _facultyService;
         private readonly StudentCourseService _studentCourseService;
+        private readonly StaffService _staffService;
 
         public AdminController()
         {
@@ -24,6 +25,7 @@ namespace Univers.PL.Controllers
             _universityService = new UniversityService();
             _facultyService = new FacultyService();
             _studentCourseService = new StudentCourseService();
+            _staffService = new StaffService();
         }
 
         public ActionResult Users(string userId, string? message = null)
@@ -78,7 +80,10 @@ namespace Univers.PL.Controllers
             user.EditUser.PhoneNumber = user.ChosenUser.PhoneNumber;
             user.EditUser.Address = user.ChosenUser.Address;
             user.EditUser.Gender = user.ChosenUser.Gender;
-            user.EditUser.Email = user.ChosenUser.Email; 
+            user.EditUser.Email = user.ChosenUser.Email;
+
+            var staffModel =  _staffService.GetStaffByUserId(user.ChosenUser.Id);
+            user.EditUser.Staff = staffModel != null ? staffModel : new StaffModel();
 
             return View(user);
         }
@@ -105,6 +110,14 @@ namespace Univers.PL.Controllers
             }
             if (ModelState.IsValid)
             {
+                if(user.EditUser.Staff.Id == null)
+                {
+                    _staffService.AddStaffByUserId(user.EditUser.Id, user.EditUser.Staff.Role);
+                }
+                else
+                {
+                    _staffService.UpdateStaffRoleByUserId(user.EditUser.Id, user.EditUser.Staff.Role);
+                }
                 _userService.UpdateUser(user.EditUser);
                 string msg = $"Успешно редактиране на {user.EditUser.FirstName} {user.EditUser.LastName}!";
                 return RedirectToAction("Users", new { userId = user.UserId, message = msg});
@@ -131,6 +144,7 @@ namespace Univers.PL.Controllers
                 AddUser = new AddUserModel(),
             };
 
+            user.AddUser.Staff = new();
             return View(user);
         }
 
@@ -148,8 +162,10 @@ namespace Univers.PL.Controllers
                 ModelState.AddModelError("AddUser.Email", emailValidationResult.ErrorMessage);
             }
             if (ModelState.IsValid)
-            {
+            { 
+                user.AddUser.Id = Guid.NewGuid().ToString("D"); 
                 _userService.AddNewUserFromAdminPanel(user.AddUser);
+                _staffService.AddStaffByUserId(user.AddUser.Id, user.AddUser.Staff.Role);
                 string msg = $"Успешно добавяне на {user.AddUser.FirstName} {user.AddUser.LastName}!";
                 return RedirectToAction("Users", new { userId = user.UserId, message = msg });
             }

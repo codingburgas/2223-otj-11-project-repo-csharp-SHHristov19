@@ -98,14 +98,31 @@
                     </div>
                     
                     <br /> 
-                    
-                    @Html.LabelFor(model => model.AddUser.Gender)
-                    @Html.DropDownListFor(model => model.AddUser.Gender, new List<SelectListItem>
-                    { 
-                        new SelectListItem { Text = "Мъж"},
-                        new SelectListItem { Text = "Жена"} 
-                    }, new {@class = ""})  
-                    @Html.ValidationMessageFor(model => model.AddUser.Gender, "", new { @class = "text-danger" })
+
+                    <div class="form-floating">
+                       
+                        @Html.DropDownListFor(model => model.AddUser.Gender, new List<SelectListItem>
+                        { 
+                            new SelectListItem { Text = "Мъж"},
+                            new SelectListItem { Text = "Жена"}
+                        }, new {@class = "form-control"})
+                        @Html.LabelFor(model => model.AddUser.Gender)
+                    </div>
+
+                    <br />
+
+                    <div class="form-floating">
+                        @Html.DropDownListFor(model => model.AddUser.Staff.Role, new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Преподавател",  },
+                            new SelectListItem { Text = "Тютор", },
+                            new SelectListItem { Text = "Декан", },
+                            new SelectListItem { Text = "Ректор", },
+                            new SelectListItem { Text = "Администратор", },
+                        }, new {@class = "form-control"})
+                        @Html.Label("Роля")
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
