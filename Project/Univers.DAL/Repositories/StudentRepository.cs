@@ -22,7 +22,10 @@ namespace Univers.DAL.Repositories
         {
             using Context.Context context = new();
 
-            return context.Students.Where(x => x.User.IsActive == true).ToList();
+            return (from student in context.Students
+                   join user in context.Users on student.UserId equals user.Id
+                   where user.IsActive == true
+                   select student).ToList();
         }
 
         /// <summary>

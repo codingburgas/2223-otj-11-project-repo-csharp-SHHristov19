@@ -76,7 +76,7 @@
                                 @Html.ActionLink("Редактирай", "EditStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-primary" })
                             </td>
                             <td class="col-1">
-                                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
+                                @using (Html.BeginForm("DeleteStudent", "Admin", FormMethod.Post))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
                                     @Html.Hidden("chosenUserId", user.Id)

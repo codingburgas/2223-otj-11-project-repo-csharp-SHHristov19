@@ -115,7 +115,7 @@ namespace Univers.DAL.Repositories
             return (from u in context.Users
                     join s in context.Students on u.Id equals s.UserId into studentGroup
                     from sg in studentGroup.DefaultIfEmpty()
-                    where sg != null
+                    where sg != null && u.IsActive == true
                     orderby u.FirstName, u.MiddleName, u.LastName
                     select u).ToList();
         }

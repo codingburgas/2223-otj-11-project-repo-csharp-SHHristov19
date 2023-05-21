@@ -237,5 +237,13 @@ namespace Univers.PL.Controllers
                 return View("EditStudent", user);
             }
         }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(string userId, string chosenUserId, string chosenUserName)
+        {
+            _userService.DeleteUser(chosenUserId);
+            string msg = $"Успешно изтриване на {chosenUserName}!";
+            return RedirectToAction("Students", new { userId, message = msg });
+        }
     }
 }
