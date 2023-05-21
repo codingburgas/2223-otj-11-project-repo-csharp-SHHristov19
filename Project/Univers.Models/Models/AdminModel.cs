@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Univers.Models.Models
 {
-    public class AdminUsers
+    public class AdminModel
     {
         public string? UserId { get; set; }
 
@@ -23,5 +23,11 @@ namespace Univers.Models.Models
         public EditStudentModel? EditStudent { get; set; }
 
         public AddStudentModel? AddStudent { get; set; }
+
+        public IEnumerable<UniversityModel>? Universities { get; set;}
+
+        public IEnumerable<FacultyModel>? Faculties { get; set;}
+
+        public IEnumerable<SpecialityModel>? Specialities { get; set;}
     }
 }

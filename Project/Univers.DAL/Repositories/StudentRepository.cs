@@ -54,6 +54,32 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Add student in Students table
+        /// </summary>
+        /// <param name="student"></param>
+        public void AddData(AddStudentModel student)
+        {
+            using Context.Context context = new();
+
+            Student additionalStudent = new Student()
+            {
+                Id = student.Id,
+                UserId = student.User.Id,
+                Identity = student.Identity,
+                Citizenship = student.Citizenship,
+                CountryOfBirth = student.CountryOfBirth,
+                AreaOfBirth = student.AreaOfBirth,
+                CityOfBirth = student.CityOfBirth,
+                MunicipalityOfBirth = student.MunicipalityOfBirth,
+                DateOfBirth = DateTime.ParseExact(student.DateOfBirth, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                FormOfEducation = student.FormOfEducation
+            };
+
+            context.Students.Add(additionalStudent);
+            context.SaveChanges();
+        }
+
         public void AddSpecialityId(string studentId, string specialityId)
         {
             using Context.Context context = new();

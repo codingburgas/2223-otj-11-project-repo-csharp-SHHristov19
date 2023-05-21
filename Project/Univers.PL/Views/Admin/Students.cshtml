@@ -1,4 +1,4 @@
-﻿@model Univers.Models.Models.AdminUsers
+﻿@model Univers.Models.Models.AdminModel
 
 @{
     Layout = "../_AdminMenu.cshtml";
@@ -45,7 +45,7 @@
         </div>
     </div>
     <br /> 
-    @Html.ActionLink("Добави студент", "AddStudent", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 86%;" })
+    @Html.ActionLink("Добави студент", "AddStudent", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 88%;" })
     <br />
     <br />
     <div class="overflow-y-scroll" style="height: 70%; Width: 94%; position: absolute;">
@@ -54,7 +54,7 @@
         @if (Model.Users == null)
         {
             <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
-                Все още няма поправителни изпити!
+                Все още няма намерени студенти!
             </label>
             <br />
         }
@@ -62,26 +62,26 @@
         {
             <table class="table"> 
                 <tbody>
-                    @foreach (var user in Model.Users)
+                    @foreach (var student in Model.Users)
                     { 
                         <tr>
                             <th scope="row">@counter @{
                                     counter++;
                                 }</th>
-                            <td>@user.FirstName @user.MiddleName @user.LastName</td>
+                            <td>@student.FirstName @student.MiddleName @student.LastName</td>
                             <td class="col-1">
-                                @Html.ActionLink("Информация", "SeeInfoStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-secondary" })
+                                @Html.ActionLink("Информация", "SeeInfoStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{student.Id}" }, new { @class = "btn btn-secondary" })
                             </td>
                             <td class="col-1">
-                                @Html.ActionLink("Редактирай", "EditStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Редактирай", "EditStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{student.Id}" }, new { @class = "btn btn-primary" })
                             </td>
                             <td class="col-1">
                                 @using (Html.BeginForm("DeleteStudent", "Admin", FormMethod.Post))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
-                                    @Html.Hidden("chosenUserId", user.Id)
-                                    @Html.Hidden("chosenUserName", $"{user.FirstName} {user.MiddleName} {user.LastName}")
-                                    <button class="btn btn-danger" type="submit" onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {@user.FirstName} {@user.MiddleName} {@user.LastName}');">Изтрий</button>
+                                    @Html.Hidden("chosenUserId", student.Id)
+                                    @Html.Hidden("chosenUserName", $"{student.FirstName} {student.MiddleName} {student.LastName}")
+                                    <button class="btn btn-danger" type="submit" onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {@student.FirstName} {@student.MiddleName} {@student.LastName}');">Изтрий</button>
                                 }
                             </td>
                         </tr>

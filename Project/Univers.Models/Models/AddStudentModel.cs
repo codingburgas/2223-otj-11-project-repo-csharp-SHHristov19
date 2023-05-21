@@ -61,5 +61,14 @@ namespace Univers.Models.Models
         public string? NameOfUniversity { get; set; } = null!;
 
         public AddUserModel? User { get; set; } = null!;
+
+        [Display(Name = "Изберете университет")]
+        public UniversityModel? University { get; set; } = null!;
+        
+        [Display(Name = "Изберете факултет")]
+        public FacultyModel? Faculty { get; set; } = null!;
+
+        [Display(Name = "Изберете специалност")]
+        public SpecialityModel? Speciality { get; set; } = null!;
     }
 }

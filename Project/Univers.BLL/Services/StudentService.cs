@@ -8,6 +8,7 @@ using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Univers.BLL.Services
 {
@@ -62,6 +63,11 @@ namespace Univers.BLL.Services
             _studentRepository.AddData(student);
         }
 
+        public void AddStudent(AddStudentModel student)
+        {
+            _studentRepository.AddData(student);
+        }
+
         public void AddSpecialityId(string studentId, string specialityId)
         {
             _studentRepository.AddSpecialityId(studentId, specialityId);
@@ -95,7 +101,7 @@ namespace Univers.BLL.Services
         {
             int facultyNum = GetTheMaxNumOfTheFacultyNumbersOfAllStudents() + 1;
 
-            string facultyNumber = $"{facultyCode}-{specialityCode.Substring(0, specialityCode.Length - 1)}-{specialityCode.Substring(specialityCode.Length - 1, 1)}-{facultyNum:D4}";
+            string facultyNumber = $"{facultyCode}-{specialityCode.Substring(0, specialityCode.Length - 1)}-{specialityCode[specialityCode.Length - 1]}-{facultyNum:D4}";
 
             _studentRepository.AddFacultyNumber(studentId, facultyNumber);
         }

@@ -1,0 +1,227 @@
+﻿@model Univers.Models.Models.AdminModel
+
+@{
+    Layout = "../_AdminMenu.cshtml";
+    TempData["Id"] = Model.UserId;
+    TempData["Title"] = "Потребители";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    body {
+        background: #5349E3;
+    }
+</style>
+
+@using (Html.BeginForm("AddStudent", "Admin", FormMethod.Post))
+{
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавяне на студент</h5>
+                </div>
+                <div class="modal-body">
+
+                    @Html.HiddenFor(model => model.ChosenUser)
+                    @Html.HiddenFor(model => model.UserId)   
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.FirstName, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.FirstName, new { @class="form-label" })
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.FirstName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.MiddleName, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.MiddleName)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.MiddleName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.LastName, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.LastName)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.LastName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.Username, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.Username)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class ="row">
+                        <div class="form-floating col">
+                            @Html.PasswordFor(model => model.AddStudent.User.Password, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.Password)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.Password, "", new { @class = "text-danger" })
+                        </div> 
+
+                        <div class="form-floating col">
+                            @Html.PasswordFor(model => model.AddStudent.User.PasswordConfirmation, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.PasswordConfirmation)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.PasswordConfirmation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.Email, new { @class = "form-control", placeholder="name@example.com"})
+                            @Html.LabelFor(model => model.AddStudent.User.Email)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.Address, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.Address)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.User.PhoneNumber, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.User.PhoneNumber)
+                            @Html.ValidationMessageFor(model => model.AddStudent.User.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.Identity, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.Identity)
+                            @Html.ValidationMessageFor(model => model.AddStudent.Identity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.Citizenship, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.Citizenship)
+                            @Html.ValidationMessageFor(model => model.AddStudent.Citizenship, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.CountryOfBirth, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.CountryOfBirth)
+                            @Html.ValidationMessageFor(model => model.AddStudent.CountryOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.MunicipalityOfBirth, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.MunicipalityOfBirth)
+                            @Html.ValidationMessageFor(model => model.AddStudent.MunicipalityOfBirth, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.AreaOfBirth, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.AreaOfBirth)
+                            @Html.ValidationMessageFor(model => model.AddStudent.AreaOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.CityOfBirth, new { @class = "form-control", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.CityOfBirth)
+                            @Html.ValidationMessageFor(model => model.AddStudent.CityOfBirth, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.DateOfBirth, new { @class = "form-control", placeholder=" ", type = "date"})
+                            @Html.LabelFor(model => model.AddStudent.DateOfBirth)
+                            @Html.ValidationMessageFor(model => model.AddStudent.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.DateOfStarting, new { @class = "form-control", type = "date"})
+                            @Html.LabelFor(model => model.AddStudent.DateOfStarting)
+                            @Html.ValidationMessageFor(model => model.AddStudent.DateOfStarting, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col">
+                            @Html.TextBoxFor(model => model.AddStudent.DateOfGraduate, new { @class = "form-control", type = "date", placeholder=" "})
+                            @Html.LabelFor(model => model.AddStudent.DateOfGraduate)
+                            @Html.ValidationMessageFor(model => model.AddStudent.DateOfGraduate, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="form-floating col"> 
+                            @Html.DropDownListFor(model => model.AddStudent.FormOfEducation, new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Редовно обучение", },
+                                new SelectListItem { Text = "Задочно обучение", }
+                            }, new {@class = "form-control"})
+                            @Html.LabelFor(model => model.AddStudent.FormOfEducation)
+                            @Html.ValidationMessageFor(model => model.AddStudent.FormOfEducation, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating col"> 
+                            @Html.DropDownListFor(model => model.AddStudent.Degree, new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Бакалавърска степен", },
+                                new SelectListItem { Text = "Магистърска степен", },
+                                new SelectListItem { Text = "Докторантска степен", }
+                            }, new {@class = "form-control"})
+                            @Html.LabelFor(model => model.AddStudent.Degree)
+                            @Html.ValidationMessageFor(model => model.AddStudent.Degree, "", new { @class = "text-danger" })
+                        </div> 
+                    </div>
+
+                    <br />
+
+                    <div class="form-floating col-6">
+
+                        @Html.DropDownListFor(model => model.AddStudent.User.Gender, new List<SelectListItem>
+                        { 
+                            new SelectListItem { Text = "Мъж"},
+                            new SelectListItem { Text = "Жена"}
+                        }, new {@class = "form-control"})
+                        @Html.LabelFor(model => model.AddStudent.User.Gender)
+                        @Html.ValidationMessageFor(model => model.AddStudent.User.Gender, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    @Html.ActionLink("Назад", "Students", "Admin", new { userId = $"{Model.UserId}" }, new { @class = "btn btn-secondary" })
+                    <button class="btn btn-primary" type="submit">Напред</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    const myModalAlternative = new bootstrap.Modal('#exampleModal')
+    myModalAlternative.show()
+
+</script>
