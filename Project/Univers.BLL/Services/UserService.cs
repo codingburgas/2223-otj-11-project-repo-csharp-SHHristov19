@@ -264,6 +264,11 @@ namespace Univers.BLL.Services
             var passwordSalt = _utilities.GenerateSalt();
             user.Password = _utilities.HashPassword(user.Password, passwordSalt);
             _userRepository.AddUser(user, passwordSalt);
-        }  
+        }
+
+        public UserModel? GetUserByStaffId(string? userId)
+        {
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == userId);
+        }
     }
 }

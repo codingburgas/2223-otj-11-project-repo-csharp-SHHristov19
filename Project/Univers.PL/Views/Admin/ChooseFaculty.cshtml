@@ -29,7 +29,7 @@
                         @Html.HiddenFor(model => model.UserId)
                         @Html.HiddenFor(model => model.AddStudent.University.Id)
 
-                        @Html.DropDownListFor(model => model.AddStudent.Faculty.Id, new SelectList(Model.Faculties, "Id", "Name"), new {@class = "form-control"})
+                        @Html.DropDownListFor(model => model.AddStudent.Faculty.Id, new SelectList(Model.Faculties, "Id", "Name"), new {@class = "form-select"})
                         @Html.LabelFor(model => model.AddStudent.Faculty)
                     </div>
 

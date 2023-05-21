@@ -27,7 +27,7 @@
 
                      <div class="form-floating"> 
                          @Html.HiddenFor(model => model.UserId)
-                         @Html.DropDownListFor(model => model.AddStudent.University.Id, new SelectList(Model.Universities, "Id", "Name"), new {@class = "form-control"})
+                         @Html.DropDownListFor(model => model.AddStudent.University.Id, new SelectList(Model.Universities, "Id", "Name"), new {@class = "form-select"})
                          @Html.LabelFor(model => model.AddStudent.University)
                     </div>
 

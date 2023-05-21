@@ -59,6 +59,6 @@ namespace Univers.BLL.Services
         public void UpdateStaffRoleByUserId(string userId, string newRole)
         {
             _staffRepository.UpdateStaffRoleByUserId(userId, newRole);
-        }
+        } 
     }
 }

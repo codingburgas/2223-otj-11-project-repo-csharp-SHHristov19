@@ -16,4 +16,6 @@ public class UniversityModel
     public int? Capacity { get; set; } = null!;
 
     public StaffModel? Rector { get; set; } = null!;
+
+    public string RectorName { get; set; } = null!;
 }

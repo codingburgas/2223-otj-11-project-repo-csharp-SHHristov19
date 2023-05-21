@@ -62,5 +62,10 @@ namespace Univers.BLL.Services
         {
             return _universityRepository.GetUniversityAddressByStudentId(studentId);
         }
+
+        public string? GetRectorByUniversityId(string universityId)
+        {
+            return _universityRepository.GetRectorNameByUniversityId(universityId);
+        }
     }
 }

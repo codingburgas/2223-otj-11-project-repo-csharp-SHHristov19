@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,19 @@ namespace Univers.DAL.Repositories
                     join un in context.Universities on f.UniversityId equals un.Id
                     where s.Id == studentId
                     select un.Address).FirstOrDefault();
+        }
+
+        public string? GetRectorNameByUniversityId(string universityId)
+        {
+            using Context.Context context = new();
+
+            return (from u in context.Universities
+                    join sf in context.Staff on u.RectorId equals sf.Id
+                   join us in context.Users on sf.UserId equals us.Id
+                   select new
+                   {
+                       Name = $"{us.FirstName} {us.MiddleName} {us.LastName}"
+                   }).First().Name;
         }
     }
 }

@@ -30,13 +30,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.FirstName, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.FirstName, new { @class="form-label" })
+                            @Html.LabelFor(model => model.AddStudent.User.FirstName, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.FirstName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.MiddleName, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.MiddleName)
+                            @Html.LabelFor(model => model.AddStudent.User.MiddleName, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.MiddleName, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -46,13 +46,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.LastName, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.LastName)
+                            @Html.LabelFor(model => model.AddStudent.User.LastName, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.LastName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.Username, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.Username)
+                            @Html.LabelFor(model => model.AddStudent.User.Username, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.Username, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                     <div class ="row">
                         <div class="form-floating col">
                             @Html.PasswordFor(model => model.AddStudent.User.Password, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.Password)
+                            @Html.LabelFor(model => model.AddStudent.User.Password, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.Password, "", new { @class = "text-danger" })
                         </div> 
 
                         <div class="form-floating col">
                             @Html.PasswordFor(model => model.AddStudent.User.PasswordConfirmation, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.PasswordConfirmation)
+                            @Html.LabelFor(model => model.AddStudent.User.PasswordConfirmation, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.PasswordConfirmation, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -78,13 +78,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.Email, new { @class = "form-control", placeholder="name@example.com"})
-                            @Html.LabelFor(model => model.AddStudent.User.Email)
+                            @Html.LabelFor(model => model.AddStudent.User.Email, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.Email, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.Address, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.Address)
+                            @Html.LabelFor(model => model.AddStudent.User.Address, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.Address, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -94,13 +94,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.User.PhoneNumber, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.User.PhoneNumber)
+                            @Html.LabelFor(model => model.AddStudent.User.PhoneNumber, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.User.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.Identity, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.Identity)
+                            @Html.LabelFor(model => model.AddStudent.Identity, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.Identity, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -110,13 +110,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.Citizenship, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.Citizenship)
+                            @Html.LabelFor(model => model.AddStudent.Citizenship, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.Citizenship, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.CountryOfBirth, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.CountryOfBirth)
+                            @Html.LabelFor(model => model.AddStudent.CountryOfBirth, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.CountryOfBirth, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -126,13 +126,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.MunicipalityOfBirth, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.MunicipalityOfBirth)
+                            @Html.LabelFor(model => model.AddStudent.MunicipalityOfBirth, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.MunicipalityOfBirth, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.AreaOfBirth, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.AreaOfBirth)
+                            @Html.LabelFor(model => model.AddStudent.AreaOfBirth, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.AreaOfBirth, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -142,13 +142,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.CityOfBirth, new { @class = "form-control", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.CityOfBirth)
+                            @Html.LabelFor(model => model.AddStudent.CityOfBirth, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.CityOfBirth, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.DateOfBirth, new { @class = "form-control", placeholder=" ", type = "date"})
-                            @Html.LabelFor(model => model.AddStudent.DateOfBirth)
+                            @Html.LabelFor(model => model.AddStudent.DateOfBirth, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.DateOfBirth, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -158,13 +158,13 @@
                     <div class="row">
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.DateOfStarting, new { @class = "form-control", type = "date"})
-                            @Html.LabelFor(model => model.AddStudent.DateOfStarting)
+                            @Html.LabelFor(model => model.AddStudent.DateOfStarting, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.DateOfStarting, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-floating col">
                             @Html.TextBoxFor(model => model.AddStudent.DateOfGraduate, new { @class = "form-control", type = "date", placeholder=" "})
-                            @Html.LabelFor(model => model.AddStudent.DateOfGraduate)
+                            @Html.LabelFor(model => model.AddStudent.DateOfGraduate, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.DateOfGraduate, "", new { @class = "text-danger" })
                         </div>
 
@@ -178,8 +178,8 @@
                             {
                                 new SelectListItem { Text = "Редовно обучение", },
                                 new SelectListItem { Text = "Задочно обучение", }
-                            }, new {@class = "form-control"})
-                            @Html.LabelFor(model => model.AddStudent.FormOfEducation)
+                        }, new {@class = "form-select"})
+                            @Html.LabelFor(model => model.AddStudent.FormOfEducation, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.FormOfEducation, "", new { @class = "text-danger" })
                         </div>
 
@@ -189,8 +189,8 @@
                                 new SelectListItem { Text = "Бакалавърска степен", },
                                 new SelectListItem { Text = "Магистърска степен", },
                                 new SelectListItem { Text = "Докторантска степен", }
-                            }, new {@class = "form-control"})
-                            @Html.LabelFor(model => model.AddStudent.Degree)
+                        }, new {@class = "form-select"})
+                            @Html.LabelFor(model => model.AddStudent.Degree, new { style = "margin-left: 3%;"})
                             @Html.ValidationMessageFor(model => model.AddStudent.Degree, "", new { @class = "text-danger" })
                         </div> 
                     </div>
@@ -203,7 +203,7 @@
                         { 
                             new SelectListItem { Text = "Мъж"},
                             new SelectListItem { Text = "Жена"}
-                        }, new {@class = "form-control"})
+                        }, new {@class = "form-select"})
                         @Html.LabelFor(model => model.AddStudent.User.Gender)
                         @Html.ValidationMessageFor(model => model.AddStudent.User.Gender, "", new { @class = "text-danger" })
                     </div>

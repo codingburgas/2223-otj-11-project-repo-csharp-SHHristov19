@@ -88,12 +88,12 @@
                                 @Html.ActionLink("Редактирай", "EditUser", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{@user.Id}" }, new { @class = "btn btn-primary" })
                             </td>
                             <td class="col-1">
-                                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
-                                {  
+                                    @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {@user.FirstName} {@user.MiddleName} {@user.LastName}');" }))
+                                    {  
                                     @Html.Hidden("userId", Model.UserId)
                                     @Html.Hidden("chosenUserId", user.Id)
                                     @Html.Hidden("chosenUserName", $"{user.FirstName} {user.MiddleName} {user.LastName}")
-                                    <button class="btn btn-danger" type="submit" onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {@user.FirstName} {@user.MiddleName} {@user.LastName}');">Изтрий</button>
+                                    <button class="btn btn-danger" type="submit">Изтрий</button>
                                 }
                             </td> 
                         </tr> 

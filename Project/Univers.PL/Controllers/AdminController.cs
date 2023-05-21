@@ -369,5 +369,30 @@ namespace Univers.PL.Controllers
             string msg = $"Успешно добавяне на студент!";
             return RedirectToAction("Students", new { userId = student.UserId, message = msg });
         }   
+
+        public ActionResult Universities(string userId)
+        {
+            var university = new AdminModel()
+            {
+                UserId = userId,
+                Universities = _universityService.TransferDataFromEntityToModel(),
+            };
+
+            return View(university);
+        }
+
+        public ActionResult SeeInfoUniversity(string userId, string chosenUniversityId)
+        {
+            var user = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+            };
+
+             
+            user.ChosenUniversity.RectorName = _universityService.GetRectorByUniversityId(chosenUniversityId);
+
+            return View(user);
+        }
     }
 } 

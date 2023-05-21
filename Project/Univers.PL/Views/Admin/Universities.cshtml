@@ -3,10 +3,10 @@
 @{
     Layout = "../_AdminMenu.cshtml";
     TempData["Id"] = Model.UserId;
-    TempData["Title"] = "Потребители";
+    TempData["Title"] = "Университети";
 }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
     body {
@@ -37,57 +37,53 @@
 
 
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
-
-    <div class="container text-center">
-        <div class="row">
-            @Html.ActionLink("Потребители", "Users", "Admin", new { userId = Model.UserId}, new { @class = "col fs-3 btn btn-lg rounded-5" })
-            @Html.ActionLink("Студенти", "Students", "Admin", new { userId = Model.UserId}, new { @class = "col fs-3 btn active btn-lg rounded-5" })
-        </div>
-    </div>
-    <br /> 
-    @Html.ActionLink("Добави студент", "AddStudent", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 88%;" })
+     
+    <br />
+    @Html.ActionLink("Добави университет", "AddUniversity", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success", style = "margin-left: 85%;" })
     <br />
     <br />
     <div class="overflow-y-scroll" style="height: 70%; Width: 94%; position: absolute;">
         <br />
         <br />
-        @if (Model.Users == null)
+        @if (Model.Universities == null)
         {
             <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
-                Все още няма намерени студенти!
+                Все още няма намерени университети!
             </label>
             <br />
         }
         else
         {
-            <table class="table"> 
+            <table class="table">
                 <tbody>
-                    @foreach (var student in Model.Users)
-                    { 
+                    @foreach (var university in Model.Universities)
+                    {
                         <tr>
-                            <th scope="row">@counter @{
+                            <th scope="row">
+                                @counter @{
                                     counter++;
-                                }</th>
-                            <td>@student.FirstName @student.MiddleName @student.LastName</td>
+                                }
+                            </th>
+                            <td>@university.Name</td>
                             <td class="col-1">
-                                @Html.ActionLink("Информация", "SeeInfoStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{student.Id}" }, new { @class = "btn btn-secondary" })
+                                @Html.ActionLink("Информация", "SeeInfoUniversity", "Admin", new { userId = $"{Model.UserId}", chosenUniversityId = $"{university.Id}" }, new { @class = "btn btn-secondary" })
                             </td>
                             <td class="col-1">
-                                @Html.ActionLink("Редактирай", "EditStudent", "Admin", new { userId = $"{Model.UserId}", chosenUserId = $"{student.Id}" }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Редактирай", "EditUniversity", "Admin", new { userId = $"{Model.UserId}", chosenUniversityId = $"{university.Id}" }, new { @class = "btn btn-primary" })
                             </td>
                             <td class="col-1">
-                                @using (Html.BeginForm("DeleteStudent", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {@student.FirstName} {@student.MiddleName} {@student.LastName}');" }))
+                                @using (Html.BeginForm("DeleteUniversity", "Admin", FormMethod.Post, new { onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {university.Name}');" } ))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
-                                    @Html.Hidden("chosenUserId", student.Id)
-                                    @Html.Hidden("chosenUserName", $"{student.FirstName} {student.MiddleName} {student.LastName}")
+                                    @Html.Hidden("chosenUserId", university.Id)
+                                    @Html.Hidden("chosenUserName", $"{university.Name}")
                                     <button class="btn btn-danger" type="submit">Изтрий</button>
                                 }
                             </td>
                         </tr>
                     }
                 </tbody>
-            </table> 
+            </table>
         }
     </div>
 </div>
