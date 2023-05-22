@@ -59,6 +59,11 @@ namespace Univers.BLL.Services
         public void UpdateStaffRoleByUserId(string userId, string newRole)
         {
             _staffRepository.UpdateStaffRoleByUserId(userId, newRole);
-        } 
+        }
+
+        public StaffModel? GetStaffById(string? staffId)
+        {
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == staffId);
+        }
     }
 }

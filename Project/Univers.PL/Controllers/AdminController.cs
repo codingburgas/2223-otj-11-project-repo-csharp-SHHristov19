@@ -409,5 +409,38 @@ namespace Univers.PL.Controllers
 
             return View(faculties);
         }
+
+        public ActionResult SeeInfoFaculty(string userId, string chosenUniversityId, string chosenFacultyId)
+        {
+            var faculty = new AdminModel()
+            {
+                UserId = userId,
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+            };
+
+            var dean = _staffService.GetStaffById(faculty.ChosenFaculty.DeanId);
+            faculty.ChosenFaculty.Dean = dean != null ? _userService.GetUserByStaffId(dean.UserId) : new UserModel();
+
+            var viceDean = _staffService.GetStaffById(faculty.ChosenFaculty.ViceDeanId);
+            faculty.ChosenFaculty.ViceDean = viceDean != null ? _userService.GetUserByStaffId(viceDean.UserId) : new UserModel(); 
+
+            return View(faculty);
+        }
+
+        public ActionResult Specialities(string userId, string chosenUniversityId, string chosenFacultyId)
+        {
+            var faculties = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+                Specialities = _specialityService.GetSpecialitiesByFacultyId(chosenFacultyId, "Бакалавърска степен"), 
+            };
+
+            faculties.Specialities.AddRange(_specialityService.GetSpecialitiesByFacultyId(chosenFacultyId, "Магистърска степен"));
+
+            return View(faculties);
+        }
     }
 } 

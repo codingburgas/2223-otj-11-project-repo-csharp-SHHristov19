@@ -38,21 +38,22 @@
 
 <div style="max-width: 90%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
 
-    <h2 class="text-center">@Model.ChosenUniversity.Name</h2>
-    <br />
+    <h2 class="text-center">@Model.ChosenUniversity.Name</h2><br />
+    <h4 class="text-center" style="color: var(--bs-primary)">@Model.ChosenFaculty.Name</h4>
+    <br /> 
 
     <div class="clearfix">
-        @Html.ActionLink("Назад", "Universities", "Admin", new { userId = $"{Model.UserId}", chosenUniversityId = $"{Model.ChosenUniversity.Id}" }, new { @class = "btn btn-primary float-start" })
-        @Html.ActionLink("Добави факултет", "AddFaculty", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success float-end" })
+        @Html.ActionLink("Назад", "Faculties", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenUniversityName = Model.ChosenUniversity.Name}, new { @class = "btn btn-primary float-start" })
+        @Html.ActionLink("Добави специалност", "AddFaculty", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success float-end"})
     </div>
-    <br />
-    <br />
 
-    <div class="overflow-y-scroll" style="height: 70%; Width: 94%; position: absolute;"> 
-        @if (Model.Faculties == null)
+    <br />
+    <br />
+    <div class="overflow-y-scroll" style="height: 62%; Width: 94%; position: absolute;"> 
+        @if (Model.Specialities == null)
         {
             <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
-                Все още няма намерени факултети!
+                Все още няма намерени специалности!
             </label>
             <br />
         }
@@ -60,7 +61,7 @@
         {
             <table class="table">
                 <tbody>
-                    @foreach (var faculty in Model.Faculties)
+                    @foreach (var speciality in Model.Specialities)
                     {
                         <tr>
                             <th scope="row">
@@ -68,32 +69,33 @@
                                     counter++;
                                 }
                             </th>
-                            <td>@faculty.Name</td>
+                            <td>@speciality.Name</td>
+                            <td>@speciality.Degree</td>
                             <td class="col-1">
-                                @Html.ActionLink("Информация", "SeeInfoFaculty", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenFacultyId = faculty.Id }, new { @class = "btn btn-secondary" })
+                                @Html.ActionLink("Информация", "SeeInfoSpeciality", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenSpecialityId = speciality.Id }, new { @class = "btn btn-secondary" })
                             </td>
                             <td class="col-1">
-                                @Html.ActionLink("Редактирай", "EditFaculty", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenFacultyId = faculty.Id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Редактирай", "EditSpeciality", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenSpecialityId = speciality.Id }, new { @class = "btn btn-primary" })
                             </td>
                             <td class="col-1">
-                                @using (Html.BeginForm("DeleteFaculty", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {faculty.Name}');" }))
+                                @using (Html.BeginForm("DeleteSpeciality", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {speciality.Name}'); " }))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
-                                    @Html.Hidden("chosenFacultyId", faculty.Id)
-                                    @Html.Hidden("chosenFacultyIdName", $"{faculty.Name}")
+                                    @Html.Hidden("chosenSpecialityId", speciality.Id)
+                                    @Html.Hidden("chosenSpecialityIdName", $"{speciality.Name}")
                                     <button class="btn btn-danger" type="submit">Изтрий</button>
                                 }
                             </td>
                         </tr>
                     }
                 </tbody>
-            </table> 
+            </table>
         }
-    </div>  
+    </div> 
 </div>
- 
-        
- 
+
+
+
 
 
 <script>

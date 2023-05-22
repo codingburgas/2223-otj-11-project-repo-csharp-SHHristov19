@@ -69,5 +69,10 @@ namespace Univers.BLL.Services
         {
             return _facultyRepository.GetDeanNameByStudentId(studentId);
         }
+
+        public FacultyModel GetFacultyById(string FacultyId)
+        {
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == FacultyId);
+        }
     }
 }

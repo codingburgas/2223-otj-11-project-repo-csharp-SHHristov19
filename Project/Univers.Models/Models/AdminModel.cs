@@ -18,6 +18,8 @@ namespace Univers.Models.Models
 
         public UniversityModel? ChosenUniversity { get; set; }
 
+        public FacultyModel? ChosenFaculty { get; set; }
+
         public EditUserModel? EditUser { get; set; }
 
         public AddUserModel? AddUser { get; set; }
@@ -30,6 +32,10 @@ namespace Univers.Models.Models
 
         public IEnumerable<FacultyModel>? Faculties { get; set;}
 
-        public IEnumerable<SpecialityModel>? Specialities { get; set;} 
+        public List<SpecialityModel>? Specialities { get; set;} 
+
+        public IEnumerable<SpecialityModel>? SpecialitiesBachelor { get; set;} 
+
+        public IEnumerable<SpecialityModel>? SpecialitiesMagister { get; set;} 
     }
 }

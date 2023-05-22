@@ -20,4 +20,8 @@ public class FacultyModel
 
     [Required(ErrorMessage = "Необходимо е да изберете специалност")]
     public string? Choise { get; set; }
+      
+    public UserModel? Dean { get; set; } = null!;
+
+    public UserModel? ViceDean { get; set; } = null!;
 }
