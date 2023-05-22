@@ -442,5 +442,22 @@ namespace Univers.PL.Controllers
 
             return View(faculties);
         }
+
+        public ActionResult SeeInfoSpeciality(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId)
+        {
+            var specialities = new AdminModel()
+            {
+                UserId = userId,
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                ChosenSpeciality = _specialityService.GetSpecialitiesById(chosenSpecialityId),
+            };
+
+            var tutor = _staffService.GetStaffById(specialities.ChosenFaculty.DeanId);
+            specialities.ChosenSpeciality.Tutor = tutor != null ? _userService.GetUserByStaffId(tutor.UserId) : new UserModel();
+             
+
+            return View(specialities);
+        }
     }
 } 

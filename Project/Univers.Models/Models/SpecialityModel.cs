@@ -16,5 +16,7 @@ public class SpecialityModel
 
     public int? Semesters { get; set; } = null!;
 
-    public string? Code { get; set; } = null!; 
+    public string? Code { get; set; } = null!;
+
+    public UserModel? Tutor { get; set; } = null!;
 }

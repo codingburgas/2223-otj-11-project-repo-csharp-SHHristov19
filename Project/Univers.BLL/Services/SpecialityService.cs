@@ -87,6 +87,11 @@ namespace Univers.BLL.Services
         public string? GetDegreeByStudentId(string studentId)
         {
             return _specialityRepository.GetDegreeByStudentId(studentId);
-        } 
+        }
+
+        public SpecialityModel? GetSpecialitiesById(string specialityId)
+        {
+            return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == specialityId);
+        }
     }
 }
