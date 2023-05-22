@@ -394,5 +394,20 @@ namespace Univers.PL.Controllers
 
             return View(user);
         }
+
+        public ActionResult Faculties(string userId, string chosenUniversityId, string chosenUniversityName)
+        {
+            var faculties = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = new(),
+                Faculties = _facultyService.GetFacultiesByUniversityId(chosenUniversityId),
+            };
+
+            faculties.ChosenUniversity.Id = chosenUniversityId;
+            faculties.ChosenUniversity.Name = chosenUniversityName;
+
+            return View(faculties);
+        }
     }
 } 

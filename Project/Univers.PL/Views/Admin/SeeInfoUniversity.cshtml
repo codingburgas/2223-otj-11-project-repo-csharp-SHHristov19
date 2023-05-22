@@ -32,7 +32,8 @@
                 <br><br>
             </div>
             <div class="modal-footer">
-                @Html.ActionLink("Назад", "Universities", "Admin", new { userId = $"{Model.UserId}" }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Назад", "Universities", "Admin", new { userId = $"{Model.UserId}" }, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Факултети", "Faculties", "Admin", new { userId = $"{Model.UserId}", chosenUniversityId = Model.ChosenUniversity.Id, chosenUniversityName = Model.ChosenUniversity.Name }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
