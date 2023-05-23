@@ -54,6 +54,7 @@ namespace Univers.BLL.Services
                 Address = entity.Address,
                 Gender = entity.Gender,
                 Image = entity.Image,
+                FullName = entity.FirstName + " " + entity.MiddleName + " " + entity.LastName,
             };
 
             return newModel;
@@ -269,6 +270,22 @@ namespace Univers.BLL.Services
         public UserModel? GetUserByStaffId(string? userId)
         {
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == userId);
+        }
+
+        public List<UserModel> GetRectorsWithNoUniversity()
+        {
+            var rectors = _userRepository.GetFreeRectors(); 
+
+            var result = new List<UserModel>();
+
+            foreach (var rector in rectors)
+            {
+                UserModel newModel = MapUserEntity(rector);
+
+                result.Add(newModel);
+            } 
+
+            return result;
         }
     }
 }

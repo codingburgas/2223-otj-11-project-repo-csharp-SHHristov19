@@ -185,5 +185,18 @@ namespace Univers.DAL.Repositories
             context.Users.Add(additionalUser);
             context.SaveChanges();
         }
+
+
+        public List<User> GetFreeRectors()
+        {
+            using Context.Context context = new();
+
+            return (from sf in context.Staff
+                   join s in context.Users on sf.UserId equals s.Id
+                   join u in context.Universities on sf.Id equals u.RectorId into universityGroup
+                   from u in universityGroup.DefaultIfEmpty()
+                   where sf.Role == "Ректор" && u.RectorId == null && s.IsActive == true
+                   select s).ToList();
+        }
     }
 }

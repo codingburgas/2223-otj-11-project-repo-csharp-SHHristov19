@@ -370,14 +370,14 @@ namespace Univers.PL.Controllers
             return RedirectToAction("Students", new { userId = student.UserId, message = msg });
         }   
 
-        public ActionResult Universities(string userId)
+        public ActionResult Universities(string userId, string? message = null)
         {
             var university = new AdminModel()
             {
                 UserId = userId,
                 Universities = _universityService.TransferDataFromEntityToModel(),
             };
-
+            ViewBag.Message = message;
             return View(university);
         }
 
@@ -393,6 +393,31 @@ namespace Univers.PL.Controllers
             user.ChosenUniversity.RectorName = _universityService.GetRectorByUniversityId(chosenUniversityId);
 
             return View(user);
+        }
+
+        public ActionResult AddUniversity(string userId) 
+        {
+            var university = new AdminModel()
+            {
+                UserId = userId, 
+            };
+            
+            return View(university);
+        }
+
+        [HttpPost]
+        public ActionResult AddUniversity(AdminModel university)
+        {
+            if (ModelState.IsValid)
+            {
+                _universityService.AddUniversity(university.AddUniversity); 
+                string msg = $"Успешно добавяне на университет!";
+                return RedirectToAction("Universities", new { userId = university.UserId, message = msg });
+            }
+            else
+            {
+                return View("AddUniversity", university);
+            }
         }
 
         public ActionResult Faculties(string userId, string chosenUniversityId, string chosenUniversityName)

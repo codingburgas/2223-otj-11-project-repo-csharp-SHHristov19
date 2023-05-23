@@ -11,10 +11,12 @@ namespace Univers.BLL.Services
     public class UniversityService
     {
         private readonly UniversityRepository _universityRepository; 
+        private readonly StaffService _staffService; 
 
         public UniversityService()
         {
             _universityRepository = new UniversityRepository(); 
+            _staffService = new StaffService();
         }
 
         /// <summary>
@@ -66,6 +68,12 @@ namespace Univers.BLL.Services
         public string? GetRectorByUniversityId(string universityId)
         {
             return _universityRepository.GetRectorNameByUniversityId(universityId);
+        }
+
+        public void AddUniversity(UniversityModel? addUniversity)
+        {
+            addUniversity.RectorId = _staffService.GetStaffByUserId(addUniversity.Rector.UserId).Id;
+            _universityRepository.AddUniversity(addUniversity);
         }
     }
 }

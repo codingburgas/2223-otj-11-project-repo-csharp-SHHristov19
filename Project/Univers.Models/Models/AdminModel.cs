@@ -30,6 +30,8 @@ namespace Univers.Models.Models
 
         public AddStudentModel? AddStudent { get; set; }
 
+        public UniversityModel? AddUniversity { get; set; }
+
         public IEnumerable<UniversityModel>? Universities { get; set;}
 
         public IEnumerable<FacultyModel>? Faculties { get; set;}
