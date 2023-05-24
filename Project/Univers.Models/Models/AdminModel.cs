@@ -16,6 +16,8 @@ namespace Univers.Models.Models
 
         public List<UserModel>? ViceDeans { get; set; }
 
+        public List<UserModel>? Tutors { get; set; }
+
         public UserModel? ChosenUser { get; set; }
 
         public StudentModel? ChosenStudent { get; set; }
@@ -37,6 +39,8 @@ namespace Univers.Models.Models
         public UniversityModel? AddUniversity { get; set; }
 
         public AddFacultyModel? AddFaculty { get; set; }
+
+        public AddSpecialityModel? AddSpeciality { get; set; }
 
         public IEnumerable<UniversityModel>? Universities { get; set;}
 

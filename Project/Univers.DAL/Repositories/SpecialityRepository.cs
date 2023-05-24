@@ -68,5 +68,26 @@ namespace Univers.DAL.Repositories
                     select speciality).ToList();
 
         }
+
+        public void AddSpeciality(AddSpecialityModel? addSpeciality)
+        {
+            using Context.Context context = new();
+             
+            var faculty = context.Faculties.FirstOrDefault(x => x.Id == addSpeciality.FacultyId);
+
+            var speciality = new Speciality()
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Name = addSpeciality.Name,
+                Code = addSpeciality.Code,
+                TutorId = addSpeciality.TutorId,
+                Degree = addSpeciality.Degree,
+                Semesters = addSpeciality.Semesters, 
+            };
+
+            faculty.Specialities.Add(speciality);
+            context.Specialities.Add(speciality);
+            context.SaveChanges();
+        }
     } 
 }

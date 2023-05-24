@@ -480,7 +480,7 @@ namespace Univers.PL.Controllers
             }
         }
 
-        public ActionResult Specialities(string userId, string chosenUniversityId, string chosenFacultyId)
+        public ActionResult Specialities(string userId, string chosenUniversityId, string chosenFacultyId, string? message = null)
         {
             var faculties = new AdminModel()
             {
@@ -489,7 +489,7 @@ namespace Univers.PL.Controllers
                 ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
                 Specialities = _specialityService.GetSpecialitiesByFacultyId(chosenFacultyId, "Бакалавърска степен"), 
             };
-
+            ViewBag.Message = message;
             faculties.Specialities.AddRange(_specialityService.GetSpecialitiesByFacultyId(chosenFacultyId, "Магистърска степен"));
 
             return View(faculties);
@@ -510,6 +510,34 @@ namespace Univers.PL.Controllers
              
 
             return View(specialities);
+        }
+
+        public ActionResult AddSpeciality(string userId, string chosenUniversityId, string chosenFacultyId)
+        {
+            var specialities = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+            };
+
+            return View(specialities);
+        }
+
+        [HttpPost]
+        public ActionResult AddSpeciality(AdminModel specialities)
+        {
+            if (ModelState.IsValid)
+            {
+                specialities.AddSpeciality.FacultyId = specialities.ChosenFaculty.Id;
+                _specialityService.AddSpeciality(specialities.AddSpeciality);
+                string msg = $"Успешно добавяне на специалност!";
+                return RedirectToAction("Specialities", new { userId = specialities.UserId, chosenUniversityId = specialities.ChosenUniversity.Id, chosenFacultyId = specialities.ChosenFaculty.Id, message = msg });
+            }
+            else
+            {
+                return View("AddSpeciality", specialities);
+            }
         }
     }
 } 

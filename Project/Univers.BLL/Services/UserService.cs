@@ -290,7 +290,7 @@ namespace Univers.BLL.Services
         
         public List<UserModel> GetDeansWithNoFaculty()
         {
-            var deans = _userRepository.GetFreeDean(); 
+            var deans = _userRepository.GetFreeDeans(); 
 
             var result = new List<UserModel>();
 
@@ -300,6 +300,22 @@ namespace Univers.BLL.Services
 
                 result.Add(newModel);
             } 
+
+            return result;
+        }
+
+        public List<UserModel> GetTutorsWithNoSpeciality()
+        {
+            var tutors = _userRepository.GetFreeTutors();
+
+            var result = new List<UserModel>();
+
+            foreach (var tutor in tutors)
+            {
+                UserModel newModel = MapUserEntity(tutor);
+
+                result.Add(newModel);
+            }
 
             return result;
         }

@@ -20,7 +20,7 @@
 
 @if (ViewBag.Message != null)
 {
-    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100 position-absolute" style="margin-top: 8%;">
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100 position-absolute" style="margin-top: 10%;">
         <div class="toast align-items-center text-bg-primary border-0" id="myToast" role="alert" aria-live="assertive" aria-atomic="true" style="width: 500px">
             <div class="d-flex">
                 <div class="toast-body">
@@ -44,7 +44,7 @@
 
     <div class="clearfix">
         @Html.ActionLink("Назад", "Faculties", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenUniversityName = Model.ChosenUniversity.Name}, new { @class = "btn btn-primary float-start" })
-        @Html.ActionLink("Добави специалност", "AddFaculty", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success float-end"})
+        @Html.ActionLink("Добави специалност", "AddSpeciality", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenFacultyId = Model.ChosenFaculty.Id}, new { @class = "btn btn-success float-end"})
     </div>
 
     <br />

@@ -14,12 +14,14 @@ namespace Univers.BLL.Services
     public class SpecialityService
     {
         private readonly SpecialityRepository _specialityRepository;
+        private readonly StaffService _staffService;
         private readonly Univers.Utilities.Utilities _utilities;
 
         public SpecialityService()
         {
             _specialityRepository = new SpecialityRepository();
             _utilities = new Univers.Utilities.Utilities();
+            _staffService = new StaffService();
         }
 
         /// <summary>
@@ -92,6 +94,12 @@ namespace Univers.BLL.Services
         public SpecialityModel? GetSpecialitiesById(string specialityId)
         {
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == specialityId);
+        }
+
+        public void AddSpeciality(AddSpecialityModel? addSpeciality)
+        {
+            addSpeciality.TutorId = _staffService.GetStaffByUserId(addSpeciality.TutorId).Id;
+            _specialityRepository.AddSpeciality(addSpeciality);
         }
     }
 }

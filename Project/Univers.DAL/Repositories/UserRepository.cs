@@ -81,7 +81,8 @@ namespace Univers.DAL.Repositories
             return (from user in context.Users
                    join student in context.Students on user.Id equals student.UserId
                    where student.Id == studentId
-                   select user).FirstOrDefault(); 
+                   select user)
+                   .FirstOrDefault(); 
         }
 
         public void UpdateUsername(string? userId, string? newUsername)
@@ -105,7 +106,8 @@ namespace Univers.DAL.Repositories
                     from sg in studentGroup.DefaultIfEmpty()
                     where sg == null
                     orderby u.FirstName, u.MiddleName, u.LastName
-                    select u).ToList();
+                    select u)
+                    .ToList();
         }
 
         public IEnumerable<User> GetStudentUsers()
@@ -117,7 +119,8 @@ namespace Univers.DAL.Repositories
                     from sg in studentGroup.DefaultIfEmpty()
                     where sg != null && u.IsActive == true
                     orderby u.FirstName, u.MiddleName, u.LastName
-                    select u).ToList();
+                    select u)
+                    .ToList();
         }
 
         public Dictionary<string, string> GetRoleOfTheUsers ()
@@ -196,10 +199,11 @@ namespace Univers.DAL.Repositories
                    join u in context.Universities on sf.Id equals u.RectorId into universityGroup
                    from u in universityGroup.DefaultIfEmpty()
                    where sf.Role == "Ректор" && u.RectorId == null && s.IsActive == true
-                   select s).ToList();
+                   select s)
+                   .ToList();
         }
 
-        public List<User> GetFreeDean()
+        public List<User> GetFreeDeans()
         {
             using Context.Context context = new();
 
@@ -208,7 +212,21 @@ namespace Univers.DAL.Repositories
                    join f in context.Faculties on sf.Id equals f.DeanId into facultyGroup
                    from f in facultyGroup.DefaultIfEmpty()
                    where sf.Role == "Декан" && f.DeanId == null && user.IsActive == true
-                   select user).ToList();
+                   select user)
+                   .ToList();
+        }
+
+        public List<User> GetFreeTutors()
+        {
+            using Context.Context context = new();
+
+            return (from sf in context.Staff
+                    join u in context.Users on sf.UserId equals u.Id
+                    join sp in context.Specialities on sf.Id equals sp.TutorId into specialityGroup
+                    from sp in specialityGroup.DefaultIfEmpty()
+                    where sf.Role == "Тютор" && sp.TutorId == null && u.IsActive == true
+                    select u)
+                    .ToList();
         }
     }
 }
