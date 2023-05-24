@@ -198,5 +198,17 @@ namespace Univers.DAL.Repositories
                    where sf.Role == "Ректор" && u.RectorId == null && s.IsActive == true
                    select s).ToList();
         }
+
+        public List<User> GetFreeDean()
+        {
+            using Context.Context context = new();
+
+            return (from sf in context.Staff
+                   join user in context.Users on sf.UserId equals user.Id
+                   join f in context.Faculties on sf.Id equals f.DeanId into facultyGroup
+                   from f in facultyGroup.DefaultIfEmpty()
+                   where sf.Role == "Декан" && f.DeanId == null && user.IsActive == true
+                   select user).ToList();
+        }
     }
 }

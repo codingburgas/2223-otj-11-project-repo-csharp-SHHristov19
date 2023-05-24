@@ -25,8 +25,15 @@
                 <ul class="list-group">
                     <li class="list-group-item active" aria-current="true">Информация</li>
                     <li class="list-group-item">Име: @Model.ChosenFaculty.Name</li>
-                    <li class="list-group-item">Декан: @Model.ChosenFaculty.Dean.FirstName @Model.ChosenFaculty.Dean.MiddleName @Model.ChosenFaculty.Dean.LastName</li>
-                    <li class="list-group-item">Заместник: @Model.ChosenFaculty.ViceDean.FirstName @Model.ChosenFaculty.ViceDean.MiddleName @Model.ChosenFaculty.ViceDean.LastName</li>
+                    <li class="list-group-item">Декан: @Model.ChosenFaculty.Dean.FullName</li>
+                    @if (Model.ChosenFaculty.ViceDean != null)
+                    {
+                        <li class="list-group-item">Заместник: @Model.ChosenFaculty.ViceDean.FullName</li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Заместник: Липсва</li>
+                    }
                     <li class="list-group-item">Код: @Model.ChosenFaculty.Code</li>
                 </ul>
                 <br><br>

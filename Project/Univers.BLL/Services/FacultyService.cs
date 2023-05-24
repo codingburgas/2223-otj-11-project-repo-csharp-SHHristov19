@@ -12,12 +12,14 @@ namespace Univers.BLL.Services
     public class FacultyService
     {
         private readonly FacultyRepository _facultyRepository;
+        private readonly StaffService _staffService;
         private readonly Univers.Utilities.Utilities _utilities;
 
         public FacultyService()
         {
             _facultyRepository = new FacultyRepository();
             _utilities = new Univers.Utilities.Utilities();
+            _staffService = new StaffService();
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ namespace Univers.BLL.Services
         public FacultyModel GetFacultyById(string FacultyId)
         {
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == FacultyId);
+        }
+
+        public void AddFaculty(AddFacultyModel? addFaculty)
+        {
+            addFaculty.DeanId = _staffService.GetStaffByUserId(addFaculty.DeanId).Id;
+            addFaculty.ViceDeanId = _staffService.GetStaffByUserId(addFaculty.ViceDeanId).Id;
+            _facultyRepository.AddFaculty(addFaculty);
         }
     }
 }

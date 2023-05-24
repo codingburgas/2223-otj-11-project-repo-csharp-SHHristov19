@@ -420,7 +420,7 @@ namespace Univers.PL.Controllers
             }
         }
 
-        public ActionResult Faculties(string userId, string chosenUniversityId, string chosenUniversityName)
+        public ActionResult Faculties(string userId, string chosenUniversityId, string chosenUniversityName, string? message = null)
         {
             var faculties = new AdminModel()
             {
@@ -431,7 +431,7 @@ namespace Univers.PL.Controllers
 
             faculties.ChosenUniversity.Id = chosenUniversityId;
             faculties.ChosenUniversity.Name = chosenUniversityName;
-
+            ViewBag.Message = message;
             return View(faculties);
         }
 
@@ -451,6 +451,33 @@ namespace Univers.PL.Controllers
             faculty.ChosenFaculty.ViceDean = viceDean != null ? _userService.GetUserByStaffId(viceDean.UserId) : new UserModel(); 
 
             return View(faculty);
+        }
+
+        public ActionResult AddFaculty(string userId, string universityId)
+        {
+            var faculty = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(universityId),
+            };
+
+            return View(faculty);
+        }
+
+        [HttpPost]
+        public ActionResult AddFaculty(AdminModel faculty)
+        {
+            if (ModelState.IsValid)
+            {
+                faculty.AddFaculty.UniversityId = faculty.ChosenUniversity.Id;
+                _facultyService.AddFaculty(faculty.AddFaculty);
+                string msg = $"Успешно добавяне на факултет!";
+                return RedirectToAction("Faculties", new { userId = faculty.UserId, chosenUniversityId = faculty.ChosenUniversity.Id, chosenUniversityName = faculty.ChosenUniversity.Name, message = msg });
+            }
+            else
+            {
+                return View("AddFaculty", faculty);
+            }
         }
 
         public ActionResult Specialities(string userId, string chosenUniversityId, string chosenFacultyId)

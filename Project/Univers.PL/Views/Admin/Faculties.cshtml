@@ -42,9 +42,10 @@
     <br />
 
     <div class="clearfix">
-        @Html.ActionLink("Назад", "Universities", "Admin", new { userId = $"{Model.UserId}", chosenUniversityId = $"{Model.ChosenUniversity.Id}" }, new { @class = "btn btn-primary float-start" })
-        @Html.ActionLink("Добави факултет", "AddFaculty", "Admin", new { userId = Model.UserId}, new { @class = "btn btn-success float-end" })
+        @Html.ActionLink("Назад", "Universities", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id }, new { @class = "btn btn-primary float-start" })
+        @Html.ActionLink("Добави факултет", "AddFaculty", "Admin", new { userId = Model.UserId, universityId = Model.ChosenUniversity.Id }, new { @class = "btn btn-success float-end" })
     </div>
+
     <br />
     <br />
 

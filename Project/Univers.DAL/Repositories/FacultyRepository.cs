@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univers.DAL.Entities;
+using Univers.Models.Models;
 
 namespace Univers.DAL.Repositories
 {
@@ -35,6 +36,24 @@ namespace Univers.DAL.Repositories
                      {
                          Name = $"{u.FirstName} {u.MiddleName} {u.LastName}"
                      }).First().Name;
+        }
+
+        public void AddFaculty(AddFacultyModel addFaculty)
+        {
+            using Context.Context context = new();
+
+            var faculty = new Faculty()
+            { 
+                Id = Guid.NewGuid().ToString("D"),
+                Name = addFaculty.Name,
+                Code = addFaculty.Code,
+                DeanId = addFaculty.DeanId,
+                ViceDeanId = addFaculty.ViceDeanId,
+                UniversityId = addFaculty.UniversityId,
+            };
+
+            context.Faculties.Add(faculty);
+            context.SaveChanges(); 
         }
     }
 }

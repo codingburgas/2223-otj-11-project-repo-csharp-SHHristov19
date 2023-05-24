@@ -287,5 +287,21 @@ namespace Univers.BLL.Services
 
             return result;
         }
+        
+        public List<UserModel> GetDeansWithNoFaculty()
+        {
+            var deans = _userRepository.GetFreeDean(); 
+
+            var result = new List<UserModel>();
+
+            foreach (var dean in deans)
+            {
+                UserModel newModel = MapUserEntity(dean);
+
+                result.Add(newModel);
+            } 
+
+            return result;
+        }
     }
 }
