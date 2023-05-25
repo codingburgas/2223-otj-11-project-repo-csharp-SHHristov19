@@ -98,11 +98,8 @@ namespace Univers.DAL.Repositories
             var speciality = context.Specialities
                             .Include(s => s.Faculties)
                             .FirstOrDefault(s => s.Id == specialityId);
-             
-            foreach (var faculty in speciality.Faculties.ToList())
-            {
-                faculty.Specialities.Remove(speciality);
-            }
+
+            speciality.Faculties.Clear();
 
             context.Specialities.Remove(speciality);
             context.SaveChanges();

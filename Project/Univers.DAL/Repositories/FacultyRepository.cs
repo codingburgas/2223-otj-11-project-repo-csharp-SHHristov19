@@ -72,13 +72,8 @@ namespace Univers.DAL.Repositories
 
              
             foreach (var speciality in faculty.Specialities.ToList())
-            { 
-                foreach (var f in speciality.Faculties.ToList())
-                {
-                    f.Specialities.Remove(speciality);
-                }
-
-                context.Specialities.Remove(speciality);
+            {
+                speciality.Faculties.Clear();
             } 
             
             context.Faculties.Remove(faculty);

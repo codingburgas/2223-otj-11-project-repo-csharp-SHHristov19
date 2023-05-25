@@ -97,25 +97,21 @@ namespace Univers.DAL.Repositories
             using Context.Context context = new();
 
             var university = context.Universities
+                           .Include(s => s.Semesters)
                            .Include(f => f.Faculties) 
-                           .ThenInclude(s => s.Specialities)
+                           .ThenInclude(s => s.Specialities) 
                            .FirstOrDefault(u => u.Id == universityId);
 
 
             foreach (var faculties in university.Faculties.ToList())
             {
-                foreach (var fs in faculties.Specialities.ToList())
-                {
-                    foreach (var f in fs.Faculties.ToList())
-                    {
-                        f.Specialities.Remove(fs);
-                    }
+                faculties.Specialities.Clear();
+            }
 
-                    context.Specialities.Remove(fs);
-                }
-                context.Faculties.Remove(faculties);
-            } 
+            university.Faculties.Clear();
 
+            university.Semesters.Clear();
+             
             context.Universities.Remove(university);
             context.SaveChanges();
         }
