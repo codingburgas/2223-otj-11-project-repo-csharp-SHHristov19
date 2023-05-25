@@ -539,5 +539,13 @@ namespace Univers.PL.Controllers
                 return View("AddSpeciality", specialities);
             }
         }
+
+        [HttpPost]
+        public ActionResult DeleteSpeciality(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId, string chosenSpecialityName)
+        {
+            _specialityService.DeleteSpeciality(chosenSpecialityId);
+            string message = $"Успешно изтриване на {chosenSpecialityName}!";
+            return RedirectToAction("Specialities", new { userId, chosenUniversityId, chosenFacultyId, message });
+        }
     }
 } 

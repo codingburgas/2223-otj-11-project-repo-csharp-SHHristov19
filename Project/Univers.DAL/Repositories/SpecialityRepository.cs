@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Context;
 using Univers.DAL.Entities;
 using Univers.Models.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -23,7 +24,7 @@ namespace Univers.DAL.Repositories
             return context.Specialities.ToList();
         }
 
-        public string? GetSpecialityNameByStudentId(string studentId) 
+        public string? GetSpecialityNameByStudentId(string studentId)
         {
             using Context.Context context = new();
 
@@ -45,24 +46,24 @@ namespace Univers.DAL.Repositories
                     select new
                     {
                         Name = $"{user.FirstName} {user.MiddleName} {user.LastName}"
-                    })?.FirstOrDefault()?.Name; 
-        } 
+                    })?.FirstOrDefault()?.Name;
+        }
 
         public string? GetDegreeByStudentId(string studentId)
         {
             using Context.Context context = new();
 
             return (from speciality in context.Specialities
-                   join student in context.Students on speciality.Id equals student.SpecialityId
-                   where student.Id == studentId
-                   select speciality.Degree).FirstOrDefault();
+                    join student in context.Students on speciality.Id equals student.SpecialityId
+                    where student.Id == studentId
+                    select speciality.Degree).FirstOrDefault();
         }
 
         public List<Speciality> GetSpecialitiesByFacultyId(string facultyId, string degree)
         {
             using Context.Context context = new();
 
-            return (from speciality in context.Specialities 
+            return (from speciality in context.Specialities
                     join f in context.Faculties on speciality.Faculties.First().Id equals f.Id
                     where f.Id == facultyId && speciality.Degree == degree
                     select speciality).ToList();
@@ -72,7 +73,7 @@ namespace Univers.DAL.Repositories
         public void AddSpeciality(AddSpecialityModel? addSpeciality)
         {
             using Context.Context context = new();
-             
+
             var faculty = context.Faculties.FirstOrDefault(x => x.Id == addSpeciality.FacultyId);
 
             var speciality = new Speciality()
@@ -82,12 +83,29 @@ namespace Univers.DAL.Repositories
                 Code = addSpeciality.Code,
                 TutorId = addSpeciality.TutorId,
                 Degree = addSpeciality.Degree,
-                Semesters = addSpeciality.Semesters, 
+                Semesters = addSpeciality.Semesters,
             };
 
             faculty.Specialities.Add(speciality);
             context.Specialities.Add(speciality);
             context.SaveChanges();
         }
-    } 
+
+        public void DeleteSpeciality(string specialityId)
+        {
+            using Context.Context context = new();
+
+            var speciality = context.Specialities
+                            .Include(s => s.Faculties)
+                            .FirstOrDefault(s => s.Id == specialityId);
+             
+            foreach (var faculty in speciality.Faculties.ToList())
+            {
+                faculty.Specialities.Remove(speciality);
+            }
+
+            context.Specialities.Remove(speciality);
+            context.SaveChanges();
+        }
+    }
 }

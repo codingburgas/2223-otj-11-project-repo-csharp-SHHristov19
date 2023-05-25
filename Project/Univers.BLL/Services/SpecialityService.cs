@@ -101,5 +101,10 @@ namespace Univers.BLL.Services
             addSpeciality.TutorId = _staffService.GetStaffByUserId(addSpeciality.TutorId).Id;
             _specialityRepository.AddSpeciality(addSpeciality);
         }
+
+        public void DeleteSpeciality(string chosenSpecialityId)
+        {
+            _specialityRepository.DeleteSpeciality(chosenSpecialityId);
+        }
     }
 }
