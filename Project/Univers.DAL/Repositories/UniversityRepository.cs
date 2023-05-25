@@ -81,7 +81,7 @@ namespace Univers.DAL.Repositories
 
             University university = new()
             {
-                Id = Guid.NewGuid().ToString("D"),
+                Id = addUniversity.Id,
                 RectorId = addUniversity.RectorId,
                 Capacity = addUniversity.Capacity,
                 Name = addUniversity.Name,

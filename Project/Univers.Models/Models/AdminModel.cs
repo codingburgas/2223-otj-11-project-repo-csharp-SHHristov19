@@ -42,6 +42,8 @@ namespace Univers.Models.Models
 
         public AddSpecialityModel? AddSpeciality { get; set; }
 
+        public SemesterModel? AddSemester { get; set; }
+
         public IEnumerable<UniversityModel>? Universities { get; set;}
 
         public IEnumerable<FacultyModel>? Faculties { get; set;}

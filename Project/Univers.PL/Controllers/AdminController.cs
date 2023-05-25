@@ -16,6 +16,7 @@ namespace Univers.PL.Controllers
         private readonly FacultyService _facultyService;
         private readonly StudentCourseService _studentCourseService;
         private readonly StaffService _staffService;
+        private readonly SemesterService _semesterService;
 
         public AdminController()
         {
@@ -26,6 +27,7 @@ namespace Univers.PL.Controllers
             _facultyService = new FacultyService();
             _studentCourseService = new StudentCourseService();
             _staffService = new StaffService();
+            _semesterService = new SemesterService();
         }
 
         public ActionResult Users(string userId, string? message = null)
@@ -410,13 +412,41 @@ namespace Univers.PL.Controllers
         {
             if (ModelState.IsValid)
             {
-                _universityService.AddUniversity(university.AddUniversity); 
-                string msg = $"Успешно добавяне на университет!";
-                return RedirectToAction("Universities", new { userId = university.UserId, message = msg });
+                university.AddUniversity.Id = Guid.NewGuid().ToString("D");
+                _universityService.AddUniversity(university.AddUniversity);
+                return RedirectToAction("AddSemester", new { userId = university.UserId, addUniversityId = university.AddUniversity.Id});
             }
             else
             {
                 return View("AddUniversity", university);
+            }
+        }
+
+
+        public ActionResult AddSemester(string userId, string addUniversityId)
+        {
+            var semester = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(addUniversityId),  
+            }; 
+
+            return View(semester);
+        }
+
+        [HttpPost]
+        public ActionResult AddSemester(AdminModel semester)
+        {
+            if (ModelState.IsValid)
+            {
+                semester.AddSemester.UniversityId = semester.ChosenUniversity.Id;
+                _semesterService.AddSemesterInUniversityById(semester.AddSemester); 
+                string msg = $"Успешно добавяне на университет!";
+                return RedirectToAction("Universities", new { userId = semester.UserId, message = msg });
+            }
+            else
+            {
+                return View("AddSemester", semester);
             }
         }
 
