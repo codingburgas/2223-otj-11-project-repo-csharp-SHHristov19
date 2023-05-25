@@ -83,5 +83,10 @@ namespace Univers.BLL.Services
             addFaculty.ViceDeanId = _staffService.GetStaffByUserId(addFaculty.ViceDeanId).Id;
             _facultyRepository.AddFaculty(addFaculty);
         }
+
+        public void DeleteFaculty(string facultyId)
+        {
+            _facultyRepository.DeleteFaculty(facultyId);
+        }
     }
 }

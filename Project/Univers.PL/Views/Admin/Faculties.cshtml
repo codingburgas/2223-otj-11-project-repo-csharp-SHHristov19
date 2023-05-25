@@ -80,10 +80,12 @@
                                 @using (Html.BeginForm("DeleteFaculty", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {faculty.Name}');" }))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
-                                    @Html.Hidden("chosenFacultyId", faculty.Id)
-                                    @Html.Hidden("chosenFacultyIdName", $"{faculty.Name}")
+                                    @Html.Hidden("chosenUniversityId", Model.ChosenUniversity.Id)
+                                    @Html.Hidden("chosenUniversityName", Model.ChosenUniversity.Name)
+                                    @Html.Hidden("facultyId", faculty.Id)
+                                    @Html.Hidden("facultyName", $"{faculty.Name}")
                                     <button class="btn btn-danger" type="submit">Изтрий</button>
-                                }
+                                } 
                             </td>
                         </tr>
                     }

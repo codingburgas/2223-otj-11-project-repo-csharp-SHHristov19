@@ -11,6 +11,12 @@ namespace Univers.DAL.Repositories
 {
     public class FacultyRepository
     {
+        private readonly SpecialityRepository _specialityRepository;
+
+        public FacultyRepository()
+        {
+            _specialityRepository = new SpecialityRepository();
+        }
         /// <summary>
         /// Read the data from the Faculty table
         /// </summary>
@@ -54,6 +60,29 @@ namespace Univers.DAL.Repositories
 
             context.Faculties.Add(faculty);
             context.SaveChanges(); 
+        }
+
+        public void DeleteFaculty(string facultyId)
+        {
+            using Context.Context context = new();
+
+            var faculty = context.Faculties
+                            .Include(s => s.Specialities)
+                            .FirstOrDefault(s => s.Id == facultyId);
+
+             
+            foreach (var speciality in faculty.Specialities.ToList())
+            { 
+                foreach (var f in speciality.Faculties.ToList())
+                {
+                    f.Specialities.Remove(speciality);
+                }
+
+                context.Specialities.Remove(speciality);
+            } 
+            
+            context.Faculties.Remove(faculty);
+            context.SaveChanges();
         }
     }
 }

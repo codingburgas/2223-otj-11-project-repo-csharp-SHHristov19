@@ -480,6 +480,14 @@ namespace Univers.PL.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult DeleteFaculty(string userId, string chosenUniversityId, string chosenUniversityName, string facultyId, string facultyName)
+        {
+            _facultyService.DeleteFaculty(facultyId);
+            string message = $"Успешно изтриване на {facultyName}!";
+            return RedirectToAction("Faculties", new { userId, chosenUniversityId, chosenUniversityName, message });
+        }
+
         public ActionResult Specialities(string userId, string chosenUniversityId, string chosenFacultyId, string? message = null)
         {
             var faculties = new AdminModel()
@@ -546,6 +554,6 @@ namespace Univers.PL.Controllers
             _specialityService.DeleteSpeciality(chosenSpecialityId);
             string message = $"Успешно изтриване на {chosenSpecialityName}!";
             return RedirectToAction("Specialities", new { userId, chosenUniversityId, chosenFacultyId, message });
-        }
+        } 
     }
 } 
