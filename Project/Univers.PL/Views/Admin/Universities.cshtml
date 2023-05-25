@@ -75,8 +75,8 @@
                                 @using (Html.BeginForm("DeleteUniversity", "Admin", FormMethod.Post, new { onsubmit=$"return confirm('Сигурни ли сте, че искате да изтриете {university.Name}');" } ))
                                 {
                                     @Html.Hidden("userId", Model.UserId)
-                                    @Html.Hidden("chosenUserId", university.Id)
-                                    @Html.Hidden("chosenUserName", $"{university.Name}")
+                                    @Html.Hidden("chosenUniversityId", university.Id)
+                                    @Html.Hidden("chosenUniversityName", $"{university.Name}")
                                     <button class="btn btn-danger" type="submit">Изтрий</button>
                                 }
                             </td>

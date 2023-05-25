@@ -91,5 +91,33 @@ namespace Univers.DAL.Repositories
             context.Universities.Add(university);
             context.SaveChanges();
         }
+
+        public void DeleteUniversity(string universityId)
+        {
+            using Context.Context context = new();
+
+            var university = context.Universities
+                           .Include(f => f.Faculties) 
+                           .ThenInclude(s => s.Specialities)
+                           .FirstOrDefault(u => u.Id == universityId);
+
+
+            foreach (var faculties in university.Faculties.ToList())
+            {
+                foreach (var fs in faculties.Specialities.ToList())
+                {
+                    foreach (var f in fs.Faculties.ToList())
+                    {
+                        f.Specialities.Remove(fs);
+                    }
+
+                    context.Specialities.Remove(fs);
+                }
+                context.Faculties.Remove(faculties);
+            } 
+
+            context.Universities.Remove(university);
+            context.SaveChanges();
+        }
     }
 }

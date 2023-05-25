@@ -75,5 +75,10 @@ namespace Univers.BLL.Services
             addUniversity.RectorId = _staffService.GetStaffByUserId(addUniversity.Rector.UserId).Id;
             _universityRepository.AddUniversity(addUniversity);
         }
+
+        public void DeleteUniversity(string chosenUniversityId)
+        {
+            _universityRepository.DeleteUniversity(chosenUniversityId);
+        }
     }
 }

@@ -420,6 +420,14 @@ namespace Univers.PL.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult DeleteUniversity(string userId, string chosenUniversityId, string chosenUniversityName)
+        {
+            _universityService.DeleteUniversity(chosenUniversityId);
+            string message = $"Успешно изтриване на {chosenUniversityName}!";
+            return RedirectToAction("Universities", new { userId, message });
+        }
+
         public ActionResult Faculties(string userId, string chosenUniversityId, string chosenUniversityName, string? message = null)
         {
             var faculties = new AdminModel()

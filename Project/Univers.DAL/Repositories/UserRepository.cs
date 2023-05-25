@@ -169,7 +169,7 @@ namespace Univers.DAL.Repositories
 
             User additionalUser = new User()
             {
-                Id = user.Id,
+                Id = Guid.NewGuid().ToString("D"),
                 Username = user.Username,
                 Password = user.Password,
                 PasswordSalt = passwordSalt,
