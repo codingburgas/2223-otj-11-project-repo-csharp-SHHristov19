@@ -38,4 +38,6 @@ public class UserModel
     public string? Role { get; set; } = null!;
 
     public string? FullName { get; set; } = null!;
+
+    public bool? IsConfirmed { get; set;}
 } 

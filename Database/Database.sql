@@ -19,7 +19,8 @@ CREATE TABLE [Users]
   [Address] NVARCHAR(MAX) NULL,
   [Gender] NVARCHAR(10) NULL,
   [Image] VARCHAR(MAX) NULL,
-  [IsActive] BIT DEFAULT 'TRUE' NULL 
+  [IsActive] BIT DEFAULT 'TRUE' NULL,
+  [IsConfirmed] BIT DEFAULT 'FALSE' NULL,
 );
 
 CREATE TABLE [Staff] 

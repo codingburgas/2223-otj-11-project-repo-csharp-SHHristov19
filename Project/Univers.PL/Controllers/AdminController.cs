@@ -611,6 +611,72 @@ namespace Univers.PL.Controllers
             _specialityService.DeleteSpeciality(chosenSpecialityId);
             string message = $"Успешно изтриване на {chosenSpecialityName}!";
             return RedirectToAction("Specialities", new { userId, chosenUniversityId, chosenFacultyId, message });
-        } 
+        }
+
+        public ActionResult ConfirmUser(string userId, string chosenUserId)
+        {
+            var user = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUser = _userService.GetUserByUserId(chosenUserId),
+                EditUser = new EditUserModel(),
+            };
+
+            user.EditUser.Id = user.ChosenUser.Id;
+            user.EditUser.FirstName = user.ChosenUser.FirstName;
+            user.EditUser.MiddleName = user.ChosenUser.MiddleName;
+            user.EditUser.LastName = user.ChosenUser.LastName;
+            user.EditUser.Username = user.ChosenUser.Username;
+            user.EditUser.PhoneNumber = user.ChosenUser.PhoneNumber;
+            user.EditUser.Address = user.ChosenUser.Address;
+            user.EditUser.Gender = user.ChosenUser.Gender;
+            user.EditUser.Email = user.ChosenUser.Email;
+
+            var staffModel = _staffService.GetStaffByUserId(user.ChosenUser.Id);
+            user.EditUser.Staff = staffModel != null ? staffModel : new StaffModel();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmUser(AdminModel user)
+        {
+            var chosenUser = _userService.GetUserByUserId(user.EditUser.Id);
+            if (user.EditUser.Username != chosenUser.Username)
+            {
+                ValidationResult usernameValidationResult = _userService.ValidateUsername(user.EditUser.Username);
+                if (usernameValidationResult != ValidationResult.Success)
+                {
+                    ModelState.AddModelError("EditUser.Username", usernameValidationResult.ErrorMessage);
+                }
+            }
+            if (user.EditUser.Email != chosenUser.Email)
+            {
+                ValidationResult emailValidationResult = _userService.ValidateEmail(user.EditUser.Email);
+                if (emailValidationResult != ValidationResult.Success)
+                {
+                    ModelState.AddModelError("EditUser.Email", emailValidationResult.ErrorMessage);
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                if (user.EditUser.Staff.Id == null)
+                {
+                    _staffService.AddStaffByUserId(user.EditUser.Id, user.EditUser.Staff.Role);
+                }
+                else
+                {
+                    _staffService.UpdateStaffRoleByUserId(user.EditUser.Id, user.EditUser.Staff.Role);
+                }
+                _userService.UpdateUser(user.EditUser);
+                _userService.ConfirmUser(user.EditUser.Id);
+                string msg = $"Успешно потвърждение на {user.EditUser.FirstName} {user.EditUser.LastName}!";
+                return RedirectToAction("AdminHome", "Home", new { userId = user.UserId, message = msg });
+            }
+            else
+            {
+                return View("ConfirmUser", user);
+            }
+        }
     }
 } 

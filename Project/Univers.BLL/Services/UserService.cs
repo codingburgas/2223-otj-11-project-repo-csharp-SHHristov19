@@ -55,6 +55,7 @@ namespace Univers.BLL.Services
                 Gender = entity.Gender,
                 Image = entity.Image,
                 FullName = entity.FirstName + " " + entity.MiddleName + " " + entity.LastName,
+                IsConfirmed = entity.IsConfirmed,
             };
 
             return newModel;
@@ -318,6 +319,27 @@ namespace Univers.BLL.Services
             }
 
             return result;
+        }
+
+        public List<UserModel> GetUncomfirmedUsers()
+        {
+            var users = _userRepository.GetAllUsersThatAreNotConfirmed();
+
+            var result = new List<UserModel>();
+
+            foreach (var user in users)
+            {
+                UserModel newModel = MapUserEntity(user);
+
+                result.Add(newModel);
+            }
+
+            return result;
+        }
+
+        public void ConfirmUser(string id)
+        {
+            _userRepository.ConfirmUser(id);
         }
     }
 }

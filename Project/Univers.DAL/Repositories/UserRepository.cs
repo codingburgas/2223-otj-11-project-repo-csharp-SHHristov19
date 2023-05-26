@@ -49,6 +49,7 @@ namespace Univers.DAL.Repositories
                 Gender = user.Gender,
                 Image = user.Image,
                 IsActive = true,
+                IsConfirmed = false
             };
 
             context.Users.Add(additionalUser);
@@ -183,6 +184,7 @@ namespace Univers.DAL.Repositories
                 Gender = user.Gender,
                 Image = null,
                 IsActive = true,
+                IsConfirmed = false,
             };
 
             context.Users.Add(additionalUser);
@@ -227,6 +229,31 @@ namespace Univers.DAL.Repositories
                     where sf.Role == "Тютор" && sp.TutorId == null && u.IsActive == true
                     select u)
                     .ToList();
+        }
+
+        public List<User> GetAllUsersThatAreNotConfirmed()
+        {
+            using Context.Context context = new();
+
+            return (from u in context.Users
+                    join sf in context.Staff on u.Id equals sf.UserId into staffGroup
+                    from sf in staffGroup.DefaultIfEmpty()
+                    join s in context.Students on u.Id equals s.UserId into studentGroup
+                    from s in studentGroup.DefaultIfEmpty()
+                    where sf.Id == null && s.Id == null && u.IsActive == true && u.IsConfirmed == false
+                    select u).ToList();
+        }
+
+        public void ConfirmUser(string id)
+        {
+            using Context.Context context = new();
+
+            var user = context.Users.Find(id);
+
+            user.IsConfirmed = true;
+
+            context.Update(user);
+            context.SaveChanges();
         }
     }
 }

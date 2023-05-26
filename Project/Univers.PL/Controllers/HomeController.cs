@@ -17,6 +17,18 @@ namespace Univers.PL.Controllers
             _userService = new UserService();
         }
 
+        public ActionResult AdminHome(string userId, string? message = null)
+        {
+            var users = new AdminModel()
+            {
+                UserId = userId,
+                Users = _userService.GetUncomfirmedUsers(),
+            };
+
+            ViewBag.Message = message; 
+            return View(users);
+        }
+
         public ActionResult StaffHome(string userId)
         {
             var user = _userService.GetUserByUserId(userId);

@@ -53,6 +53,8 @@ public partial class User
 
     public bool? IsActive { get; set; }
 
+    public bool? IsConfirmed { get; set; }
+
     [InverseProperty("User")]
     public virtual ICollection<Staff> Staff { get; set; } = new List<Staff>();
 

@@ -5,12 +5,12 @@
 
 <link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" />
-<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-
+<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script> 
+ 
 @{
     var _utilities = new Utilities();
 }
-
+ 
 @using (Html.BeginForm("Authorization", "Login", FormMethod.Post, new { @class = "div1" }))
 {
     <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /> <br />
@@ -59,4 +59,4 @@
     <button class="button1" type="submit">Вход</button>
 
     <a href="@Url.Action("UploadImage","Registration")"><button class="button2" type="button">Регистрация</button></a>
-}
+} 

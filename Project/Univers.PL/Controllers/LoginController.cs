@@ -11,11 +11,13 @@ namespace Univers.PL.Controllers
     {
         private readonly UserService _userService;
         private readonly StudentService _studentService;
+        private readonly StaffService _staffService;
 
         public LoginController()
         {
             _userService = new UserService();
             _studentService = new StudentService();
+            _staffService = new StaffService();
         }
 
         // GET: Login
@@ -44,7 +46,18 @@ namespace Univers.PL.Controllers
                 } 
                 else
                 {
-                    return RedirectToAction("StaffHome", "Home", new { userId = loginUser.Id });
+                    if (loginUser.IsConfirmed == true)
+                    {
+                        var role = _staffService.GetStaffByUserId(loginUser.Id).Role;
+                        if (role == "Администратор")
+                        {
+                            return RedirectToAction("AdminHome", "Home", new { userId = loginUser.Id });
+                        }
+                        else
+                        {
+                            return RedirectToAction("StaffHome", "Home", new { userId = loginUser.Id });
+                        }
+                    }
                 }
             }
             if(!(ModelState.IsValid))
