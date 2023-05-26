@@ -53,5 +53,7 @@ namespace Univers.Models.Models
         public IEnumerable<SpecialityModel>? SpecialitiesBachelor { get; set;} 
 
         public IEnumerable<SpecialityModel>? SpecialitiesMagister { get; set;} 
+
+        public IEnumerable<SemesterModel>? Semesters { get; set;} 
     }
 }

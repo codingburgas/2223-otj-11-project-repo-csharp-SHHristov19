@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    @Html.ActionLink("Назад", "Universities", "Admin", new { userId = Model.UserId }, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Назад", "Semesters", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id }, new { @class = "btn btn-secondary" })
                     <button class="btn btn-primary" type="submit">Запази</button>
                 </div>
 

@@ -422,6 +422,17 @@ namespace Univers.PL.Controllers
             }
         }
 
+        public ActionResult Semesters(string userId, string chosenUniversityId, string? message = null)
+        {
+            var semester = new AdminModel()
+            {
+                UserId = userId,
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                Semesters = _semesterService.GetAllSemestersByUniversityId(chosenUniversityId),
+            };
+            ViewBag.Message = message;
+            return View(semester);
+        }
 
         public ActionResult AddSemester(string userId, string addUniversityId)
         {
@@ -441,8 +452,8 @@ namespace Univers.PL.Controllers
             {
                 semester.AddSemester.UniversityId = semester.ChosenUniversity.Id;
                 _semesterService.AddSemesterInUniversityById(semester.AddSemester); 
-                string msg = $"Успешно добавяне на университет!";
-                return RedirectToAction("Universities", new { userId = semester.UserId, message = msg });
+                string msg = $"Успешно добавяне на семестър!";
+                return RedirectToAction("Semesters", new { userId = semester.UserId, chosenUniversityId = semester.ChosenUniversity.Id, message = msg });
             }
             else
             {

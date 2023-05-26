@@ -11,6 +11,13 @@ namespace Univers.DAL.Repositories
 {
     public class SemesterRepository
     {
+        public List<Semester> ReadAllData()
+        {
+            using Context.Context context = new();
+
+            return context.Semesters.ToList();
+        }
+
         public void AddSemester(SemesterModel semester)
         {
             using Context.Context context = new();
@@ -27,6 +34,6 @@ namespace Univers.DAL.Repositories
 
             context.Semesters.Add(newSemester); 
             context.SaveChanges();
-        }
+        } 
     }
 }
