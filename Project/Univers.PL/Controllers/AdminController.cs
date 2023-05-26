@@ -430,7 +430,7 @@ namespace Univers.PL.Controllers
                 ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
                 Semesters = _semesterService.GetAllSemestersByUniversityId(chosenUniversityId),
             };
-            ViewBag.Message = message;
+            ViewBag.SemesterMessage = message;
             return View(semester);
         }
 
@@ -459,6 +459,14 @@ namespace Univers.PL.Controllers
             {
                 return View("AddSemester", semester);
             }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSemester(string userId, string chosenUniversityId, string semesterId, string semesterNumber)
+        {
+            _semesterService.DeleteSemesterById(semesterId);
+            string message = $"Успешно изтриване на семестър №{semesterNumber}!";
+            return RedirectToAction("Semesters", new { userId, chosenUniversityId, message });
         }
 
         [HttpPost]

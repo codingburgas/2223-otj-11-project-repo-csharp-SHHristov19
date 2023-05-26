@@ -54,5 +54,10 @@ namespace Univers.BLL.Services
         {
             return TransferDataFromEntityToModel().Where(x => x.UniversityId == chosenUniversityId).OrderBy(x => x.Number);
         }
+
+        public void DeleteSemesterById(string semesterId)
+        {
+            _semesterRepository.DeleteSemester(semesterId);
+        }
     }
 }
