@@ -87,5 +87,22 @@ namespace Univers.DAL.Repositories
             context.Update(studentGrade);
             context.SaveChanges();
         }
+
+        public void AddGrade(string? studentId, string? id, int? grade)
+        {
+            using Context.Context context = new();
+
+            var exam = context.Exams.Include(x => x.Subject).First(x => x.SubjectId == id);
+
+            var studentGrade = new Grade()
+            {
+                Grade1 = grade,
+                StudentId = studentId,
+                ExamId = exam.Id,
+            };
+
+            context.Add(studentGrade);
+            context.SaveChanges();
+        }
     }
 }

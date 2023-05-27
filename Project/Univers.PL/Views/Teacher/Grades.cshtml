@@ -79,10 +79,9 @@
                                 <td class="col-5">@student.Student.FullName</td>
                                 <td>Няма</td>
                                 <td class="col-1">
-                                    @Html.ActionLink("Редактирай", "EditGrade", "Teacher", new { userId = Model.UserId}, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Добави", "AddGrade", "Teacher", new { userId = Model.UserId, studentId = student.StudentId, subjectId = Model.ChoosenSubject.Id}, new { @class = "btn btn-success" })
                                 </td> 
-                            } 
-                            
+                            }  
                         </tr> 
                     }
                 </tbody>

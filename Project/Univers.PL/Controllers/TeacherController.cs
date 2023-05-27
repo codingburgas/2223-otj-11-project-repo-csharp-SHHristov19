@@ -66,5 +66,27 @@ namespace Univers.PL.Controllers
             _gradeService.EditGrade(model.EditGrade.StudentId, model.ChoosenSubject.Id, model.EditGrade.Grade.Grade);
             return RedirectToAction("Grades", "Teacher", new { userId = model.UserId, subjectId = model.ChoosenSubject.Id });
         }
+
+        public ActionResult AddGrade(string userId, string studentId, string subjectId)
+        {
+            TeacherModel model = new()
+            {
+                UserId = userId,
+                ChoosenSubject = _subjectService.GetSubjectById(subjectId),
+                EditGrade = new(),
+            };
+
+            model.EditGrade.StudentId = studentId;
+            model.EditGrade.Student = _userService.GetUserByStudentId(studentId);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddGrade(TeacherModel model)
+        {
+            _gradeService.AddGrade(model.EditGrade.StudentId, model.ChoosenSubject.Id, model.EditGrade.Grade.Grade);
+            return RedirectToAction("Grades", "Teacher", new { userId = model.UserId, subjectId = model.ChoosenSubject.Id });
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
@@ -15,6 +16,11 @@ namespace Univers.BLL.Services
         public GradeService()
         {
             _gradeRepository = new GradeRepository();
+        }
+
+        public void AddGrade(string? studentId, string? id, int? grade)
+        {
+            _gradeRepository.AddGrade(studentId, id, grade);
         }
 
         public void EditGrade(string studentId, string subjectId, int? newGrade)
