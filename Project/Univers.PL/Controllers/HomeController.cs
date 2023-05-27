@@ -29,7 +29,7 @@ namespace Univers.PL.Controllers
             return View(users);
         }
 
-        public ActionResult StaffHome(string userId)
+        public ActionResult TeacherHome(string userId)
         {
             var user = _userService.GetUserByUserId(userId);
 

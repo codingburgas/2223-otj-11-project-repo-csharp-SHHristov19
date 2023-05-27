@@ -86,6 +86,35 @@ namespace Univers.DAL.Repositories
                    .FirstOrDefault(); 
         }
 
+        public UserModel? GetUserModelByStudentId(string studentId)
+        {
+            using Context.Context context = new();
+
+            return (from user in context.Users
+                    join student in context.Students on user.Id equals student.UserId
+                    where student.Id == studentId
+                    select new UserModel
+                    {
+                        Id = user.Id,
+                        Address = user.Address,
+                        Username = user.Username,
+                        Password = user.Password,
+                        PasswordSalt = user.PasswordSalt,
+                        PhoneNumber = user.PhoneNumber,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        MiddleName = user.MiddleName,
+                        LastName = user.LastName,
+                        DateOfRegistration = user.DateOfRegistration,
+                        Gender = user.Gender,
+                        Image = user.Image,
+                        IsConfirmed = user.IsConfirmed,
+                        FullName = $"{user.FirstName} {user.MiddleName} {user.LastName}",
+                        IsActive = user.IsActive,
+                    })
+                   .FirstOrDefault();
+        }
+
         public void UpdateUsername(string? userId, string? newUsername)
         {
             using Context.Context context = new();

@@ -40,4 +40,6 @@ public class UserModel
     public string? FullName { get; set; } = null!;
 
     public bool? IsConfirmed { get; set;}
+
+    public bool? IsActive { get; set;}
 } 

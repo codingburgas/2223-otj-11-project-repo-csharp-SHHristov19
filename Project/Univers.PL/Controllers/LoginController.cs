@@ -53,9 +53,9 @@ namespace Univers.PL.Controllers
                         {
                             return RedirectToAction("AdminHome", "Home", new { userId = loginUser.Id });
                         }
-                        else
+                        else if(role == "Преподавател") 
                         {
-                            return RedirectToAction("StaffHome", "Home", new { userId = loginUser.Id });
+                            return RedirectToAction("TeacherHome", "Home", new { userId = loginUser.Id });
                         }
                     }
                 }

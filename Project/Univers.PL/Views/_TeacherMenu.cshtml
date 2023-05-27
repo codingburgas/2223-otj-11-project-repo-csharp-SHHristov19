@@ -17,7 +17,7 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a href="@Url.Action("StaffHome", "Home", new{ userId = TempData["Id"]})">
+                <a href="@Url.Action("TeacherHome", "Home", new{ userId = TempData["Id"]})">
                     <span class="icon"><ion-icon name="home"></ion-icon></span>
                     <span class="title">Начало</span>
                 </a>
@@ -33,7 +33,7 @@
             <li class="list">
                 <b></b>
                 <b></b>
-                <a href="#">
+                <a href="@Url.Action("ChooseSubject", "Teacher", new{ userId = TempData["Id"]})">
                     <span class="icon"><ion-icon name="bookmarks"></ion-icon></span>
                     <span class="title">Оценки</span>
                 </a>

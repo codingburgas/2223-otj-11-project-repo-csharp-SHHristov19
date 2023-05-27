@@ -35,7 +35,8 @@ namespace Univers.DAL.Repositories
                         TeacherName = u.FirstName + " " + u.MiddleName + " " + u.LastName,
                         Credits = s.Credits,
                         List = s.List
-                    }).ToList();
+                    })
+                    .ToList();
         }
 
         public List<SubjectModel> GetAllElectivesBySpecialityId(string specialityId)
@@ -46,14 +47,26 @@ namespace Univers.DAL.Repositories
                    join sf in context.Staff on s.TeacherId equals sf.Id
                    join u in context.Users on sf.UserId equals u.Id
                    where s.Type == "Предмет с текуща оценка" && s.SpecialityId == specialityId
-                    orderby s.Name
+                   orderby s.Name
                    select new SubjectModel
                    {
                        Name = s.Name,
                        TeacherName = u.FirstName + " " + u.MiddleName + " " + u.LastName,
                        Credits = s.Credits,
                        List = s.List
-                   }).ToList();
+                   })
+                   .ToList();
+        }
+
+        public List<Subject> GetAllSubjectsBelongingToTeacherByUserId(string userId)
+        {
+            using Context.Context context = new();
+
+            return (from staff in context.Staff
+                    join subject in context.Subjects on staff.Id equals subject.TeacherId
+                    join user in context.Users on staff.UserId equals user.Id
+                    where user.IsConfirmed == true && user.Id == userId
+                    select subject).ToList();
         }
     }
 }

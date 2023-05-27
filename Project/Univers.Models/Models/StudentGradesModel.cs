@@ -10,7 +10,10 @@ namespace Univers.Models.Models
     {
         public string? StudentId { get; set; }
 
-        public List<GradeModel> Grades { get; set; }
-         
+        public UserModel? Student { get; set; }
+
+        public List<GradeModel>? Grades { get; set; }
+        
+        public GradeModel? Grade { get; set; }
     }
 }
