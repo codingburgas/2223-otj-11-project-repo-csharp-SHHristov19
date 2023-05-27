@@ -99,7 +99,7 @@ namespace Univers.DAL.Repositories
             var university = context.Universities
                            .Include(s => s.Semesters)
                            .Include(f => f.Faculties) 
-                           .ThenInclude(s => s.Specialities) 
+                                .ThenInclude(s => s.Specialities) 
                            .FirstOrDefault(u => u.Id == universityId);
 
 

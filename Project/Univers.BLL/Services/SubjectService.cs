@@ -96,5 +96,10 @@ namespace Univers.BLL.Services
         {
             _subjectRepository.AddSubject(teacherId, subjectName, subjectCredits, specialityId);
         }
+
+        public void DeleteSubject(string chosenSubjectId)
+        {
+            _subjectRepository.DeleteSubject(chosenSubjectId);
+        }
     }
 }

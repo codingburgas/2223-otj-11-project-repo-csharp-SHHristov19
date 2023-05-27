@@ -88,5 +88,47 @@ namespace Univers.DAL.Repositories
             context.Subjects.Add(subject);
             context.SaveChanges();
         }
+
+        public void DeleteSubject(string chosenSubjectId)
+        {
+            using Context.Context context = new();
+
+            var subject = context.Subjects
+                .Include(x => x.Semesters)
+                    .ThenInclude(x => x.ExamSessions)
+                        .ThenInclude(x => x.Exams)
+                            .ThenInclude(x => x.Grades)
+                .Include(x => x.Semesters)
+                    .ThenInclude(x => x.StudentCourses)
+                .Include(x => x.Exams)
+                    .ThenInclude(x => x.Grades)
+                .FirstOrDefault(x => x.Id == chosenSubjectId);
+
+            foreach (var semester in subject.Semesters)
+            {
+                foreach (var examSession in semester.ExamSessions)
+                {
+                    foreach (var exam in examSession.Exams)
+                    {
+                        exam.Grades.Clear();
+                    }
+                    examSession.Exams.Clear();
+                }
+                semester.ExamSessions.Clear();
+                semester.StudentCourses.Clear();
+            }
+            subject.Semesters.Clear();
+             
+
+            foreach (var exam in subject.Exams)
+            {
+                exam.Grades.Clear();
+            }
+
+            subject.Exams.Clear();
+
+            context.Subjects.Remove(subject);
+            context.SaveChanges(); 
+        }
     }
 }

@@ -736,5 +736,12 @@ namespace Univers.PL.Controllers
                 return View("AddSubject", model);
             } 
         }
+
+        [HttpPost]
+        public ActionResult DeleteSubject(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId, string chosenSubjectId)
+        {
+            _subjectService.DeleteSubject(chosenSubjectId);
+            return RedirectToAction("Subjects", "Admin", new { userId, chosenUniversityId , chosenFacultyId, chosenSpecialityId, message = "Успешно изтриване на предмет!" });
+        }
     }
 } 
