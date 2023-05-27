@@ -91,5 +91,10 @@ namespace Univers.BLL.Services
         {
             return TransferDataFromEntityToModel().FirstOrDefault(x => x.Id == subjectId);
         }
+
+        public void AddSubject(string? teacherId, string? subjectName, decimal? subjectCredits, string specialityId)
+        {
+            _subjectRepository.AddSubject(teacherId, subjectName, subjectCredits, specialityId);
+        }
     }
 }

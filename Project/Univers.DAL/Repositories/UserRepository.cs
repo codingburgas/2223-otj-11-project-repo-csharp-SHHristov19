@@ -270,7 +270,8 @@ namespace Univers.DAL.Repositories
                     join s in context.Students on u.Id equals s.UserId into studentGroup
                     from s in studentGroup.DefaultIfEmpty()
                     where sf.Id == null && s.Id == null && u.IsActive == true && u.IsConfirmed == false
-                    select u).ToList();
+                    select u)
+                    .ToList();
         }
 
         public void ConfirmUser(string id)
@@ -283,6 +284,19 @@ namespace Univers.DAL.Repositories
 
             context.Update(user);
             context.SaveChanges();
+        }
+
+        public List<User> GetAllFreeTeachers()
+        {
+            using Context.Context context = new();
+
+            return (from sf in context.Staff
+                    join s in context.Subjects on sf.Id equals s.TeacherId into subjectsGroup
+                    from s in subjectsGroup.DefaultIfEmpty()
+                    join u in context.Users on sf.UserId equals u.Id
+                    where sf.Role == "Преподавател" && s.TeacherId == null && u.IsActive == true
+                    select u)
+                    .ToList();
         }
     }
 }

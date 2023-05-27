@@ -341,5 +341,21 @@ namespace Univers.BLL.Services
         {
             _userRepository.ConfirmUser(id);
         }
+
+        public List<UserModel> GetAllFreeTeachers()
+        {
+            var teachers = _userRepository.GetAllFreeTeachers();
+
+            var result = new List<UserModel>();
+
+            foreach (var teacher in teachers)
+            {
+                UserModel newModel = MapUserEntity(teacher);
+
+                result.Add(newModel);
+            }
+
+            return result;
+        }
     }
 }

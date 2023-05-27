@@ -69,5 +69,24 @@ namespace Univers.DAL.Repositories
                     where user.IsConfirmed == true && user.Id == userId
                     select subject).ToList();
         }
+
+        public void AddSubject(string? teacherId, string? subjectName, decimal? subjectCredits, string specialityId)
+        {
+            using Context.Context context = new();
+
+            var subject = new Subject
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Name = subjectName,
+                Type = "Предмет с изпит",
+                List = 0,
+                Credits = subjectCredits,
+                TeacherId = teacherId,
+                SpecialityId = specialityId,
+            };
+
+            context.Subjects.Add(subject);
+            context.SaveChanges();
+        }
     }
 }

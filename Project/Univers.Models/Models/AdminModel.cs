@@ -18,6 +18,8 @@ namespace Univers.Models.Models
 
         public List<UserModel>? Tutors { get; set; } 
 
+        public List<UserModel>? Teachers { get; set; } 
+
         public UserModel? ChosenUser { get; set; }
 
         public StudentModel? ChosenStudent { get; set; }
@@ -46,6 +48,8 @@ namespace Univers.Models.Models
 
         public SemesterModel? AddSemester { get; set; }
 
+        public AddSubjectModel? AddSubject { get; set; }
+
         public IEnumerable<UniversityModel>? Universities { get; set;}
 
         public IEnumerable<FacultyModel>? Faculties { get; set;}
@@ -59,5 +63,11 @@ namespace Univers.Models.Models
         public IEnumerable<SemesterModel>? Semesters { get; set;} 
 
         public IEnumerable<SubjectModel>? Subjects { get; set;} 
+
+        public string? UniversityId { get; set; }
+
+        public string? FacultyId { get; set; }
+
+        public string? SpecialityId { get; set; }
     }
 }

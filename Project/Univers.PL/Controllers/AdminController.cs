@@ -681,7 +681,7 @@ namespace Univers.PL.Controllers
             }
         }
 
-        public ActionResult Subjects(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId)
+        public ActionResult Subjects(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId, string? message = null)
         {
             var subject = new AdminModel() 
             {
@@ -691,7 +691,7 @@ namespace Univers.PL.Controllers
                 ChosenSpeciality = _specialityService.GetSpecialitiesById(chosenSpecialityId),
                 Subjects = _subjectService.GetAllSubjectsWithExamBySpecialityId(chosenSpecialityId),
             };
-              
+            ViewBag.Message = message;
             return View(subject);
         }
 
@@ -707,6 +707,34 @@ namespace Univers.PL.Controllers
             };
 
             return View(subject);
+        }
+
+        public ActionResult AddSubject(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId)
+        {
+            var subject = new AdminModel()
+            {
+                UserId = userId,
+                FacultyId = chosenFacultyId,
+                UniversityId = chosenUniversityId,
+                SpecialityId = chosenSpecialityId,
+                Teachers = _userService.GetAllFreeTeachers(),
+            };
+
+            return View(subject);
+        }
+
+        [HttpPost]
+        public ActionResult AddSubject(AdminModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _subjectService.AddSubject(_staffService.GetStaffByUserId(model.AddSubject.TeacherId).Id, model.AddSubject.Name, model.AddSubject.Credits, model.SpecialityId);
+                return RedirectToAction("Subjects", "Admin", new { userId = model.UserId, chosenUniversityId = model.UniversityId, chosenFacultyId = model.FacultyId, chosenSpecialityId = model.SpecialityId, message = "Успешно добавяне на предмет!" });
+            }
+            else
+            {
+                return View("AddSubject", model);
+            } 
         }
     }
 } 
