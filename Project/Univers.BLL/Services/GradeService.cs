@@ -17,6 +17,11 @@ namespace Univers.BLL.Services
             _gradeRepository = new GradeRepository();
         }
 
+        public void EditGrade(string studentId, string subjectId, int? newGrade)
+        {
+            _gradeRepository.EditGrade(studentId, subjectId, newGrade);
+        }
+
         public List<StudentGradesModel> GetAllStudentsThatHasTheSubjectBySubjectId(string subjectId)
         {
             return _gradeRepository.GetAllStudentsThatHasTheSubjectBySubjectId(subjectId);

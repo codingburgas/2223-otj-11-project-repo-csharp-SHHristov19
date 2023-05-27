@@ -15,5 +15,7 @@ namespace Univers.Models.Models
         public List<SubjectModel>? Subjects { get; set; }
 
         public SubjectModel? ChoosenSubject { get; set; }
+
+        public StudentGradesModel? EditGrade { get; set; }
     }
 }

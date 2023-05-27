@@ -58,17 +58,17 @@
                                 <td class="col-5">@student.Student.FullName</td>
                                 <td>@student.Grade.Grade</td>
                                 <td class="col-1">
-                                    @Html.ActionLink("Редактирай", "EditGrade", "Admin", new { userId = Model.UserId }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Редактирай", "EditGrade", "Teacher", new { userId = Model.UserId, studentId = student.Grade.StudentId, subjectId = Model.ChoosenSubject.Id}, new { @class = "btn btn-success" })
                                 </td>
                                 <td class="col-1">
                                     @using (Html.BeginForm("DeleteGrade", "Admin", FormMethod.Post, new { onsubmit = $"return confirm('Сигурни ли сте, че искате да изтриете {@student.Grade.Grade}-та на {@student.Student.FullName}'); " }))
                                     {
                                         @Html.Hidden("userId", Model.UserId)
-                                        @Html.Hidden("gradeId", student.Grade.StudentId)
+                                        @Html.Hidden("studentId", student.Grade.StudentId)
                                         @Html.Hidden("subjectId", Model.ChoosenSubject.Id)
                                         <button class="btn btn-danger" type="submit">Изтрий</button>
                                     }
-                                </td>
+                                </td> 
                             }
                             else
                             {
@@ -79,7 +79,7 @@
                                 <td class="col-5">@student.Student.FullName</td>
                                 <td>Няма</td>
                                 <td class="col-1">
-                                    @Html.ActionLink("Редактирай", "EditGrade", "Admin", new { userId = Model.UserId }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Редактирай", "EditGrade", "Teacher", new { userId = Model.UserId}, new { @class = "btn btn-success" })
                                 </td> 
                             } 
                             
