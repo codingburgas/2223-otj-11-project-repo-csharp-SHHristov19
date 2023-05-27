@@ -69,11 +69,10 @@
                                     counter++;
                                 }
                             </th>
-                            <td>@subject.Name</td>
-                            <td>@subject.Type</td>
+                            <td>@subject.Name</td> 
                             <td>@subject.Credits</td>
                             <td class="col-1">
-                                @Html.ActionLink("Информация", "SeeInfoSubject", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenFacultyId = Model.ChosenFaculty.Id, chosenSubjectId = subject.Id }, new { @class = "btn btn-secondary" })
+                                @Html.ActionLink("Информация", "SeeInfoSubject", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenFacultyId = Model.ChosenFaculty.Id, chosenSpecialityId = Model.ChosenSpeciality.Id, chosenSubjectId = subject.Id }, new { @class = "btn btn-secondary" })
                             </td>
                             <td class="col-1">
                                 @Html.ActionLink("Редактирай", "EditSubject", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenSubjectId = subject.Id }, new { @class = "btn btn-primary" })

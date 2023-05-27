@@ -32,6 +32,7 @@ namespace Univers.DAL.Repositories
                     select new SubjectModel
                     {
                         Name = s.Name,
+                        Id = s.Id,
                         TeacherName = u.FirstName + " " + u.MiddleName + " " + u.LastName,
                         Credits = s.Credits,
                         List = s.List

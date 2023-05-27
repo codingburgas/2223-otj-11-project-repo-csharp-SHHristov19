@@ -683,8 +683,7 @@ namespace Univers.PL.Controllers
 
         public ActionResult Subjects(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId)
         {
-            var subject = new AdminModel()
-
+            var subject = new AdminModel() 
             {
                 UserId = userId,
                 ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
@@ -693,6 +692,20 @@ namespace Univers.PL.Controllers
                 Subjects = _subjectService.GetAllSubjectsWithExamBySpecialityId(chosenSpecialityId),
             };
               
+            return View(subject);
+        }
+
+        public ActionResult SeeInfoSubject(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId, string chosenSubjectId)
+        {
+            var subject = new AdminModel()
+            {
+                UserId = userId,
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                ChosenSpeciality = _specialityService.GetSpecialitiesById(chosenSpecialityId),
+                ChosenSubject = _subjectService.GetAllSubjectsWithExamBySpecialityId(chosenSpecialityId).First(x => x.Id == chosenSubjectId),
+            };
+
             return View(subject);
         }
     }

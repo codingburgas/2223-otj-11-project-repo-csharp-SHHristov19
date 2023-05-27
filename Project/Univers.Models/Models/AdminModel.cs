@@ -28,6 +28,8 @@ namespace Univers.Models.Models
 
         public SpecialityModel? ChosenSpeciality { get; set; }
 
+        public SubjectModel? ChosenSubject { get; set; }
+
         public EditUserModel? EditUser { get; set; }
 
         public AddUserModel? AddUser { get; set; }
