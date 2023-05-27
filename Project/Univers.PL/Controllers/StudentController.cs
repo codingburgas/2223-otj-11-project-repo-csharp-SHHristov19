@@ -156,7 +156,7 @@ namespace Univers.PL.Controllers
 
             studentSubjects.StudentId = studentId;
 
-            studentSubjects.Subjects = _subjectService.GetAllSubjectsWithExamBySpecialityId(studentId);
+            studentSubjects.Subjects = _subjectService.GetAllSubjectsWithExamByStudentId(studentId);
 
             return View(studentSubjects);
         }
@@ -167,7 +167,7 @@ namespace Univers.PL.Controllers
 
             studentSubjects.StudentId = studentId;
 
-            studentSubjects.Subjects = _subjectService.GetAllElectivesBySpecialityId(studentId);
+            studentSubjects.Subjects = _subjectService.GetAllElectivesByStudentId(studentId);
 
             return View(studentSubjects);
         }

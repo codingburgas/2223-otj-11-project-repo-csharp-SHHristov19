@@ -17,6 +17,7 @@ namespace Univers.PL.Controllers
         private readonly StudentCourseService _studentCourseService;
         private readonly StaffService _staffService;
         private readonly SemesterService _semesterService;
+        private readonly SubjectService _subjectService;
 
         public AdminController()
         {
@@ -28,6 +29,7 @@ namespace Univers.PL.Controllers
             _studentCourseService = new StudentCourseService();
             _staffService = new StaffService();
             _semesterService = new SemesterService();
+            _subjectService = new SubjectService();
         }
 
         public ActionResult Users(string userId, string? message = null)
@@ -677,6 +679,21 @@ namespace Univers.PL.Controllers
             {
                 return View("ConfirmUser", user);
             }
+        }
+
+        public ActionResult Subjects(string userId, string chosenUniversityId, string chosenFacultyId, string chosenSpecialityId)
+        {
+            var subject = new AdminModel()
+
+            {
+                UserId = userId,
+                ChosenFaculty = _facultyService.GetFacultyById(chosenFacultyId),
+                ChosenUniversity = _universityService.GetUniversityById(chosenUniversityId),
+                ChosenSpeciality = _specialityService.GetSpecialitiesById(chosenSpecialityId),
+                Subjects = _subjectService.GetAllSubjectsWithExamBySpecialityId(chosenSpecialityId),
+            };
+              
+            return View(subject);
         }
     }
 } 

@@ -56,12 +56,17 @@ namespace Univers.BLL.Services
             return newModel;
         }
 
-        public List<SubjectModel> GetAllSubjectsWithExamBySpecialityId(string studentId)
+        public List<SubjectModel> GetAllSubjectsWithExamBySpecialityId(string specialityId)
+        {
+            return _subjectRepository.GetAllSubjectsBySpecialityId(specialityId);
+        }
+
+        public List<SubjectModel> GetAllSubjectsWithExamByStudentId(string studentId)
         {
             return _subjectRepository.GetAllSubjectsBySpecialityId(_studentService.GetStudentById(studentId).SpecialityId);
         }
 
-        public List<SubjectModel> GetAllElectivesBySpecialityId(string studentId)
+        public List<SubjectModel> GetAllElectivesByStudentId(string studentId)
         {
             return _subjectRepository.GetAllElectivesBySpecialityId(_studentService.GetStudentById(studentId).SpecialityId);
         }
