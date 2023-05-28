@@ -717,7 +717,6 @@ namespace Univers.PL.Controllers
                 FacultyId = chosenFacultyId,
                 UniversityId = chosenUniversityId,
                 SpecialityId = chosenSpecialityId,
-                Teachers = _userService.GetAllFreeTeachers(),
             };
 
             return View(subject);
@@ -725,7 +724,7 @@ namespace Univers.PL.Controllers
 
         [HttpPost]
         public ActionResult AddSubject(AdminModel model)
-        {
+        { 
             if (ModelState.IsValid)
             {
                 _subjectService.AddSubject(_staffService.GetStaffByUserId(model.AddSubject.TeacherId).Id, model.AddSubject.Name, model.AddSubject.Credits, model.SpecialityId);

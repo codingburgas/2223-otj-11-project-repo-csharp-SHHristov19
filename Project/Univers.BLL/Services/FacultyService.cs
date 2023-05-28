@@ -86,7 +86,10 @@ namespace Univers.BLL.Services
         public void AddFaculty(AddFacultyModel? addFaculty)
         {
             addFaculty.DeanId = _staffService.GetStaffByUserId(addFaculty.DeanId).Id;
-            addFaculty.ViceDeanId = _staffService.GetStaffByUserId(addFaculty.ViceDeanId).Id;
+            if(addFaculty.ViceDeanId != null)
+            {
+                addFaculty.ViceDeanId = _staffService.GetStaffByUserId(addFaculty.ViceDeanId).Id;
+            }
             _facultyRepository.AddFaculty(addFaculty);
         }
 

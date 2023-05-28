@@ -80,7 +80,7 @@ namespace Univers.DAL.Repositories
                 Name = subjectName,
                 Type = "Предмет с изпит",
                 List = 0,
-                Credits = subjectCredits,
+                Credits = (decimal)subjectCredits,
                 TeacherId = teacherId,
                 SpecialityId = specialityId,
             };

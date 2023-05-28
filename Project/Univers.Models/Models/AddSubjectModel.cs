@@ -26,8 +26,9 @@ namespace Univers.Models.Models
 
         [Required(ErrorMessage = "Необходимо е да въведете брой кредити на предмета.")]
         [Display(Name = "Кредити")]
-        public decimal? Credits { get; set; } = 0m;
-
+        [Range(2, 12, ErrorMessage = "Трябва да е между 2 и 12.")]
+        public decimal? Credits { get; set; }
+         
         public int? List { get; set; } = null!;
 
         public string? Speciality { get; set; } = null!;

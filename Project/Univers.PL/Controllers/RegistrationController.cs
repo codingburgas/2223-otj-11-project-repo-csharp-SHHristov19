@@ -33,8 +33,10 @@ namespace Univers.PL.Controllers
             _studentCourseService = new StudentCourseService();
         }
 
-        public ActionResult SignUpAs(SignUpUserModel user)
+        public ActionResult SignUpAs(string image)
         {
+            SignUpUserModel user = new();
+            user.Image = image;
             return View(user);
         }
          
@@ -43,11 +45,11 @@ namespace Univers.PL.Controllers
         {
             if (user.RoleChoice == "Студент")
             {
-                return RedirectToAction("ChooseFormOfEducationAndDegree", user);
+                return RedirectToAction("ChooseFormOfEducationAndDegree", new { image = user.Image });
             }
             else
             {
-                return RedirectToAction("SignUpAsStaff", user);
+                return RedirectToAction("SignUpAsStaff", new { image = user.Image });
             }
         } 
 
@@ -79,9 +81,7 @@ namespace Univers.PL.Controllers
 
                 var relativePath = $"~/uploads/{Path.GetFileName(imagePath)}";
                 // Save the image path to the user's account model
-                userImage.Image = relativePath;
-
-                return RedirectToAction("SignUpAs", "Registration", userImage);
+                userImage.Image = relativePath; 
             }
 
             return RedirectToAction("SignUpAs", "Registration", userImage);
@@ -112,7 +112,7 @@ namespace Univers.PL.Controllers
             }
             else
             {
-                return View("SignUp", user);
+                return View("SignUpAsStaff", user);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Univers.PL.Controllers
             }
             else
             {
-                return RedirectToAction("ChooseFormOfEducationAndDegree");
+                return RedirectToAction("ChooseFormOfEducationAndDegree", new { image = StudentModel.Image });
             }
         }
 
@@ -178,7 +178,7 @@ namespace Univers.PL.Controllers
             }
             else
             {
-                return View("SignUp", student);
+                return View("SignUpAsStudent", student);
             }
         } 
 
