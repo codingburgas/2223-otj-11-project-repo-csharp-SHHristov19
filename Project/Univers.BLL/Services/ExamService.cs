@@ -20,7 +20,7 @@ namespace Univers.BLL.Services
             _examSessionRepository = new ExamSessionRepository();
         }
 
-        private static ExamModel MapExamEntity(Exam entity)
+        public ExamModel MapExamEntity(Exam entity)
         {
             var newModel = new ExamModel();
 

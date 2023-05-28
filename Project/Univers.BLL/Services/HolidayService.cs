@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
@@ -29,16 +30,23 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                var newModel = new HolidayModel();
-
-                newModel.Name = entity.Name;
-                newModel.DateOfStart = entity.DateOfStart;
-                newModel.DateOfEnd = entity.DateOfEnd;
+                HolidayModel newModel = MapHolidayEntity(entity);
 
                 models.Add(newModel);
             }
 
             return models;
+        }
+
+        public HolidayModel MapHolidayEntity(Holiday entity)
+        {
+            var newModel = new HolidayModel();
+
+            newModel.Name = entity.Name;
+            newModel.DateOfStart = entity.DateOfStart;
+            newModel.DateOfEnd = entity.DateOfEnd;
+
+            return newModel;
         }
     }
 }

@@ -35,27 +35,33 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                var newModel = new StudentModel();
+                StudentModel newModel = MapStudentEntity(entity);
 
-                newModel.Id = entity.Id;
-                newModel.UserId = entity.UserId;
-                newModel.SpecialityId = entity.SpecialityId;
-                newModel.Citizenship = entity.Citizenship;
-                newModel.Identity = entity.Identity;
-                newModel.DateOfStarting = entity.DateOfStarting;
-                newModel.DateOfGraduate = entity.DateOfGraduate;
-                newModel.MunicipalityOfBirth = entity.MunicipalityOfBirth;
-                newModel.AreaOfBirth = entity.AreaOfBirth;
-                newModel.DateOfBirth = entity.DateOfBirth;
-                newModel.CountryOfBirth = entity.CountryOfBirth;
-                newModel.CityOfBirth = entity.CityOfBirth;
-                newModel.FacultyNumber = entity.FacultyNumber;
-                newModel.FormOfEducation = entity.FormOfEducation;  
-                
                 models.Add(newModel);
             }
 
             return models;
+        }
+
+        public StudentModel MapStudentEntity(Student entity)
+        {
+            var newModel = new StudentModel();
+
+            newModel.Id = entity.Id;
+            newModel.UserId = entity.UserId;
+            newModel.SpecialityId = entity.SpecialityId;
+            newModel.Citizenship = entity.Citizenship;
+            newModel.Identity = entity.Identity;
+            newModel.DateOfStarting = entity.DateOfStarting;
+            newModel.DateOfGraduate = entity.DateOfGraduate;
+            newModel.MunicipalityOfBirth = entity.MunicipalityOfBirth;
+            newModel.AreaOfBirth = entity.AreaOfBirth;
+            newModel.DateOfBirth = entity.DateOfBirth;
+            newModel.CountryOfBirth = entity.CountryOfBirth;
+            newModel.CityOfBirth = entity.CityOfBirth;
+            newModel.FacultyNumber = entity.FacultyNumber;
+            newModel.FormOfEducation = entity.FormOfEducation;
+            return newModel;
         }
 
         public void AddStudent(StudentModel student)

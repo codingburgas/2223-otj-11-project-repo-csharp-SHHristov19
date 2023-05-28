@@ -36,13 +36,13 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             { 
-                models.Add(MapingEntity(entity));
+                models.Add(MapSpeciallityEntity(entity));
             }
 
             return models;
         }
 
-        public SpecialityModel MapingEntity(Speciality entity)
+        public SpecialityModel MapSpeciallityEntity(Speciality entity)
         {
             var newModel = new SpecialityModel();
 
@@ -63,7 +63,7 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                models.Add(MapingEntity(entity));
+                models.Add(MapSpeciallityEntity(entity));
             } 
 
             return models;

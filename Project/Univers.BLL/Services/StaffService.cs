@@ -32,16 +32,22 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                var newModel = new StaffModel();
-
-                newModel.Id = entity.Id;
-                newModel.UserId = entity.UserId; 
-                newModel.Role = entity.Role;
+                StaffModel newModel = MapStaffEntity(entity);
 
                 models.Add(newModel);
             }
 
             return models;
+        }
+
+        public StaffModel MapStaffEntity(Staff entity)
+        {
+            var newModel = new StaffModel();
+
+            newModel.Id = entity.Id;
+            newModel.UserId = entity.UserId;
+            newModel.Role = entity.Role;
+            return newModel;
         }
 
         public StaffModel? GetStaffByUserId(string userId)

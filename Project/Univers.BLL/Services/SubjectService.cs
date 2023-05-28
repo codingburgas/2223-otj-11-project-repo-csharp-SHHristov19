@@ -40,7 +40,7 @@ namespace Univers.BLL.Services
             return models;
         }
 
-        private static SubjectModel MapSubjectEntity(Subject entity)
+        public SubjectModel MapSubjectEntity(Subject entity)
         {
             var newModel = new SubjectModel()
             {

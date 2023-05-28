@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Univers.DAL.Entities;
 using Univers.DAL.Repositories;
 using Univers.Models.Models;
 
@@ -31,19 +32,25 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                var newModel = new UniversityModel();
-
-                newModel.Id = entity.Id;
-                newModel.Name = entity.Name;
-                newModel.RectorId = entity.RectorId;
-                newModel.Address = entity.Address;
-                newModel.Capacity = entity.Capacity;
+                UniversityModel newModel = MapUniversityEntity(entity);
 
                 models.Add(newModel);
             }
 
             return models;
-        } 
+        }
+
+        public UniversityModel MapUniversityEntity(University entity)
+        {
+            var newModel = new UniversityModel();
+
+            newModel.Id = entity.Id;
+            newModel.Name = entity.Name;
+            newModel.RectorId = entity.RectorId;
+            newModel.Address = entity.Address;
+            newModel.Capacity = entity.Capacity;
+            return newModel;
+        }
 
         public UniversityModel GetUniversityById(string id)
         {

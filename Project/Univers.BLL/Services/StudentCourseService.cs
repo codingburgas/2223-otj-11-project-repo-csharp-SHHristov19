@@ -28,13 +28,13 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                StudentCourseModel newModel = MapUserEntity(entity);
+                StudentCourseModel newModel = MapStudentCourseEntity(entity);
 
                 yield return newModel;
             }
         }
 
-        private static StudentCourseModel MapUserEntity(StudentCourse entity)
+        public StudentCourseModel MapStudentCourseEntity(StudentCourse entity)
         {
             var newModel = new StudentCourseModel();
 

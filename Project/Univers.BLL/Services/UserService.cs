@@ -37,7 +37,7 @@ namespace Univers.BLL.Services
             } 
         }
 
-        private static UserModel MapUserEntity(User entity)
+        public UserModel MapUserEntity(User entity)
         {
             var newModel = new UserModel()
             {

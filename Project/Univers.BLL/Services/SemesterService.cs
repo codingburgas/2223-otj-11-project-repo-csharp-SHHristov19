@@ -26,13 +26,13 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                models.Add(MapingEntity(entity));
+                models.Add(MapSemesterEntity(entity));
             }
 
             return models;
         }
 
-        public SemesterModel MapingEntity(Semester entity)
+        public SemesterModel MapSemesterEntity(Semester entity)
         {
             var newModel = new SemesterModel();
 
@@ -45,6 +45,7 @@ namespace Univers.BLL.Services
 
             return newModel;
         }
+
         public void AddSemesterInUniversityById(SemesterModel semester)
         {
             _semesterRepository.AddSemester(semester);

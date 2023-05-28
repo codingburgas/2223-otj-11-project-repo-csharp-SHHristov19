@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Univers.Models", "..\Univer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Univers.Utilities", "..\Univers.Utilities\Univers.Utilities.csproj", "{D9C1E7BD-636B-496B-8819-372B1E6E96D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Univers.UnitTests", "..\Univers.UnitTests\Univers.UnitTests.csproj", "{71DE6499-56DD-47D2-9A8A-42EB070CEFC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D9C1E7BD-636B-496B-8819-372B1E6E96D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C1E7BD-636B-496B-8819-372B1E6E96D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C1E7BD-636B-496B-8819-372B1E6E96D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DE6499-56DD-47D2-9A8A-42EB070CEFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DE6499-56DD-47D2-9A8A-42EB070CEFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DE6499-56DD-47D2-9A8A-42EB070CEFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DE6499-56DD-47D2-9A8A-42EB070CEFC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

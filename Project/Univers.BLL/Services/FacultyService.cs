@@ -34,19 +34,25 @@ namespace Univers.BLL.Services
 
             foreach (var entity in entities)
             {
-                var newModel = new FacultyModel();
-
-                newModel.Id = entity.Id;
-                newModel.Name = entity.Name;
-                newModel.DeanId = entity.DeanId;
-                newModel.ViceDeanId = entity.ViceDeanId;
-                newModel.UniversityId = entity.UniversityId;
-                newModel.Code = entity.Code;
+                FacultyModel newModel = MapFacultyEntity(entity);
 
                 models.Add(newModel);
             }
 
             return models;
+        }
+
+        public FacultyModel MapFacultyEntity(Faculty entity)
+        {
+            var newModel = new FacultyModel();
+
+            newModel.Id = entity.Id;
+            newModel.Name = entity.Name;
+            newModel.DeanId = entity.DeanId;
+            newModel.ViceDeanId = entity.ViceDeanId;
+            newModel.UniversityId = entity.UniversityId;
+            newModel.Code = entity.Code;
+            return newModel;
         }
 
         public List<FacultyModel> GetFacultiesByUniversityId(string universityId)
