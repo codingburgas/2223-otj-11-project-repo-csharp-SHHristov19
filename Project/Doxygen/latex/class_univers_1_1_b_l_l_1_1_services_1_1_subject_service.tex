@@ -1,0 +1,52 @@
+\doxysection{Univers.\+BLL.\+Services.\+Subject\+Service Class Reference}
+\hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service}{}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service}\index{Univers.BLL.Services.SubjectService@{Univers.BLL.Services.SubjectService}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_a9551c5aaa6e2c6ee5a876cafbcbf4386}{Transfer\+Data\+From\+Entity\+To\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Transfer data from Subject entity to Subject model. \end{DoxyCompactList}\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ab5f995b0c435ace3f614deeb0b030250}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ab5f995b0c435ace3f614deeb0b030250} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} {\bfseries Map\+Subject\+Entity} (\mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_subject}{Subject}} entity)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_af48ccfec1a73cedb256e62625bc32cdb}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_af48ccfec1a73cedb256e62625bc32cdb} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ {\bfseries Get\+All\+Subjects\+With\+Exam\+By\+Speciality\+Id} (string speciality\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_aceee05001542a5464221a2d8ceacd23e}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_aceee05001542a5464221a2d8ceacd23e} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ {\bfseries Get\+All\+Subjects\+With\+Exam\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_a94df1cbc89a3e6f36e1cc134450817c9}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_a94df1cbc89a3e6f36e1cc134450817c9} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ {\bfseries Get\+All\+Electives\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_af04ca32f1dfb5a584e8b9d8abc61b047}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_af04ca32f1dfb5a584e8b9d8abc61b047} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ {\bfseries Get\+All\+Subjects\+Belonging\+To\+Teacher\+By\+User\+Id} (string user\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ad30dbf15ddd92e94c424243f8f819f83}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ad30dbf15ddd92e94c424243f8f819f83} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}}? {\bfseries Get\+Subject\+By\+Id} (string subject\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ad66bbe8d6be01bcb1677b80cab4f06f8}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_ad66bbe8d6be01bcb1677b80cab4f06f8} 
+void {\bfseries Add\+Subject} (string? teacher\+Id, string? subject\+Name, decimal? subject\+Credits, string speciality\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_aa9ed4779a5949eb585f2fe445fe12303}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_aa9ed4779a5949eb585f2fe445fe12303} 
+void {\bfseries Delete\+Subject} (string chosen\+Subject\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_a9551c5aaa6e2c6ee5a876cafbcbf4386}\label{class_univers_1_1_b_l_l_1_1_services_1_1_subject_service_a9551c5aaa6e2c6ee5a876cafbcbf4386} 
+\index{Univers.BLL.Services.SubjectService@{Univers.BLL.Services.SubjectService}!TransferDataFromEntityToModel@{TransferDataFromEntityToModel}}
+\index{TransferDataFromEntityToModel@{TransferDataFromEntityToModel}!Univers.BLL.Services.SubjectService@{Univers.BLL.Services.SubjectService}}
+\doxysubsubsection{\texorpdfstring{TransferDataFromEntityToModel()}{TransferDataFromEntityToModel()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_subject_model}{Subject\+Model}} $>$ Univers.\+BLL.\+Services.\+Subject\+Service.\+Transfer\+Data\+From\+Entity\+To\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transfer data from Subject entity to Subject model. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Univers.\+BLL/\+Services/Subject\+Service.\+cs\end{DoxyCompactItemize}

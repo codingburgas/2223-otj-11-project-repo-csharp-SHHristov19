@@ -1,0 +1,58 @@
+\doxysection{Univers.\+BLL.\+Services.\+Student\+Service Class Reference}
+\hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service}{}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service}\index{Univers.BLL.Services.StudentService@{Univers.BLL.Services.StudentService}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}} $>$ \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab4456392fd1fc4a5a73a91541fecf61d}{Transfer\+Data\+From\+Entity\+To\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Transfer data from Student entity to Student model. \end{DoxyCompactList}\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a7ae101d3d69a7a04dec8194c6c7d38f8}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a7ae101d3d69a7a04dec8194c6c7d38f8} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}} {\bfseries Map\+Student\+Entity} (\mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_student}{Student}} entity)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a6e2bb6eb91ab9527cd839e382f87b79d}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a6e2bb6eb91ab9527cd839e382f87b79d} 
+void {\bfseries Add\+Student} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}} student)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ae2907efc579109fbdb9d274f54c6a8ce}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ae2907efc579109fbdb9d274f54c6a8ce} 
+void {\bfseries Add\+Student} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_add_student_model}{Add\+Student\+Model}} student)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_aaa94d0a8194cdbc3158d12801b30abe2}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_aaa94d0a8194cdbc3158d12801b30abe2} 
+void {\bfseries Add\+Speciality\+Id} (string student\+Id, string speciality\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a30dcc31e773f2cbab118b4c27781bb59}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a30dcc31e773f2cbab118b4c27781bb59} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}}? {\bfseries Get\+Student\+By\+User\+Id} (string user\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a57a5d79e6e06721b2c9c0edd0c8202ec}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a57a5d79e6e06721b2c9c0edd0c8202ec} 
+int {\bfseries Get\+The\+Max\+Num\+Of\+The\+Faculty\+Numbers\+Of\+All\+Students} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab42fd49483fa6b45a96c7359a8622a05}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab42fd49483fa6b45a96c7359a8622a05} 
+void {\bfseries Add\+Faculty\+Number} (string student\+Id, string faculty\+Code, string speciality\+Code)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_abba8d01a8cb1c20d9aaf54797ea21095}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_abba8d01a8cb1c20d9aaf54797ea21095} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}}? {\bfseries Get\+Student\+By\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a21f38e0d9fa1719cb1942bab4b8cd95e}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_a21f38e0d9fa1719cb1942bab4b8cd95e} 
+string? {\bfseries Get\+University\+Name\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab61e6c93102c3c76b36118230699116c}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab61e6c93102c3c76b36118230699116c} 
+void {\bfseries Updaate\+Student} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_edit_student_model}{Edit\+Student\+Model}}? new\+User)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab4456392fd1fc4a5a73a91541fecf61d}\label{class_univers_1_1_b_l_l_1_1_services_1_1_student_service_ab4456392fd1fc4a5a73a91541fecf61d} 
+\index{Univers.BLL.Services.StudentService@{Univers.BLL.Services.StudentService}!TransferDataFromEntityToModel@{TransferDataFromEntityToModel}}
+\index{TransferDataFromEntityToModel@{TransferDataFromEntityToModel}!Univers.BLL.Services.StudentService@{Univers.BLL.Services.StudentService}}
+\doxysubsubsection{\texorpdfstring{TransferDataFromEntityToModel()}{TransferDataFromEntityToModel()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_student_model}{Student\+Model}} $>$ Univers.\+BLL.\+Services.\+Student\+Service.\+Transfer\+Data\+From\+Entity\+To\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transfer data from Student entity to Student model. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Univers.\+BLL/\+Services/Student\+Service.\+cs\end{DoxyCompactItemize}

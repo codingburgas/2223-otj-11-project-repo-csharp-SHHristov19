@@ -1,0 +1,111 @@
+\doxysection{Univers.\+DAL.\+Repositories.\+User\+Repository Class Reference}
+\hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository}{}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository}\index{Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7f08bdaceae4ec1fb2ce5f9900b750c8}{Read\+All\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Read the data from the Users table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a63ca2803fb378e7528c4bc8ee598863a}{Add\+Data}} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_sign_up_user_model}{Sign\+Up\+User\+Model}} user, string password\+Salt)
+\begin{DoxyCompactList}\small\item\em Add user in Users table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_aed378fba63a8794fc31291f625988d88}{Update\+Password}} (string user\+Id, string new\+Password, string salt)
+\begin{DoxyCompactList}\small\item\em Update the password. \end{DoxyCompactList}\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ab66343dd5a90b2047e69b1f4e4a953c3}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ab66343dd5a90b2047e69b1f4e4a953c3} 
+\mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}}? {\bfseries Get\+User\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_aa383e4992f71d9153fd782befee72c80}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_aa383e4992f71d9153fd782befee72c80} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? {\bfseries Get\+User\+Model\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a538e1c332f4e3811e391328c464f2ac1}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a538e1c332f4e3811e391328c464f2ac1} 
+void {\bfseries Update\+Username} (string? user\+Id, string? new\+Username)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae2484b8153d40cb0226737c320a6b7c8}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae2484b8153d40cb0226737c320a6b7c8} 
+IEnumerable$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+Staff\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae2c4aacba093547d8202fe068ad359c2}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae2c4aacba093547d8202fe068ad359c2} 
+IEnumerable$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+Student\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae78359925f52e31e5361e01510c1c224}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ae78359925f52e31e5361e01510c1c224} 
+Dictionary$<$ string, string $>$ {\bfseries Get\+Role\+Of\+The\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac4a28961e75168e8b5af7d26ef004e7d}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac4a28961e75168e8b5af7d26ef004e7d} 
+void {\bfseries Update\+User} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_edit_user_model}{Edit\+User\+Model}} new\+User)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a39b124825c1f608776aaa1411baa2ca9}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a39b124825c1f608776aaa1411baa2ca9} 
+void {\bfseries Delete\+User} (string id)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ad159b5693ea5bd4d131272523fcb0ad5}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ad159b5693ea5bd4d131272523fcb0ad5} 
+void {\bfseries Add\+User} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_add_user_model}{Add\+User\+Model}} user, string password\+Salt)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a411fc4ee57a917e46b5b74fdaf48e07c}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a411fc4ee57a917e46b5b74fdaf48e07c} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+Free\+Rectors} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac9e93b1938232f4c6b3303b929963d07}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac9e93b1938232f4c6b3303b929963d07} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+Free\+Deans} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac2c8525ac83992ce6dc349982201a7c6}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_ac2c8525ac83992ce6dc349982201a7c6} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+Free\+Tutors} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a456ffc005ac3e2c63a621ee18dc071d9}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a456ffc005ac3e2c63a621ee18dc071d9} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+All\+Users\+That\+Are\+Not\+Confirmed} ()
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_afd430610a44fd711f3367cc63e14e1ae}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_afd430610a44fd711f3367cc63e14e1ae} 
+void {\bfseries Confirm\+User} (string id)
+\item 
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a407db228ea080ce467dc5bdeffa6daa0}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a407db228ea080ce467dc5bdeffa6daa0} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ {\bfseries Get\+All\+Free\+Teachers} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a63ca2803fb378e7528c4bc8ee598863a}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a63ca2803fb378e7528c4bc8ee598863a} 
+\index{Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}!AddData@{AddData}}
+\index{AddData@{AddData}!Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{AddData()}{AddData()}}
+{\footnotesize\ttfamily void Univers.\+DAL.\+Repositories.\+User\+Repository.\+Add\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_sign_up_user_model}{Sign\+Up\+User\+Model}}}]{user,  }\item[{string}]{password\+Salt }\end{DoxyParamCaption})}
+
+
+
+Add user in Users table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7f08bdaceae4ec1fb2ce5f9900b750c8}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_a7f08bdaceae4ec1fb2ce5f9900b750c8} 
+\index{Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}!ReadAllData@{ReadAllData}}
+\index{ReadAllData@{ReadAllData}!Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{ReadAllData()}{ReadAllData()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} $>$ Univers.\+DAL.\+Repositories.\+User\+Repository.\+Read\+All\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read the data from the Users table. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_aed378fba63a8794fc31291f625988d88}\label{class_univers_1_1_d_a_l_1_1_repositories_1_1_user_repository_aed378fba63a8794fc31291f625988d88} 
+\index{Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}!UpdatePassword@{UpdatePassword}}
+\index{UpdatePassword@{UpdatePassword}!Univers.DAL.Repositories.UserRepository@{Univers.DAL.Repositories.UserRepository}}
+\doxysubsubsection{\texorpdfstring{UpdatePassword()}{UpdatePassword()}}
+{\footnotesize\ttfamily void Univers.\+DAL.\+Repositories.\+User\+Repository.\+Update\+Password (\begin{DoxyParamCaption}\item[{string}]{user\+Id,  }\item[{string}]{new\+Password,  }\item[{string}]{salt }\end{DoxyParamCaption})}
+
+
+
+Update the password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & \\
+\hline
+{\em new\+Password} & \\
+\hline
+{\em salt} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Univers.\+DAL/\+Repositories/User\+Repository.\+cs\end{DoxyCompactItemize}
