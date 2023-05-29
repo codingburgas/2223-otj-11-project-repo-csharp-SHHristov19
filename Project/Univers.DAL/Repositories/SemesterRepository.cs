@@ -12,6 +12,10 @@ namespace Univers.DAL.Repositories
 {
     public class SemesterRepository
     {
+        /// <summary>
+        /// Retrieves a list of Semester objects representing all available semesters.
+        /// </summary>
+        /// <returns>A list of Semester objects representing all available semesters.</returns>
         public List<Semester> ReadAllData()
         {
             using Context.Context context = new();
@@ -19,6 +23,10 @@ namespace Univers.DAL.Repositories
             return context.Semesters.ToList();
         }
 
+        /// <summary>
+        /// Adds a new semester using the provided SemesterModel.
+        /// </summary>
+        /// <param name="semester">The SemesterModel containing the details of the semester to be added.</param>
         public void AddSemester(SemesterModel semester)
         {
             using Context.Context context = new();
@@ -37,6 +45,10 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes a semester based on the provided semester ID.
+        /// </summary>
+        /// <param name="semesterId">The ID of the semester to be deleted.</param>
         public void DeleteSemester(string semesterId)
         {
             using Context.Context context = new();

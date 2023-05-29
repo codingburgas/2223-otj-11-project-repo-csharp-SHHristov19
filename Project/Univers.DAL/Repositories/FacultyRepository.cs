@@ -28,6 +28,11 @@ namespace Univers.DAL.Repositories
             return context.Faculties.ToList();
         }
 
+        /// <summary>
+        /// Retrieves the name of the dean associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The name of the dean associated with the student, or null if not found.</returns>
         public string? GetDeanNameByStudentId(string studentId)
         {
             using Context.Context context = new();
@@ -44,6 +49,10 @@ namespace Univers.DAL.Repositories
                      }).First().Name;
         }
 
+        /// <summary>
+        /// Adds a new faculty using the provided AddFacultyModel.
+        /// </summary>
+        /// <param name="addFaculty">The AddFacultyModel containing the details of the faculty to be added.</param>
         public void AddFaculty(AddFacultyModel addFaculty)
         {
             using Context.Context context = new();
@@ -62,6 +71,10 @@ namespace Univers.DAL.Repositories
             context.SaveChanges(); 
         }
 
+        /// <summary>
+        /// Deletes a faculty based on the provided faculty ID.
+        /// </summary>
+        /// <param name="facultyId">The ID of the faculty to be deleted.</param>
         public void DeleteFaculty(string facultyId)
         {
             using Context.Context context = new();

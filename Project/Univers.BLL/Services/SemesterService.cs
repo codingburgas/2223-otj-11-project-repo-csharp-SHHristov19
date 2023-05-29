@@ -18,6 +18,10 @@ namespace Univers.BLL.Services
             _semesterRepository = new SemesterRepository();
         }
 
+        /// <summary>
+        /// Transfers data from entity to model for Semesters.
+        /// </summary>
+        /// <returns>A list of SemesterModel objects representing the transferred data.</returns>
         public List<SemesterModel> TransferDataFromEntityToModel()
         {
             List<SemesterModel> models = new();
@@ -32,6 +36,11 @@ namespace Univers.BLL.Services
             return models;
         }
 
+        /// <summary>
+        /// Maps a Semester entity to a SemesterModel.
+        /// </summary>
+        /// <param name="entity">The Semester entity to be mapped.</param>
+        /// <returns>A SemesterModel representing the mapped entity.</returns>
         public SemesterModel MapSemesterEntity(Semester entity)
         {
             var newModel = new SemesterModel();
@@ -46,16 +55,29 @@ namespace Univers.BLL.Services
             return newModel;
         }
 
+        /// <summary>
+        /// Adds a semester to a university using the provided SemesterModel.
+        /// </summary>
+        /// <param name="semester">The SemesterModel containing the details of the semester to be added.</param>
         public void AddSemesterInUniversityById(SemesterModel semester)
         {
             _semesterRepository.AddSemester(semester);
         }
 
+        /// <summary>
+        /// Retrieves all semesters associated with a specific university ID.
+        /// </summary>
+        /// <param name="chosenUniversityId">The ID of the chosen university.</param>
+        /// <returns>An IEnumerable collection of SemesterModel objects representing the semesters.</returns>
         public IEnumerable<SemesterModel> GetAllSemestersByUniversityId(string chosenUniversityId)
         {
             return TransferDataFromEntityToModel().Where(x => x.UniversityId == chosenUniversityId).OrderBy(x => x.Number);
         }
 
+        /// <summary>
+        /// Deletes a semester with the specified semester ID.
+        /// </summary>
+        /// <param name="semesterId">The ID of the semester to be deleted.</param>
         public void DeleteSemesterById(string semesterId)
         {
             _semesterRepository.DeleteSemester(semesterId);

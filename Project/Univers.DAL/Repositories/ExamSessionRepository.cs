@@ -8,6 +8,11 @@ namespace Univers.DAL.Repositories
 {
     public class ExamSessionRepository
     {
+        /// <summary>
+        /// Retrieves the exam session ID associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The exam session ID associated with the student, or null if not found.</returns>
         public string? GetExamSessionIdByStudentId(string studentId)
         {
             using Context.Context context = new();

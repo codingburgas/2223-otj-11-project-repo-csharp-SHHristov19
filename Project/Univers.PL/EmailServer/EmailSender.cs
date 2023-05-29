@@ -8,6 +8,13 @@ namespace Univers.PL.EmailServer
 {
     public class EmailSender
     {
+        /// <summary>
+        /// Sends a verification code to the specified email address.
+        /// </summary>
+        /// <param name="emailSendTo">The email address to which the verification code will be sent.</param>
+        /// <param name="code">The verification code to be sent.</param>
+        /// <param name="firstName">The first name of the recipient.</param>
+        /// <param name="lastName">The last name of the recipient.</param>
         public void SendCode(string emailSendTo, string code, string firstName, string lastName)  
         {
             var email = new MimeMessage();

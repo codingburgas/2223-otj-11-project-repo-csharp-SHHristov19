@@ -20,6 +20,11 @@ namespace Univers.DAL.Repositories
             return context.Staff.ToList();
         }
 
+        /// <summary>
+        /// Updates the role of a staff member based on the provided user ID.
+        /// </summary>
+        /// <param name="userId">The ID of the user whose role will be updated.</param>
+        /// <param name="newRole">The new role to assign to the staff member.</param>
         public void UpdateStaffRoleByUserId(string userId, string newRole)
         {
             using Context.Context context = new();
@@ -32,6 +37,11 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds a staff member based on the provided user ID and role.
+        /// </summary>
+        /// <param name="userId">The ID of the user to be added as a staff member.</param>
+        /// <param name="newRole">The role to assign to the staff member.</param>
         public void AddStaffByUserId(string userId, string newRole)
         {
             using Context.Context context = new();

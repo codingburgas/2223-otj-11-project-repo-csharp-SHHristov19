@@ -20,6 +20,11 @@ namespace Univers.BLL.Services
             _examSessionRepository = new ExamSessionRepository();
         }
 
+        /// <summary>
+        /// Maps an Exam entity to an ExamModel.
+        /// </summary>
+        /// <param name="entity">The Exam entity to be mapped.</param>
+        /// <returns>An ExamModel representing the mapped entity.</returns>
         public ExamModel MapExamEntity(Exam entity)
         {
             var newModel = new ExamModel();
@@ -33,6 +38,11 @@ namespace Univers.BLL.Services
             return newModel;
         }
 
+        /// <summary>
+        /// Retrieves a list of ExamModel objects containing exam information for a specific student and semester.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>A list of ExamModel objects representing the exam information.</returns>
         public List<ExamModel> GetExamInfoBySemesterId(string studentId)
         {
             var examSessionId = _examSessionRepository.GetExamSessionIdByStudentId(studentId);

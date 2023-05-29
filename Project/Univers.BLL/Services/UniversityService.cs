@@ -40,6 +40,11 @@ namespace Univers.BLL.Services
             return models;
         }
 
+        /// <summary>
+        /// Maps a University entity to a UniversityModel object.
+        /// </summary>
+        /// <param name="entity">The University entity to be mapped.</param>
+        /// <returns>A UniversityModel object representing the mapped university.</returns>
         public UniversityModel MapUniversityEntity(University entity)
         {
             var newModel = new UniversityModel();
@@ -52,37 +57,70 @@ namespace Univers.BLL.Services
             return newModel;
         }
 
+        /// <summary>
+        /// Retrieves a UniversityModel object by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the university.</param>
+        /// <returns>A UniversityModel object representing the university, or null if not found.</returns>
         public UniversityModel GetUniversityById(string id)
         {
             return TransferDataFromEntityToModel().FirstOrDefault(university => university.Id == id);
         }
 
+        /// <summary>
+        /// Retrieves the rector associated with the university of a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The rector associated with the university of the student, or null if not found.</returns>
         public string? GetRectorByStudentId(string studentId)
         {
             return _universityRepository.GetRectorByStudentId(studentId);
         }
 
+        /// <summary>
+        /// Retrieves the university name associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The university name associated with the student, or null if not found.</returns>
         public string? GetUniversityNameByStudentId(string studentId)
         {
             return _universityRepository.GetUniversityNameByStudentId(studentId);
         }
 
+        /// <summary>
+        /// Retrieves the university address associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The university address associated with the student, or null if not found.</returns>
         public string? GetUniversityAddressByStudentId(string studentId)
         {
             return _universityRepository.GetUniversityAddressByStudentId(studentId);
         }
 
+        /// <summary>
+        /// Retrieves the rector associated with a given university ID.
+        /// </summary>
+        /// <param name="universityId">The ID of the university.</param>
+        /// <returns>The rector associated with the university, or null if not found.</returns>
         public string? GetRectorByUniversityId(string universityId)
         {
             return _universityRepository.GetRectorNameByUniversityId(universityId);
         }
 
+        /// <summary>
+        /// Adds a new university to the system based on the provided university details.
+        /// </summary>
+        /// <param name="addUniversity">The UniversityModel object containing the details of the university to be added.</param>
         public void AddUniversity(UniversityModel? addUniversity)
         {
             addUniversity.RectorId = _staffService.GetStaffByUserId(addUniversity.Rector.UserId).Id;
             _universityRepository.AddUniversity(addUniversity);
         }
 
+        /// <summary>
+        /// Deletes a university from the system based on the provided university ID.
+        /// </summary>
+        /// <param name="chosenUniversityId">The ID of the university to be deleted.</param>
         public void DeleteUniversity(string chosenUniversityId)
         {
             _universityRepository.DeleteUniversity(chosenUniversityId);

@@ -38,6 +38,11 @@ namespace Univers.BLL.Services
             return models;
         }
 
+        /// <summary>
+        /// Maps a Holiday entity to a HolidayModel.
+        /// </summary>
+        /// <param name="entity">The Holiday entity to be mapped.</param>
+        /// <returns>A HolidayModel representing the mapped entity.</returns>
         public HolidayModel MapHolidayEntity(Holiday entity)
         {
             var newModel = new HolidayModel();

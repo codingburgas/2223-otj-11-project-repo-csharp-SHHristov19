@@ -24,6 +24,11 @@ namespace Univers.DAL.Repositories
             return context.Specialities.ToList();
         }
 
+        /// <summary>
+        /// Retrieves the name of the speciality associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The name of the speciality associated with the student, or null if not found.</returns>
         public string? GetSpecialityNameByStudentId(string studentId)
         {
             using Context.Context context = new();
@@ -34,6 +39,11 @@ namespace Univers.DAL.Repositories
                     select speciality.Name).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Retrieves the name of the tutor associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The name of the tutor associated with the student, or null if not found.</returns>
         public string? GetTutorNameByStudentId(string studentId)
         {
             using Context.Context context = new();
@@ -49,6 +59,11 @@ namespace Univers.DAL.Repositories
                     })?.FirstOrDefault()?.Name;
         }
 
+        /// <summary>
+        /// Retrieves the degree associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>The degree associated with the student, or null if not found.</returns>
         public string? GetDegreeByStudentId(string studentId)
         {
             using Context.Context context = new();
@@ -59,6 +74,12 @@ namespace Univers.DAL.Repositories
                     select speciality.Degree).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Retrieves a list of Speciality objects associated with a given faculty ID and degree.
+        /// </summary>
+        /// <param name="facultyId">The ID of the faculty.</param>
+        /// <param name="degree">The degree of the specialities (e.g., undergraduate, postgraduate).</param>
+        /// <returns>A list of Speciality objects associated with the faculty ID and degree.</returns>
         public List<Speciality> GetSpecialitiesByFacultyId(string facultyId, string degree)
         {
             using Context.Context context = new();
@@ -70,6 +91,10 @@ namespace Univers.DAL.Repositories
 
         }
 
+        /// <summary>
+        /// Adds a new speciality using the provided AddSpecialityModel.
+        /// </summary>
+        /// <param name="addSpeciality">The AddSpecialityModel containing the details of the speciality to be added.</param>
         public void AddSpeciality(AddSpecialityModel? addSpeciality)
         {
             using Context.Context context = new();
@@ -91,6 +116,10 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes a speciality based on the provided speciality ID.
+        /// </summary>
+        /// <param name="specialityId">The ID of the speciality to be deleted.</param>
         public void DeleteSpeciality(string specialityId)
         {
             using Context.Context context = new();

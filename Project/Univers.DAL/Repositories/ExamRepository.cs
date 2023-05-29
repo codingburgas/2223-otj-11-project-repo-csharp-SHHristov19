@@ -10,6 +10,11 @@ namespace Univers.DAL.Repositories
 {
     public class ExamRepository
     {
+        /// <summary>
+        /// Retrieves all data about an exam based on the provided exam ID.
+        /// </summary>
+        /// <param name="examId">The ID of the exam.</param>
+        /// <returns>An Exam object containing all data about the exam, or null if not found.</returns>
         public Exam GetAllDataAboutExam(string examId)
         {
             using Context.Context context = new();
@@ -17,6 +22,11 @@ namespace Univers.DAL.Repositories
             return context.Exams.FirstOrDefault(x => x.Id == examId);
         }
 
+        /// <summary>
+        /// Retrieves exam information for a given exam session ID.
+        /// </summary>
+        /// <param name="examSessionId">The ID of the exam session.</param>
+        /// <returns>An IEnumerable of Dictionary objects representing the exam information.</returns>
         public IEnumerable<Dictionary<string, string>> GetExamInfo(string examSessionId)
         {  
             using Context.Context context = new();
@@ -47,6 +57,11 @@ namespace Univers.DAL.Repositories
             return result.AsEnumerable();
         }
 
+        /// <summary>
+        /// Retrieves the exam session type information for a given exam session ID.
+        /// </summary>
+        /// <param name="examSessionId">The ID of the exam session.</param>
+        /// <returns>An IEnumerable of Dictionary objects representing the exam session type information.</returns>
         public IEnumerable<Dictionary<string, string>> GetExamSessionTypeById(string examSessionId)
         {
             using Context.Context context = new();

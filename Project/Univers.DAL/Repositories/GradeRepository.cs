@@ -19,6 +19,11 @@ namespace Univers.DAL.Repositories
             _userRepository = new UserRepository();
         }
 
+        /// <summary>
+        /// Retrieves a list of GradeModel objects representing grades associated with a given student ID.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <returns>A list of GradeModel objects representing the grades associated with the student.</returns>
         public List<GradeModel> GetGradesByStudentId(string studentId)
         {
             using Context.Context context = new();
@@ -37,6 +42,12 @@ namespace Univers.DAL.Repositories
                     }).ToList();
         }
 
+        /// <summary>
+        /// Retrieves the grade for a specific subject and student.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <param name="subjectId">The ID of the subject.</param>
+        /// <returns>The GradeModel representing the grade for the subject and student, or null if not found.</returns>
         public static GradeModel? GetSubjectGrade(string studentId, string subjectId)
         {
             using Context.Context context = new();
@@ -56,6 +67,11 @@ namespace Univers.DAL.Repositories
                    }).FirstOrDefault(); 
         }
 
+        /// <summary>
+        /// Retrieves a list of StudentGradesModel objects representing all students who have the subject with the specified subject ID.
+        /// </summary>
+        /// <param name="subjectId">The ID of the subject.</param>
+        /// <returns>A list of StudentGradesModel objects representing the students who have the subject.</returns>
         public List<StudentGradesModel> GetAllStudentsThatHasTheSubjectBySubjectId(string subjectId)
         {
             using Context.Context context = new();
@@ -73,6 +89,12 @@ namespace Univers.DAL.Repositories
                     .ToList();
         }
 
+        /// <summary>
+        /// Edits the grade for a specific student and subject.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <param name="subjectId">The ID of the subject.</param>
+        /// <param name="newGrade">The new grade to be assigned.</param>
         public void EditGrade(string studentId, string subjectId, int? newGrade)
         {
             using Context.Context context = new();
@@ -88,6 +110,12 @@ namespace Univers.DAL.Repositories
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds a grade for a specific student and subject.
+        /// </summary>
+        /// <param name="studentId">The ID of the student.</param>
+        /// <param name="id">The ID of the subject.</param>
+        /// <param name="grade">The grade to be assigned.</param>
         public void AddGrade(string? studentId, string? id, int? grade)
         {
             using Context.Context context = new();
