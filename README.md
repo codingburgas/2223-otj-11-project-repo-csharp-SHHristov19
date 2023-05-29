@@ -1,6 +1,6 @@
  <br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/codingburgas/2223-otj-11-project-repo-csharp-SHHristov19/main/Project/Univers.PL/wwwroot/images/Logo1.svg?token=GHSAT0AAAAAACDGZ4N4HVTBM2GMXDCPOJ3KZDUBO3A" style="width:40%;"></p><br>
+  <img src="https://raw.githubusercontent.com/codingburgas/2223-otj-11-project-repo-csharp-SHHristov19/main/Project/Univers.PL/wwwroot/images/Logo1.svg?token=GHSAT0AAAAAACDHFOLDT344ITCD5GGNOE4YZDULO4Q" style="width:40%;"></p><br>
 
 ---
 ## 📄 Documentation
@@ -11,4 +11,5 @@
 #### For the Use case diagram click [here](https://lucid.app/folder/invitations/accept/inv_32f988a0-31c8-472c-b544-c5b75191363d)
 #### For the documentation click [here](https://codingburgas-my.sharepoint.com/:f:/g/personal/shhristov19_codingburgas_bg/EofreJtvGx5FjP_vR8fb7joBVG1bG3KJK_EvHTF7SGo3DA?e=0LjrYt)
 ---
-  <br><br>
+
+<br><br>
