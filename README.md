@@ -1,6 +1,6 @@
- 
+ <br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/codingburgas/2223-otj-11-project-repo-csharp-SHHristov19/main/Project/Univers.PL/wwwroot/images/Logo1.svg?token=GHSAT0AAAAAACDGZ4N4HVTBM2GMXDCPOJ3KZDUBO3A" style="width:40%;></p>
+  <img src="https://raw.githubusercontent.com/codingburgas/2223-otj-11-project-repo-csharp-SHHristov19/main/Project/Univers.PL/wwwroot/images/Logo1.svg?token=GHSAT0AAAAAACDGZ4N4HVTBM2GMXDCPOJ3KZDUBO3A" style="width:40%;"></p><br>
 
 ---
 ## 📄 Documentation
