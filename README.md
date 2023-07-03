@@ -18,7 +18,7 @@
 
 <br>
 
-# 🙋‍♂️ About me <a name = "aboutME"></a>
+# About me <a name = "aboutME"></a>
 
 ### I'm [Stefan Hristov!](https://github.com/SHHristov19/)
 
