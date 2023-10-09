@@ -1,0 +1,109 @@
+﻿@using System.Globalization;
+@model Univers.Models.Models.StudentModel
+@{
+    Layout = "../_StudentMenu.cshtml"; 
+    TempData["Id"] = Model.Id; 
+    TempData["Title"] = "Начало";
+}
+
+<link rel="stylesheet" href="~/css/StudentHome.css" asp-append-version="true" />
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+@{
+    int year = ViewBag.Year;
+    int month = ViewBag.Month; 
+
+    DateTime firstDayOfMonth = new DateTime(year, month, 1); 
+}
+
+@functions {
+    public string GetDayClass(DateTime day)
+    {
+        if (day.Month == DateTime.Today.Month && day.Year == DateTime.Today.Year)
+        {
+            if (day.Day == DateTime.Today.Day)
+            {
+                return "today";
+            }
+            return "";
+        }
+        return "";
+    }
+
+    public string GetDayMonthClass(DateTime day)
+    {
+        return day.Month == DateTime.Today.Month && day.Year == DateTime.Today.Year ? "current-month" : "";
+    }
+}
+
+<div class="div1"><br />
+    <div class="div2">
+        <table>
+            <tr>
+                <td rowspan="2"><span class="semester">@Model.StudentCourse &nbsp; &nbsp; СЕМЕСТЪР</span></td>
+                <td><span class="university">@Model.NameOfUniversity</span></td>
+            </tr>
+            <tr>
+                <td><span class="facultynum">Факултет № @Model.FacultyNumber</span></td>
+            </tr>
+        </table> 
+    </div> <br />
+    <a href ="@Url.Action("RegularExamSession", "Student", new { studentId = Model.Id})"><div class="div3">Оставащи дни до/от сесията <br /><span class="days">10 дни</span></div></a>
+    <a href ="@Url.Action("Grades", "Student", new { studentId = Model.Id})"><div class="div4">ОЦЕНКИ</div> </a>
+</div>
+
+<div style="max-width: 90%; margin-left: 5%; margin-right: 5%; margin-top: 2%;"> 
+      
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <a href="@Url.Action("StudentHome", "Home", new { studentId = Model.Id, year = firstDayOfMonth.AddMonths(-1).Year, month = firstDayOfMonth.AddMonths(-1).Month })">
+                        <ion-icon name="chevron-back-outline" class="icons"></ion-icon>
+                    </a>
+                </div>
+            </td>
+            <td><h2 style="text-align: center; position: center; text-transform: uppercase;">@firstDayOfMonth.ToString("MMMM yyyy")</h2></td>
+            <td>
+                <div>
+                    <a href="@Url.Action("StudentHome", "Home", new { studentId = Model.Id, year = firstDayOfMonth.AddMonths(1).Year, month = firstDayOfMonth.AddMonths(1).Month})">
+                        <ion-icon name="chevron-forward-outline" class="icons"></ion-icon>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th>Понеделник</th>
+                <th>Вторник</th>
+                <th>Сряда</th>
+                <th>Четвъртък</th>
+                <th>Петък</th>
+                <th>Събота</th>
+                <th>Неделя</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var week = 1; week <= 6; week++)
+            {
+                <tr class="date">
+                    @for (var day = 1; day <= 7; day++)
+                    {
+                        var calendarDay = firstDayOfMonth.AddDays((week - 1) * 7 + (day - (int)firstDayOfMonth.DayOfWeek));
+                        var dayClass = GetDayClass(calendarDay);
+                        var dayInMonthClass = GetDayMonthClass(calendarDay);
+                        <td style="width: 12.85%;">
+                            <p class="box @dayClass @dayInMonthClass" >@calendarDay.Day</p>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    
+</div>

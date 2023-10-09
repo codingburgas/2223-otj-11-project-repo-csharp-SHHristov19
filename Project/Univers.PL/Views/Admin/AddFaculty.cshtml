@@ -1,0 +1,74 @@
+﻿@using Univers.BLL.Services
+@model Univers.Models.Models.AdminModel
+
+@{
+    Layout = "../_AdminMenu.cshtml";
+    TempData["Id"] = Model.UserId;
+    TempData["Title"] = "Университети";
+    var _userService = new UserService();
+    Model.Deans = _userService.GetDeansWithNoFaculty();
+    Model.ViceDeans = _userService.GetDeansWithNoFaculty();
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    body {
+        background: #5349E3;
+    }
+</style>
+
+@using (Html.BeginForm("AddFaculty", "Admin", FormMethod.Post))
+{
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавяне на факултет</h5>
+                </div>
+
+                <div class="modal-body">
+
+                    @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.ChosenUniversity.Id)
+                    @Html.HiddenFor(model => model.ChosenUniversity.Name)
+                    @Html.HiddenFor(model => model.ChosenUniversity.Address)
+                    @Html.HiddenFor(model => model.ChosenUniversity.Capacity)
+                      
+                    <div class="form-floating">
+                        @Html.TextBoxFor(model => model.AddFaculty.Name, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddFaculty.Name)
+                        @Html.ValidationMessageFor(model => model.AddFaculty.Name, "", new { @class = "text-danger"})
+                    </div>
+
+                    <br />
+
+                    <div class="form-floating">
+                        @Html.TextBoxFor(model => model.AddFaculty.Code, new { @class = "form-control", @id="floatingInput", placeholder=" "})
+                        @Html.LabelFor(model => model.AddFaculty.Code)
+                        @Html.ValidationMessageFor(model => model.AddFaculty.Code, "", new { @class = "text-danger" })
+                    </div>
+
+                    <br /> 
+                     
+                        @Html.DropDownListFor(model => model.AddFaculty.DeanId, new SelectList(Model.Deans, "Id", "FullName"), "Декан",new {@class = "form-select"})
+                        @Html.ValidationMessageFor(model => model.AddFaculty.DeanId, "", new { @class = "text-danger" })
+                    <br /> 
+                     
+                        @Html.DropDownListFor(model => model.AddFaculty.ViceDeanId, new SelectList(Model.ViceDeans, "Id", "FullName"), "Заместник-Декан", new {@class = "form-select"})
+                         
+                </div>
+
+                <div class="modal-footer">
+                    @Html.ActionLink("Назад", "Faculties", "Admin", new { userId = Model.UserId, chosenUniversityId = Model.ChosenUniversity.Id, chosenUniversityName = Model.ChosenUniversity.Name}, new { @class = "btn btn-secondary" })
+                    <button class="btn btn-primary" type="submit">Запази</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<script>
+    const myModalAlternative = new bootstrap.Modal('#exampleModal')
+    myModalAlternative.show()
+</script>

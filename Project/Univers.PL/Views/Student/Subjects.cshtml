@@ -1,0 +1,78 @@
+﻿@model Univers.Models.Models.StudentSubjectModel
+
+@{
+    Layout = "../_StudentMenu.cshtml";
+    TempData["Id"] = Model.StudentId;
+    TempData["Title"] = "Учебен план";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" /> 
+
+<style>
+    body {
+        background: #5349E3;
+    }
+</style>
+
+<div style="max-width: 95%; margin-left: 3%; margin-right: 3%; margin-top: 2%;">
+     
+    <div class="container text-center">
+        <div class="row">
+            @Html.ActionLink("Учебен план", "Subjects", "Student", new { studentId = Model.StudentId}, new { @class = "col fs-3 btn active btn-lg rounded-5" })
+            @Html.ActionLink("Избираеми дисциплини", "Electives", "Student", new { studentId = Model.StudentId}, new { @class = "col fs-3 btn btn-lg rounded-5" })
+        </div>
+        <div class="container text-center mt-5 mb-1">
+            <div class="row">
+                <div class="col-1 text-uppercase">
+                    Семестър
+                </div>
+                <div class="col-6 text-uppercase">
+                    Дисциплина
+                </div>
+                <div class="col-2 text-uppercase">
+                    Преподавател
+                </div>
+                <div class="col-3 text-uppercase">
+                    Кредити
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overflow-y-scroll" style="height: 60%; Width: 94%; position:absolute">
+        <br />
+        <br />
+        @if (Model.Subjects == null)
+        {
+            <label class="fs-2 text-center" style="color: #ff03ad; width: 100%;">
+                Все още няма предмети!
+            </label>
+            <br />
+        }
+        else
+        { 
+            @foreach (var subject in Model.Subjects)
+            {
+                <div class="list-group" style="margin-bottom: 1%; margin-right: 3%;">
+                    <button type="button" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col text-uppercase"> 
+                                    @subject.Number
+                                </div>
+                                <div class="col-6 text-uppercase">
+                                    @subject.Name
+                                </div>
+                                <div class="col-3 text-uppercase">
+                                    @subject.TeacherName
+                                </div>
+                                <div class="col-2 text-uppercase">
+                                    @subject.Credits.Value.ToString("F1")
+                                </div> 
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            }
+        }
+    </div>
+</div> 

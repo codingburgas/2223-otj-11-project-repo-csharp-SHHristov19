@@ -1,0 +1,55 @@
+\doxysection{Univers.\+PL.\+Utilities.\+Utilities Class Reference}
+\hypertarget{class_univers_1_1_p_l_1_1_utilities_1_1_utilities}{}\label{class_univers_1_1_p_l_1_1_utilities_1_1_utilities}\index{Univers.PL.Utilities.Utilities@{Univers.PL.Utilities.Utilities}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a4172ad4bfb66ed60e3b8dc277f0b2942}{Html\+Content\+To\+String}} (IHtml\+Content content, Html\+Encoder? encoder=null)
+\begin{DoxyCompactList}\small\item\em Converts the specified IHtml\+Content object to a string representation, using the specified Html\+Encoder to encode the output. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a2552c1e9255c7bf8ba20be9fa792da82}{Get\+The\+Error\+Message}} (string error\+Message)
+\begin{DoxyCompactList}\small\item\em Extracts an error message from an HTML error message string, by parsing the message between the first \"{}$>$\"{} character and the last \"{}$<$\"{} character, and returning it as a plain string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a2552c1e9255c7bf8ba20be9fa792da82}\label{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a2552c1e9255c7bf8ba20be9fa792da82} 
+\index{Univers.PL.Utilities.Utilities@{Univers.PL.Utilities.Utilities}!GetTheErrorMessage@{GetTheErrorMessage}}
+\index{GetTheErrorMessage@{GetTheErrorMessage}!Univers.PL.Utilities.Utilities@{Univers.PL.Utilities.Utilities}}
+\doxysubsubsection{\texorpdfstring{GetTheErrorMessage()}{GetTheErrorMessage()}}
+{\footnotesize\ttfamily string Univers.\+PL.\+Utilities.\+Utilities.\+Get\+The\+Error\+Message (\begin{DoxyParamCaption}\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+
+
+Extracts an error message from an HTML error message string, by parsing the message between the first \"{}$>$\"{} character and the last \"{}$<$\"{} character, and returning it as a plain string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error\+Message} & The HTML error message string to extract the message from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A plain string containing the error message, or null if no message can be extracted.
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a4172ad4bfb66ed60e3b8dc277f0b2942}\label{class_univers_1_1_p_l_1_1_utilities_1_1_utilities_a4172ad4bfb66ed60e3b8dc277f0b2942} 
+\index{Univers.PL.Utilities.Utilities@{Univers.PL.Utilities.Utilities}!HtmlContentToString@{HtmlContentToString}}
+\index{HtmlContentToString@{HtmlContentToString}!Univers.PL.Utilities.Utilities@{Univers.PL.Utilities.Utilities}}
+\doxysubsubsection{\texorpdfstring{HtmlContentToString()}{HtmlContentToString()}}
+{\footnotesize\ttfamily string Univers.\+PL.\+Utilities.\+Utilities.\+Html\+Content\+To\+String (\begin{DoxyParamCaption}\item[{IHtml\+Content}]{content,  }\item[{Html\+Encoder?}]{encoder = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Converts the specified IHtml\+Content object to a string representation, using the specified Html\+Encoder to encode the output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em content} & The IHtml\+Content object to convert to a string.\\
+\hline
+{\em encoder} & The Html\+Encoder to use for encoding the output. If null, the default Html\+Test\+Encoder is used.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representation of the specified IHtml\+Content object.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Univers.\+PL/\+Utilities/Utilities.\+cs\end{DoxyCompactItemize}

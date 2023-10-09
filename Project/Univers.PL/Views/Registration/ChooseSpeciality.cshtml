@@ -1,0 +1,48 @@
+﻿@model Univers.Models.Models.SelectionModel 
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+<title>Специалности</title>
+@using (Html.BeginForm("SpecialityChoice", "Registration", FormMethod.Post, new { @class = "div3" }))
+{
+    <a href="@Url.Action("ChooseFaculty", "Registration", new{ universityId = Model.UniversityId, studentId = Model.StudentId, degree = Model.Degree})"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a>
+    <br />
+    <br />
+
+    <label class="lb1">
+        Изберете специалност:
+    </label>
+    <br>
+
+    @Html.Hidden("universityId", Model.UniversityId)
+    @Html.Hidden("facultyId", Model.FacultyId)
+    @Html.Hidden("studentId", Model.StudentId)  
+
+    <div class="div4">
+
+        <table style="width:80%; border-spacing: 0 10px;">
+            <br>
+            <br>
+            @if (Model.Specialities.Count == 0)
+            {
+                <label class="lb1" style="color: #ff03ad; width: 100%;">
+                    Все още няма специалности!
+                </label>
+                <br>
+            }
+            else
+            {
+                @foreach (var speciality in Model.Specialities)
+                {
+                    <tr>
+                        <td>
+                            <button class="button5" style="width:100%" type="submit" name="specialityId" value="@speciality.Id">
+                                @speciality.Name
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+    </div>
+}

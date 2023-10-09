@@ -1,0 +1,235 @@
+\doxysection{Univers.\+BLL.\+Services.\+User\+Service Class Reference}
+\hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service}{}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service}\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerable$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a86aa22487265ea489db2f17a6c02a2b6}{Transfer\+Data\+From\+Entity\+To\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Transfer data from User entity to User model. \end{DoxyCompactList}\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a5aa9b09438b2e62cdee41b362920d468}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a5aa9b09438b2e62cdee41b362920d468} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} {\bfseries Map\+User\+Entity} (\mbox{\hyperlink{class_univers_1_1_d_a_l_1_1_entities_1_1_user}{User}} entity)
+\item 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad70de2167d5e147ba373a39df44b130d}{Get\+User\+By\+Username\+And\+Password}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Get user by username and password. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aeda654670a9d32cd3c0ee26a03c7fb17}{Compare\+Passwords}} (string first\+Pass, string second\+Pass)
+\begin{DoxyCompactList}\small\item\em Compare the password and the repeated password. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aee901032ef6caf8fa7bc0d9068324957}{Add\+User}} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_sign_up_user_model}{Sign\+Up\+User\+Model}} user)
+\begin{DoxyCompactList}\small\item\em Add a user. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a009e6b7490aac2366c2ce32bbae5d323}{Username\+Already\+Exist}} (string username)
+\begin{DoxyCompactList}\small\item\em Check if the username is already using. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad19a2844b29f54c1d3fb21cbeb1db1e9}{Email\+Already\+Exist}} (string email)
+\begin{DoxyCompactList}\small\item\em Check if the email is already using. \end{DoxyCompactList}\item 
+Validation\+Result \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aa63293ab74b30edf15193919bfbf352d}{Validate\+Username}} (string username)
+\begin{DoxyCompactList}\small\item\em Validates a Sign\+Up\+User\+Model object to ensure that the username is not already in use. \end{DoxyCompactList}\item 
+Validation\+Result \mbox{\hyperlink{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a85dc7c64d2342c8857d23f61731e83b2}{Validate\+Email}} (string email)
+\begin{DoxyCompactList}\small\item\em Validates a Sign\+Up\+User\+Model object to ensure that the email is not already in use. \end{DoxyCompactList}\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a985d08054a527405455aa104dfcf3059}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a985d08054a527405455aa104dfcf3059} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? {\bfseries Get\+User\+By\+Email} (string email)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aae15aa76f707927a468925ed7695f014}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aae15aa76f707927a468925ed7695f014} 
+string {\bfseries Get\+User\+Id\+By\+Username} (string username)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a88be90b6e219bb693e80445537727bf0}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a88be90b6e219bb693e80445537727bf0} 
+void {\bfseries Change\+Password} (string user\+Id, string? new\+Password)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a8994aef64d192c104ad45f40e9908ff9}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a8994aef64d192c104ad45f40e9908ff9} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? {\bfseries Get\+User\+By\+Student\+Id} (string student\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a9ce4f1cbb16a3129b21583dddcff9851}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a9ce4f1cbb16a3129b21583dddcff9851} 
+bool {\bfseries Compare\+Passwords\+By\+User\+Id} (string? student\+Id, string? password)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ab8df3d75f95ee97a1f85fc17e605aa4c}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ab8df3d75f95ee97a1f85fc17e605aa4c} 
+bool {\bfseries Compare\+Usernames} (string? student\+Id, string? username)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ac2a806eaed0e4edad94507c1f41980f2}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ac2a806eaed0e4edad94507c1f41980f2} 
+void {\bfseries Change\+Username} (string? user\+Id, string? new\+Username)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a2fca902c5ec9d28608d01e811f77b3a2}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a2fca902c5ec9d28608d01e811f77b3a2} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? {\bfseries Get\+User\+By\+User\+Id} (string user\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a76db896c261a1b6c7e259a0b3c4a958d}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a76db896c261a1b6c7e259a0b3c4a958d} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Staff\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a58e266847fc69b7b235f38927b87f310}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a58e266847fc69b7b235f38927b87f310} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Student\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aa0bf32542740e45bd994fad03458dd36}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aa0bf32542740e45bd994fad03458dd36} 
+void {\bfseries Fill\+Roles\+Of\+The\+Users} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} user)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a2970788692e7d86cfe5e259f4208b7ce}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a2970788692e7d86cfe5e259f4208b7ce} 
+void {\bfseries Update\+User} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_edit_user_model}{Edit\+User\+Model}}? new\+User)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_adc1a2a142001debf41c96a35c14979bc}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_adc1a2a142001debf41c96a35c14979bc} 
+void {\bfseries Delete\+User} (string user\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a0b18056957eec37593db0a07ed309ec0}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a0b18056957eec37593db0a07ed309ec0} 
+void {\bfseries Add\+New\+User\+From\+Admin\+Panel} (\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_add_user_model}{Add\+User\+Model}} user)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aeaaeeaa040d2301117b198d4ad1d7a75}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aeaaeeaa040d2301117b198d4ad1d7a75} 
+\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? {\bfseries Get\+User\+By\+Staff\+Id} (string? user\+Id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a35500fee5d60bf27c92d472f21779418}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a35500fee5d60bf27c92d472f21779418} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Rectors\+With\+No\+University} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a6538274921e4d814192940c78e0dbbe8}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a6538274921e4d814192940c78e0dbbe8} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Deans\+With\+No\+Faculty} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a00f456235d440e2862877aa56749cdb8}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a00f456235d440e2862877aa56749cdb8} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Tutors\+With\+No\+Speciality} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a6e5270199e9d6e56e9e79f5c5797b4cb}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a6e5270199e9d6e56e9e79f5c5797b4cb} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+Uncomfirmed\+Users} ()
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a436ed3baa0a703a4622d1a709015aa46}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a436ed3baa0a703a4622d1a709015aa46} 
+void {\bfseries Confirm\+User} (string id)
+\item 
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a327b1b8c34a009d08ea5c5fef77e2ff0}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a327b1b8c34a009d08ea5c5fef77e2ff0} 
+List$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ {\bfseries Get\+All\+Free\+Teachers} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aee901032ef6caf8fa7bc0d9068324957}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aee901032ef6caf8fa7bc0d9068324957} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily void Univers.\+BLL.\+Services.\+User\+Service.\+Add\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_sign_up_user_model}{Sign\+Up\+User\+Model}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Add a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aeda654670a9d32cd3c0ee26a03c7fb17}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aeda654670a9d32cd3c0ee26a03c7fb17} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!ComparePasswords@{ComparePasswords}}
+\index{ComparePasswords@{ComparePasswords}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{ComparePasswords()}{ComparePasswords()}}
+{\footnotesize\ttfamily bool Univers.\+BLL.\+Services.\+User\+Service.\+Compare\+Passwords (\begin{DoxyParamCaption}\item[{string}]{first\+Pass,  }\item[{string}]{second\+Pass }\end{DoxyParamCaption})}
+
+
+
+Compare the password and the repeated password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Pass} & \\
+\hline
+{\em second\+Pass} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad19a2844b29f54c1d3fb21cbeb1db1e9}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad19a2844b29f54c1d3fb21cbeb1db1e9} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!EmailAlreadyExist@{EmailAlreadyExist}}
+\index{EmailAlreadyExist@{EmailAlreadyExist}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{EmailAlreadyExist()}{EmailAlreadyExist()}}
+{\footnotesize\ttfamily bool Univers.\+BLL.\+Services.\+User\+Service.\+Email\+Already\+Exist (\begin{DoxyParamCaption}\item[{string}]{email }\end{DoxyParamCaption})}
+
+
+
+Check if the email is already using. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad70de2167d5e147ba373a39df44b130d}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_ad70de2167d5e147ba373a39df44b130d} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!GetUserByUsernameAndPassword@{GetUserByUsernameAndPassword}}
+\index{GetUserByUsernameAndPassword@{GetUserByUsernameAndPassword}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{GetUserByUsernameAndPassword()}{GetUserByUsernameAndPassword()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}}? Univers.\+BLL.\+Services.\+User\+Service.\+Get\+User\+By\+Username\+And\+Password (\begin{DoxyParamCaption}\item[{string}]{username,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Get user by username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+{\em password} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a86aa22487265ea489db2f17a6c02a2b6}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a86aa22487265ea489db2f17a6c02a2b6} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!TransferDataFromEntityToModel@{TransferDataFromEntityToModel}}
+\index{TransferDataFromEntityToModel@{TransferDataFromEntityToModel}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{TransferDataFromEntityToModel()}{TransferDataFromEntityToModel()}}
+{\footnotesize\ttfamily IEnumerable$<$ \mbox{\hyperlink{class_univers_1_1_models_1_1_models_1_1_user_model}{User\+Model}} $>$ Univers.\+BLL.\+Services.\+User\+Service.\+Transfer\+Data\+From\+Entity\+To\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transfer data from User entity to User model. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a009e6b7490aac2366c2ce32bbae5d323}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a009e6b7490aac2366c2ce32bbae5d323} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!UsernameAlreadyExist@{UsernameAlreadyExist}}
+\index{UsernameAlreadyExist@{UsernameAlreadyExist}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{UsernameAlreadyExist()}{UsernameAlreadyExist()}}
+{\footnotesize\ttfamily bool Univers.\+BLL.\+Services.\+User\+Service.\+Username\+Already\+Exist (\begin{DoxyParamCaption}\item[{string}]{username }\end{DoxyParamCaption})}
+
+
+
+Check if the username is already using. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a85dc7c64d2342c8857d23f61731e83b2}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_a85dc7c64d2342c8857d23f61731e83b2} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!ValidateEmail@{ValidateEmail}}
+\index{ValidateEmail@{ValidateEmail}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{ValidateEmail()}{ValidateEmail()}}
+{\footnotesize\ttfamily Validation\+Result Univers.\+BLL.\+Services.\+User\+Service.\+Validate\+Email (\begin{DoxyParamCaption}\item[{string}]{email }\end{DoxyParamCaption})}
+
+
+
+Validates a Sign\+Up\+User\+Model object to ensure that the email is not already in use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The Sign\+Up\+User\+Model object to validate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Validation\+Result object that contains any validation error.
+\end{DoxyReturn}
+\Hypertarget{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aa63293ab74b30edf15193919bfbf352d}\label{class_univers_1_1_b_l_l_1_1_services_1_1_user_service_aa63293ab74b30edf15193919bfbf352d} 
+\index{Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}!ValidateUsername@{ValidateUsername}}
+\index{ValidateUsername@{ValidateUsername}!Univers.BLL.Services.UserService@{Univers.BLL.Services.UserService}}
+\doxysubsubsection{\texorpdfstring{ValidateUsername()}{ValidateUsername()}}
+{\footnotesize\ttfamily Validation\+Result Univers.\+BLL.\+Services.\+User\+Service.\+Validate\+Username (\begin{DoxyParamCaption}\item[{string}]{username }\end{DoxyParamCaption})}
+
+
+
+Validates a Sign\+Up\+User\+Model object to ensure that the username is not already in use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The Sign\+Up\+User\+Model object to validate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Validation\+Result object that contains any validation error.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Univers.\+BLL/\+Services/User\+Service.\+cs\end{DoxyCompactItemize}

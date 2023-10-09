@@ -1,0 +1,36 @@
+﻿@model Univers.Models.Models.SelectionModel
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+<title>Регистрирация</title>
+
+<div class="div1">
+    <a href="@Url.Action("SignUpAs", "Registration")"><img src="@Url.Content("~/images/Back.svg")" class="back" /></a><br /><br />
+
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /><br />
+     
+    @using (Html.BeginForm("FormOfEducationAndDegree", "Registration", FormMethod.Post))
+    {
+        <label class="lb1">
+            Изберете форма на обучение:
+        </label>
+        @Html.DropDownListFor(Model => Model.FormOfEducation, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Редовно обучение", },
+            new SelectListItem { Text = "Задочно обучение", }
+        }, new {@class = "list", style = "margin-bottom: 5%;"})
+
+        
+
+        <label class="lb1">
+            Изберете степен на образувание:
+        </label>
+        @Html.DropDownListFor(Model => Model.Degree, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Бакалавърска степен", },
+            new SelectListItem { Text = "Магистърска степен", }, 
+        }, new {@class = "list"})
+
+        <button class="button3" style="margin-top: 7%;" type="submit">Регистрирация</button>
+    }
+
+</div>

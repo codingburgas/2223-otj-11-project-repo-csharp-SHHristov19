@@ -1,0 +1,62 @@
+﻿@using Univers.PL.Utilities;
+@model Univers.Models.Models.UserLoginModel
+ 
+<title>Вход</title>
+
+<link rel="stylesheet" href="~/css/LoginAndRegistration.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cooltipz-css@2.2.2/cooltipz.css" />
+<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script> 
+ 
+@{
+    var _utilities = new Utilities();
+}
+ 
+@using (Html.BeginForm("Authorization", "Login", FormMethod.Post, new { @class = "div1" }))
+{
+    <img src="@Url.Content("~/images/Logo1.svg")" class="logo1" /><br /> <br />
+     
+    @Html.LabelFor(model => model.Username, "Потребителско име", new { @class = "lb1"})
+    <br />
+
+    <div>
+        @{
+            string usernameErrorMessage = @_utilities.GetTheErrorMessage(@_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Username)));
+            if (usernameErrorMessage != null)
+            {
+                <span class="errorwindow" style="margin-left:17%" aria-label="@usernameErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                    <div></div>@Html.TextBoxFor(model => model.Username, new { @class = "tb1 errortb"})
+                </span>
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.Username, new { @class = "tb1"})
+            } 
+        }
+    </div><br /><br />
+     
+    @Html.LabelFor(model => model.Password, "Парола", new { @class = "lb1"})<br />
+    <div> 
+        @{
+            string passwordErrorMessage = _utilities.GetTheErrorMessage(_utilities.HtmlContentToString(@Html.ValidationMessageFor(model => model.Password)));
+            if (passwordErrorMessage != null)
+            {
+                <span class="errorwindow" style="margin-left:17%" aria-label="@passwordErrorMessage" data-cooltipz-dir="top" data-cooltipz-size="fit">
+                    <div></div>@Html.PasswordFor(model => model.Password, new { @class = "tb1 errortb"})
+                </span>
+            }
+            else
+            {
+                @Html.PasswordFor(model => model.Password, new { @class = "tb1"})
+            }
+        }
+    </div> 
+
+    <div style="margin-left: 17%; margin-bottom:10%;">
+        <ion-icon name="alert-circle"  style="font-size: 2.5rem; color: #6852FD; position:absolute; margin-top: 2%;"></ion-icon>
+        <a href="@Url.Action("EnterEmail", "ForgottenPassword")"><p class="fpass">Забравена парола?</p></a>
+    </div> 
+
+    <button class="button1" type="submit">Вход</button>
+
+    <a href="@Url.Action("UploadImage","Registration")"><button class="button2" type="button">Регистрация</button></a>
+} 

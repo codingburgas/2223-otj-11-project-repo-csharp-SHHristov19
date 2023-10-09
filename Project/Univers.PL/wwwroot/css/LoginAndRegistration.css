@@ -1,0 +1,317 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+
+body {
+    background: linear-gradient(285.71deg, #B2E6FD 0%, #9BD8F1 40%, rgba(45, 12, 255, 0.71) 100%);
+}
+
+.div1 {
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    margin-left: 30%;
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 60px;
+    box-shadow: 0px 0px 50px rgba(13, 13, 13, 0.24);
+}
+
+.div3 {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    margin-left: 18%;
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 60px;
+    box-shadow: 0px 0px 50px rgba(13, 13, 13, 0.24);
+    
+}
+
+.div4 {
+    width: 95%;
+    height: 75%;
+    margin-top: 5%;
+    overflow-x: scroll;
+    display: flex;
+}
+
+.logo1 {
+    width: 60%;
+    height: 30%;
+    margin-left: 20%;
+}
+
+.back {
+    width: 6%;
+    height: 6%;
+    position: absolute;
+    margin-top: 7%;
+    margin-left: 3%;
+}
+
+.lb1 {
+    font-family: Jost;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 43px;
+    margin-left: 17%;
+}
+
+.tb1 {
+    width: 65%;
+    height: 7%;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    margin-left: 17%;
+    font-family: Jost;
+    font-size: 20px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+}
+
+.tb1:focus-visible {
+    outline: none;
+}
+
+.tb2 {
+    width: 80%;
+    height: 45px;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    font-family: Jost;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+}
+
+.tb2:focus-visible {
+    outline: none;
+}
+
+.tb3 {
+    width: 14%;
+    height: 11%;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    font-family: Jost;
+    font-size: 30px;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    border: 0;
+    margin-left: 1%; 
+}
+
+.tb3:focus-visible {
+    outline: none;
+}
+
+.tb3:focus {
+    color: #6852FD; 
+}
+
+.middle {
+    
+    margin-left: 5%;
+}
+
+.divcode {
+    padding: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 12px; 
+    background-color: mediumvioletred;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.button1 {
+    width: 20%;
+    height: 10%;
+    margin-left: 17%;
+    margin-top: 4%;
+    background: #6852FD;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 72.02px;
+    font-family: Jost;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    border: 0;
+}
+
+.button1:hover {
+    background: #9080ff;
+}
+
+.button2 {
+    width: 35%;
+    height: 10%;
+    margin-left: 10%;
+    margin-top: 4%;
+    background: #88d9fc;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 72.02px;
+    font-family: Jost;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    border: 0;
+}
+
+.button2:hover {
+    background: #B2E6FD;
+}
+
+.button3 {
+    width: 40%;
+    height: 10%;
+    align-content: center;
+    margin-left: 30%;
+    margin-top: 23%;
+    background: #88d9fc;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 72.02px;
+    font-family: Jost;
+    font-style: normal;
+    font-size: 30px;
+    color: white;
+    border: 0;
+}
+
+.button3:hover {
+    background: #B2E6FD;
+}
+
+.button4 {
+    width: 35%;
+    height: 10%;
+    align-content: center;
+    margin-left: 30%;
+    background: #88d9fc;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 72.02px;
+    margin-top: 2%;
+    font-family: Jost;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    border: 0;
+}
+
+.button4:hover {
+    background: #B2E6FD;
+}
+
+.list {
+    width: 65%;
+    height: 7%;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    margin-left: 17%;
+    margin-top: 2%;
+    font-family: Jost;
+    font-size: 25px;
+    outline: none;
+    padding: 1%;
+    border: 0;
+}
+
+.title {
+    font-family: Jost;
+    font-size: 22px;
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 12px;
+    
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(285.71deg, #B2E6FD 0%, #9BD8F1 40%, rgba(45, 12, 255, 0.71) 100%);
+    border-radius: 10px;
+}
+
+.errortb {
+    background-color: #ff6cd4;
+    outline:auto; 
+    outline-color: #ff03ad;
+}
+
+.errorwindow {
+    --cooltipz-bg-color: #ff03ad;
+    --cooltipz-border-color: #ff03ad;
+    --cooltipz-font-size: 16px;
+    --cooltipz-font-family: Jost;
+    --cooltipz-text-color: white;
+    --cooltipz-border-radius: 2rem;
+    width:90%;
+}
+
+.fpass {
+    font-family: Jost;
+    font-size: 20px;
+    font-weight: 400;
+    color: #9080ff;
+    text-decoration: underline;
+    cursor: pointer;
+    position:absolute; 
+    margin-left: 8%;
+}
+
+.button5 {
+    font-family: Jost;
+    font-size: 140%;
+    font-weight: 400;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    margin-left: 15%;
+    margin-bottom: 3%;
+}
+
+.button5:hover {
+    background-color: #B2E6FD;
+}
+
+.filebox {
+    width: 65%;
+    margin-left: 17%;
+    max-width: 100%;
+    color: black;
+    font-family: Jost;
+    font-size: 120%;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+.filebox::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #6852FD;
+    font-family: Jost;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.filebox::file-selector-button:hover {
+    background: #9080ff;
+}
